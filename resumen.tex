@@ -54,7 +54,31 @@
     \item No existe el guardar o asignar en el mundo de la lógica. No puedo guardar en una lista en un índice específico porque si un valor. Para esto solemos usar que x valor pertenecerá a esta lista, por ejemplo.
     \item Si tengo un algoritmo que cumple una funcionalidad específica con un require más débil, puedo poner el require más restrictivo y va a funcionar igual pero NO al revés.
 \end{itemize}
-
+\subsection*{Fórmulas compuestas}
+Decimos que una fórmula es compuesta a una fórmula que tiene más de una operación y esa operación necesita realizarse antes de conocer su valor.
+\begin{itemize}
+    \item \((p \land q) \lor m\)
+    \item \(((p \land q) \lor m) \implies n\)
+\end{itemize}
+\subsection*{Fórmula atómica}
+Decimos que una fórmula es atómica si se puede inferir su valor con una, o ninguna operación. Es irreducible.
+\begin{itemize}
+    \item p
+    \item \(p \land q\)
+\end{itemize}
+\subsection*{Fórmulas bien definidas}
+Decimos que una fórmula está bien definida cuando el orden que hay que hacer las operaciones es clara. Es decir, cuando cada operación toma dos variables proposicionales, y al realizar la operación termina siendo una fórmula atómica.
+\begin{itemize}
+    \item \(p \land q \lor r\) está mal formada. No se especifica si primero se realiza el \(\land\) o el \(\lor\).
+    \item \((p \land q) \lor r\) está bien formada.
+    \item \(p \land q \land r \land m\) está bien formada porque son todas conjunciones.
+    \item \(p \lor q \lor r \lor m\) está bien formada porque son todas disyunciones.
+\end{itemize}
+\subsection*{Cuantificadores}
+\begin{itemize}
+    \item \(\forall \ garantiza \ la \ \text{conjunción}: p(1) \land p(2) \land p(3) \dots \land p(m) \). Todos los casos deben ser \True \ para que el cuantificador sea \True.
+    \item \(\exists \ garantiza \ la \ \text{disyunción}: p(1) \lor p(2) \lor p(3) \dots \lor p(m) \). Con un caso \True \ el cuantificador es \True.
+\end{itemize}
 
 
 \end{document}
