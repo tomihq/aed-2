@@ -32,8 +32,28 @@
 \end{figure}
 
 \newpage
-
-
+\section{Especificación}
+\subsection*{Consideraciones importantes / Reminders}
+\begin{itemize}
+    \item Utilizar operadores luego: Si estoy en LPO (Lógica de Primer Orden) utilizar los operadores luego si vemos que hay una posible indefinición como una división, o ingresar a una lista a un índice. Recordar que el para todo y un existe, aunque esté acotado por un rango, los cuantificadores predican IGUAL para todos los valores. Entonces, aunque diga que x es positivo, también probará dividir inclusive por 0 y estallará.
+    \item Recordar las condiciones bidireccionales
+        \begin{itemize}
+            \item Si por algún motivo tengo que armar una “lista”, como, por ejemplo, los divisores de un número x tengo que indicar que, si el número divide a x, entonces ese número está en res, pero además todos los valores que están en res DIVIDEN a x. Es una condición bidireccional. 
+            \item Otro ejemplo puede ser que tenga que considerar el máximo de una lista, si todos los valores y que están en la lista son menores que res entonces significa que res también pertenece a esa lista original.
+        \end{itemize}
+    \item Recordar el significado de los cuantificadores con dos variables al mismo tiempo: En la lógica se ejecutan todos de uno a la vez. Es decir, si tengo que poner un para todo adentro de un para todo entonces hago un para todo solo con dos variables y listo.
+    \item Recordar que cuando en un procedimiento llamo a un predicado y ese predicado devuelve algo de un para todo, existe (básicamente un valor de verdad) tengo que castear ese valor en el procedimiento porque son dos mundos distintos.
+    Ej: asegura: { res = True \(\iff\) predicado}
+    \item Los predicados y funciones auxiliares no describen problemas. Son herramientas sintácticas para descomponer predicados.
+    \begin{itemize}
+        \item Los procedimientos pueden llamar a funciones auxiliares o predicados. Un procedimiento no puede llamar a otro procedimiento.
+        \item Los predicados pueden llamar a predicados o auxiliares. 
+        \item Las auxiliares solo pueden llamar auxiliares.
+    \end{itemize}
+    \item No usamos nunca \(==\) en especificación, usamos siempre \(=\) y estamos comparando, no asignando.
+    \item No existe el guardar o asignar en el mundo de la lógica. No puedo guardar en una lista en un índice específico porque si un valor. Para esto solemos usar que x valor pertenecerá a esta lista, por ejemplo.
+    \item Si tengo un algoritmo que cumple una funcionalidad específica con un require más débil, puedo poner el require más restrictivo y va a funcionar igual pero NO al revés.
+\end{itemize}
 
 
 
