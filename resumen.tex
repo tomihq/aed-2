@@ -289,5 +289,25 @@ Esto que acabamos de hacer se llama demostrar la correctitud de un programa, y a
 
 Existe una manera formal que nos permite conocer la precondición más débil de un algoritmo.
 
+\newpage
 \subsection*{Precondición más débil (Weakest Precondition)}
+Es la precondición más débil que se necesita para poder ejecutar un algoritmo y satisfacer la postcondición Q. \\ \\
+Notación: \(wp(S, Q)\) donde S es el programa y Q la postcondición. \\ \\
+Teorema: Una tripla de Hoare \(\{P\} \ S \ \{Q\}\) es válida \(\iff P \implicaLuego wp(S, Q)\). \\ \\ 
+Sea el siguiente enunciado, calcule la precondición más debil.
+\begin{itemize}
+    \item P = \(\{x \ge 4\}\)
+    \item S = \(x := x+1\)
+    \item Q = \(\{x \ge 5\}\)
+\end{itemize} 
+\(P \implicaLuego wp(S, Q) \equiv wp(x := x+1, x \ge 5) \equiv def(x+1) \yLuego Q^{x}_{x+1} \equiv def(x) \yLuego def(1) \yLuego x+1 \ge 5 \\ \equiv True \yLuego True \yLuego x \ge 4 \equiv x \ge 4\)
+
+Luego, \(\{x \ge 4\} \implicaLuego \{x \ge 4\}\) es \(\True\)
+
+Por lo tanto, \(wp(x:=x+1, x \ge 5) \equiv \{x \ge 4\}\)
+
+Finalmente, probamos que para poder satisfacer Q la precondición más debil que cumple P es cuaqluier \(x \ge 4\).
+
+
+
 \end{document}
