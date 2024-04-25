@@ -91,7 +91,6 @@ Decimos que una fórmula está bien definida cuando el orden que hay que hacer l
         \item \(\exists\) + rango + \(\yLuego\)
     \end{itemize}
 \end{itemize}
-
 \subsection*{Equivalencias entre fórmulas}
 Decimos que dos fórmulas son equivalentes \(\iff\) los valores de la tabla de verdad al aplicar la operación arroja el mismo resultado.
 
@@ -183,6 +182,11 @@ Las variables son ligadas \(\iff\) están dentro de un cuantificador mientras qu
 
 Cuando tenemos variables ligadas \textbf{no} podemos hacer nada sobre ellas, entre esas cosas, no podemos reemplazarlas porque no dependen de nosotros sino de los cuantificadores.
 
+\subsection*{Cuantificadores anidados}
+Anidamos cuantificadores cuando el rango de las variables es exactamente el mismo.
+\begin{itemize}
+    \item \((\forall i, j: \ent)(0 \le i, j < \longitud{s} \implicaLuego n \ge s[i][j]) \equiv (\forall i: \ent)((0 \le i < \longitud{s}\implicaLuego (\forall  j: \ent)(0 \le j < \longitud{s} \implicaLuego n \ge s[i][j]))) \) 
+\end{itemize}
 
 
 \end{document}
