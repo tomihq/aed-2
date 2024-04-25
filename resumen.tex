@@ -298,6 +298,17 @@ Dada una expresión E, llamamos def(E) a las condiciones para que E esté defini
     \item \(def(a[i]+3) \equiv (def(a) \land def(i)) \yLuego 0 \le i<\longitud{a} \land def(3) \equiv (True \land True) \yLuego 0\le i<\longitud{a} \land True \equiv 0\le i<\longitud{a}\)
 \end{itemize}
 
+\subsection*{Predicado \(Q^{x}_{E}\)}
+Cuando hablamos de este predicado hablamos de reemplazar las ocurrencias de x por E en el programa. Solo se reemplazan las ocurrencias libres, no las ligadas.
+\subsection*{Axiomas}
+\begin{itemize}
+    \item Axioma 1: \(wp(x := E, Q) \equiv def(E) \yLuego Q^{x}_{E}\)
+    \item Axioma 2: \(wp(skip, Q) \equiv Q\)
+    \item Axioma 3: \(wp(S1; S2, Q) \equiv wp(S_{1}, wp(S_{2}, Q))\)
+    \item Axioma 4: \(wp(S, Q) \equiv def(B) \yLuego ((B \land wp(S_{1}, Q)) \lor (\neg B \land wp(S_{2}, Q)))\)
+\end{itemize} 
+
+
 \subsection*{Precondición más débil (Weakest Precondition)}
 Es la precondición más débil que se necesita para poder ejecutar un algoritmo y satisfacer la postcondición Q. \\ \\
 Notación: \(wp(S, Q)\) donde S es el programa y Q la postcondición. \\ \\
