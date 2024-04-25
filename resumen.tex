@@ -273,4 +273,21 @@ Nota: E es una expresión cualquiera. Un valor, una función, cualquier cosa.
     \item Ciclo: while B do S endwhile es un programa \(\iff\) B es una condición lógica y S un programa.
 \end{itemize}
 
+\subsection*{Validez de una tripla de Hoare}
+\(\{x \ge 4\} \ x := x+1 \ \{x \ge 7\}\)
+Donde, 
+\begin{itemize}
+    \item P = \(\{x \ge 4\}\)
+    \item S = \(x := x+1\)
+    \item Q = \(\{x \ge 7\}\)
+\end{itemize}
+
+¿Vale que \(\{P\} \ S \ \{Q\}\)?
+Solo vale \(\iff x \ge 6\) por lo tanto, como la precondición P falla en los casos de x = 4, x = 5 podemos decir que la tripla de Hoare no es válida.\\
+
+Esto que acabamos de hacer se llama demostrar la correctitud de un programa, y acabamos de demostrar que la precondición P para el programa S es demasiado débil pues no nos garantiza que llegaremos a Q cumpliendo P. \\
+
+Existe una manera formal que nos permite conocer la precondición más débil de un algoritmo.
+
+\subsection*{Precondición más débil (Weakest Precondition)}
 \end{document}
