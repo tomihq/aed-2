@@ -112,6 +112,19 @@ Algunos ejemplos:
     \item \(0 \le i < \longitud{s} \implies 1 \le i < \longitud{s}\). En este caso A \(\notimplies\) B, pues el 0 de A no es parte de B. Por lo tanto, \(A \notimplies B\)
 \end{itemize}
 
+\subsection*{Lógica trivaluada}
+También llamada lógica secuencial porque se procesa de izquierda a derecha; Nos introduce los conceptos de \(\yLuego \ \oLuego \ \implicaLuego\) y el valor de indefinido \(\bot\).
+
+Se termina de evaluar una expresión cuando se puede deducir el valor de verdad. \\
+
+
+Considere \(x = \True \land y = \bot \)
+\begin{itemize}
+    \item \(x \oLuego y\): Como el \(\oLuego\) necesita uno solo para ser verdadero, entonces como x ya es \(\True\) entonces toda la fórmula es verdadera.
+    \item \(x \yLuego y\): Como el \(\yLuego\) necesita que ambas variables sean verdaderas, evalúa indefinido y el programa estalla.
+    \item \(\neg x \implicaLuego y\): Como el \(\implicaLuego\) solo es falso si el antecedente es  \(\True\) y el consecuente \(\False\), como en este caso el antecedente ya es falso, toda la implicación es verdadera.
+\end{itemize}
+
 
 
 \end{document}
