@@ -237,5 +237,13 @@ Notación \(S = S_{0}\)
 \\
 Nota: Cuando utilizamos metavariables tenemos que indicar que al modificar algo directamente, si no modificamos todo el conjunto de valores tenemos que indicar que los demás permanecen inalterados. En este caso, como estamos editando los valores, no tendría sentido que la lista salga con mayor longitud, es por eso que garantizamos que no cambia. 
 
+Otra manera de resolver el ejemplo anterior es utilizando old(s)
+\begin{proc}{multiplicarPorDosAImpares}{\Inout l: \TLista{\ent}}{}
+    \asegura{\longitud{l} = \longitud{old(l)}}
+    \asegura{(\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego if(old(s)[i] \ mod \ 2 \neq 0) \ then \ (s[i] = old(s)[i] \ast 2) \ else \ (s[i] = old(s)[i]) \ fi)}
+\end{proc}
+\leavevmode
+\\
+
 
 \end{document}
