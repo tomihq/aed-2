@@ -76,8 +76,18 @@ Decimos que una fórmula está bien definida cuando el orden que hay que hacer l
 \end{itemize}
 \subsection*{Cuantificadores}
 \begin{itemize}
-    \item \(\forall \ garantiza \ la \ \text{conjunción}: p(1) \land p(2) \land p(3) \dots \land p(m) \). Todos los casos deben ser \True \ para que el cuantificador sea \True.
-    \item \(\exists \ garantiza \ la \ \text{disyunción}: p(1) \lor p(2) \lor p(3) \dots \lor p(m) \). Con un caso \True \ el cuantificador es \True.
+    \item Para todo: \(\forall\)
+    \begin{itemize}
+        \item \(Garantiza \ la \ \text{conjunción}: p(1) \land p(2) \land p(3) \dots \land p(m) \). Todos los casos deben ser \True \ para que el cuantificador sea \True.
+        \item Se acompaña por un \(\implica\) a la hora de predicar sobre los elementos.
+        \item \((\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego \ s[i] \ mod \ 2 = 0)\). Todos los elementos de la lista son divisibles por 2.
+    \end{itemize}
+    \item Existe: \(\exists\)
+    \begin{itemize}
+        \item \(Garantiza \ la \ \text{disyunción}: p(1) \lor p(2) \lor p(3) \dots \lor p(m) \). Con un caso \True \ el cuantificador es \True.
+        \item Se acompaña por un \(\land\) a la hora de predicar sobre los elementos.
+        \item \((\exists i: \ent)(0 \le i < \longitud{s} \yLuego s[i] \ge 0)\). Existe algún elemento en la lista que es mayor o igual a 0.
+    \end{itemize}
 \end{itemize}
 
 \subsection*{Equivalencias entre fórmulas}
@@ -123,7 +133,8 @@ Considere \(x = \True \land y = \bot \land z = \False \)
     \item \(x \oLuego y\): Como el \(\oLuego\) necesita uno solo para ser verdadero, entonces como x ya es \(\True\) entonces toda la fórmula es verdadera.
     \item \(x \yLuego y\): Como el \(\yLuego\) necesita que ambas variables sean verdaderas, evalúa indefinido y el programa estalla.
     \item \(\neg x \implicaLuego y\): Como el \(\implicaLuego\) solo es falso si el antecedente es  \(\True\) y el consecuente \(\False\), como en este caso el antecedente ya es falso, toda la implicación es verdadera.
-    \item \((x \land z) \yLuego y\): Como el \(\yLuego\) necesita que ambas fórmulas sean \(\True\), en este caso, como \((x \land z)\) es falso, entonces ya toda la fórmula es falsa. 
+    \item \((x \land z) \yLuego y\): Como el \(\yLuego\) necesita que ambas fórmulas sean \(\True\), en este caso, como \((x \land z)\) es falso, entonces ya toda la fórmula es falsa. Nótese que el \(\land\) de la condición interna no contiene el luego porque jamás se indefinirá.
+    \item \((\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego s[i] \ge 0)\) Nótese que aquí usamos un \(\implicaLuego\) porque podría ser que la lista esté indefinida o no exista el valor en s[i]
 \end{itemize}
 
 
