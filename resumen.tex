@@ -288,8 +288,16 @@ Solo vale \(\iff x \ge 6\) por lo tanto, como la precondición P falla en los ca
 Esto que acabamos de hacer se llama demostrar la correctitud de un programa, y acabamos de demostrar que la precondición P para el programa S es demasiado débil pues no nos garantiza que llegaremos a Q cumpliendo P. \\
 
 Existe una manera formal que nos permite conocer la precondición más débil de un algoritmo.
-
 \newpage
+\subsection*{Predicado def(E)}
+Dada una expresión E, llamamos def(E) a las condiciones para que E esté definida. Todas las constantes están definidas, por lo tanto def(x) \(\equiv\) True. La idea es ir separando en términos e ir colocando las definiciones necesarias para esa operación específica.
+\begin{itemize}
+    \item \(def(x+1) \equiv def(x) \land def(1) \equiv True \land True \equiv True\)
+    \item \(def(x/y) \equiv def(x) \land (def(y) \land y\neq0) \equiv True \land (True \land y>0) \equiv y\neq0\)
+    \item \(def(\sqrt{x}) \equiv (def(x) \land x\ge0)\)
+    \item \(def(a[i]+3) \equiv (def(a) \land def(i)) \yLuego 0 \le i<\longitud{a} \land def(3) \equiv (True \land True) \yLuego 0\le i<\longitud{a} \land True \equiv 0\le i<\longitud{a}\)
+\end{itemize}
+
 \subsection*{Precondición más débil (Weakest Precondition)}
 Es la precondición más débil que se necesita para poder ejecutar un algoritmo y satisfacer la postcondición Q. \\ \\
 Notación: \(wp(S, Q)\) donde S es el programa y Q la postcondición. \\ \\
