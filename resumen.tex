@@ -308,6 +308,15 @@ Cuando hablamos de este predicado hablamos de reemplazar las ocurrencias de x po
     \item Axioma 4: \(wp(S, Q) \equiv def(B) \yLuego ((B \land wp(S_{1}, Q)) \lor (\neg B \land wp(S_{2}, Q)))\)
 \end{itemize} 
 
+\subsection*{Axioma 1 con secuencias}
+El axioma 1 nos sirve para asignar una epxresión a una variable. Si tenemos que guardar algo en una secuencia debemos utilizar el setAt.
+\begin{itemize}
+    \item \(wp(b[i]:=E, Q) \\
+    \equiv def(setAt(b, i, E)) \yLuego Q^{b[i]}_{setAt(b, i, E)} \\
+    \equiv (def(b) \land def(i) \land def(E)) \yLuego 0\le i < \longitud{b} \yLuego Q^{b[i]}_{setAt(b, i, E)} \\
+    \equiv 0\le i < \longitud{b} \yLuego Q^{b[i]}_{setAt(b, i, E)}   \\
+    \equiv setAt(b, i, E)[j] = \{E \ si \ i = j, b[j] \ si \ i \neq j\}\)
+\end{itemize}
 
 \subsection*{Precondición más débil (Weakest Precondition)}
 Es la precondición más débil que se necesita para poder ejecutar un algoritmo y satisfacer la postcondición Q. \\ \\
