@@ -218,4 +218,20 @@ Anidamos cuantificadores cuando el rango de las variables es exactamente el mism
     \item \((\forall i, j: \ent)(0 \le i, j < \longitud{s} \implicaLuego n \ge s[i][j]) \equiv (\forall i: \ent)((0 \le i < \longitud{s}\implicaLuego (\forall  j: \ent)(0 \le j < \longitud{s} \implicaLuego n \ge s[i][j]))) \) 
 \end{itemize}
 
+\subsection*{Estado}
+Llamamos estado a los valores de las variables en un punto de ejecución específico. \\
+
+Cuando necesitamos hablar del estado de una variable en un instante específico, hablamos de \textbf{metavariables}
+
+\subsection*{Metavariables}
+Llamamos metavariable a una variable en un instante dado. Es útil cuando tenemos que predicar como cambio el valor de una variable con respecto al inicial. \\
+Cuando tenemos que utilizar metavariables, podemos referirnos al instante de tiempo como \(S_{t}\) donde t indica el momento. \\ 
+Notación \(S = S_{0}\)
+
+\begin{proc}{multiplicarPorDosAImpares}{\Inout l: \TLista{\ent}}{}
+    \requiere{l = l_{0}}
+    \asegura{\longitud{l} = \longitud{l_{0}}}
+    \asegura{(\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego if(s_{0} [i] \ mod \ 2 \neq 0) \ then \ (s[i] = s_{0}[i] \ast 2) \ else \ (s[i] = s_{0}[i]) \ fi)}
+\end{proc}
+
 \end{document}
