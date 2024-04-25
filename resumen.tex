@@ -137,6 +137,41 @@ Considere \(x = \True \land y = \bot \land z = \False \)
     \item \((\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego s[i] \ge 0)\) Nótese que aquí usamos un \(\implicaLuego\) porque podría ser que la lista esté indefinida o no exista el valor en s[i]
 \end{itemize}
 
+\subsection*{Predicados}
+\begin{itemize}
+    \item Viven en el mundo de la lógica. 
+    \item Nos sirven para poder modularizar nuestras especificaciones. 
+    \item Solamente devuelven valores de verdad True y False y es necesario castearlos en caso de querer devolver true como tipo de dato.
+    \item Los predicados pueden llamar a otros predicados o funciones auxiliares.
+\end{itemize}
+
+\leavevmode
+\\
+Ejemplo cuando tenemos que transformar el valor de verdad a tipo de dato: 
+\leavevmode
+\\
+\pred{divisiblePorDos}{n: \ent}{
+    n \ mod \ 2 = 0
+}
+
+\begin{proc}{esMultiploDeDos}{\In n: \ent}{\bool}
+    \requiere{\True}
+    \asegura{res = true \iff divisiblePorDos(n)}
+\end{proc}
+\leavevmode
+\\ 
+Ejemplo usando un predicado sin necesidad de transformar el valor de verdad a tipo de dato: 
+
+\leavevmode
+\pred{todosSonPares}{l: \TLista{\ent}}{
+    \paraTodo[unalinea]{i}{\ent}{0 \le i < \longitud{l}  \implicaLuego l[i] mod 2 = 0}
+}
+
+\begin{proc}{todosPares}{\In l: \TLista{\ent}}{\bool}
+    \requiere{todosSonPares(l)}
+\end{proc}
+
+
 
 
 \end{document}
