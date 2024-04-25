@@ -11,7 +11,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \input{AEDmacros}
-
+\newcommand{\notimplies}{\;\not\!\!\!\implies}
 \title{Algoritmos y Estructuras de Datos II}
 \author{Tomás Agustín Hernández}
 \date{}
@@ -79,6 +79,39 @@ Decimos que una fórmula está bien definida cuando el orden que hay que hacer l
     \item \(\forall \ garantiza \ la \ \text{conjunción}: p(1) \land p(2) \land p(3) \dots \land p(m) \). Todos los casos deben ser \True \ para que el cuantificador sea \True.
     \item \(\exists \ garantiza \ la \ \text{disyunción}: p(1) \lor p(2) \lor p(3) \dots \lor p(m) \). Con un caso \True \ el cuantificador es \True.
 \end{itemize}
+
+\subsection*{Equivalencias entre fórmulas}
+Decimos que dos fórmulas son equivalentes \(\iff\) los valores de la tabla de verdad al aplicar la operación arroja el mismo resultado.
+
+\subsection*{Valuaciones}
+Las valuaciones surgen en base a la tabla de verdad. Las valuaciones serian darle valor a las variables proposicionales y ver el resultado de la operación. Solo hacen referencias a fórmulas atómicas.
+
+\subsection*{Tautologias, contradicciones y contingencias}
+\begin{itemize}
+    \item Una fórmula es tautología \(\iff\) el resultado de la operación en cada fila arroja siempre V.
+    \item Una fórmula es contradicción \(\iff\) el resultado de la operación en cada fila arroja siempre F.
+    \item  Una fórmula es contradicción \(\iff\) el resultado de la operación en cada fila arroja siempre V y F.
+\end{itemize}
+
+\subsection*{Relaciones de fuerza entre fórmulas}
+Decimos que una fórmula es más fuerte que la otra \(\iff\) una fórmula es más restrictiva que la otra, o está incluida en la otra. \\
+En el mundo de la lógica, decimos que A es más fuerte que B \(\iff A \implies B\)
+
+\begin{itemize}
+    \item Si (\(A \implies B\)) y (\(B \implies A\)) son tautologías, entonces A y B son equivalentes.
+    \item Si (\(A \implies B\)) es tautología y (\(B \notimplies A\)) no es tautología, entonces decimos que A es más fuerte que B.
+    \item Si (\(A \notimplies B\)) y (\(B \notimplies A\)) son contigencias, entonces no existe relación de fuerza entre A y B.
+\end{itemize}
+
+Algunos ejemplos:
+
+\begin{itemize}
+    \item \(\longitud{s} = 0 \implies \longitud{s} \ge 0\). En este caso vemos que \(\longitud{s} = 0\) es más fuerte que \(\longitud{s} \ge 0\) pues \(\longitud{s} = 0\) está incluido en \(\longitud{s} \ge 0\). Por lo tanto, \(A \implies B\)
+    \item \(\longitud{s} = 0 \implies \longitud{s} \ge 3\). En este caso vemos que \(\longitud{s} = 0\) no es más fuerte que \(\longitud{s} \ge 3\) pues \(\longitud{s} = 0\) no está incluido en \(\longitud{s} \ge 3\). Por lo tanto, \(A \notimplies B\)
+    \item \(2 \le i < \longitud{s} \implies 1 \le i < \longitud{s}\). En este caso A \(\implies\) B, pues i = 2 está incluido en el rango de B. Por lo tanto, \(A \implies B\)
+    \item \(0 \le i < \longitud{s} \implies 1 \le i < \longitud{s}\). En este caso A \(\notimplies\) B, pues el 0 de A no es parte de B. Por lo tanto, \(A \notimplies B\)
+\end{itemize}
+
 
 
 \end{document}
