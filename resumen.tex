@@ -81,12 +81,14 @@ Decimos que una fórmula está bien definida cuando el orden que hay que hacer l
         \item \(Garantiza \ la \ \text{conjunción}: p(1) \land p(2) \land p(3) \dots \land p(m) \). Todos los casos deben ser \True \ para que el cuantificador sea \True.
         \item Se acompaña por un \(\implica\) a la hora de predicar sobre los elementos.
         \item \((\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego \ s[i] \ mod \ 2 = 0)\). Todos los elementos de la lista son divisibles por 2.
+        \item Estructura: \(\forall\) + rango + \(\implicaLuego\)
     \end{itemize}
     \item Existe: \(\exists\)
     \begin{itemize}
         \item \(Garantiza \ la \ \text{disyunción}: p(1) \lor p(2) \lor p(3) \dots \lor p(m) \). Con un caso \True \ el cuantificador es \True.
         \item Se acompaña por un \(\land\) a la hora de predicar sobre los elementos.
         \item \((\exists i: \ent)(0 \le i < \longitud{s} \yLuego s[i] \ge 0)\). Existe algún elemento en la lista que es mayor o igual a 0.
+        \item \(\exists\) + rango + \(\yLuego\)
     \end{itemize}
 \end{itemize}
 
@@ -171,6 +173,14 @@ Ejemplo usando un predicado sin necesidad de transformar el valor de verdad a ti
     \requiere{todosSonPares(l)}
 \end{proc}
 
+\subsection*{Variables Ligadas y Libres}
+Las variables son ligadas \(\iff\) están dentro de un cuantificador mientras que son libres cuando no lo están.
+\begin{itemize}
+    \item \((\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego n \ge s[i])\) i es una variable ligada mientras que n y s son variables libres.
+    \item \((\exists j: \ent)(0 \le j < \longitud{s} \yLuego n \ge s[i])\) j es una variable ligada mientras que n y s son variables libres.
+\end{itemize}
+
+Cuando tenemos variables ligadas \textbf{no} podemos hacer nada sobre ellas, entre esas cosas, no podemos reemplazarlas porque no dependen de nosotros sino de los cuantificadores.
 
 
 
