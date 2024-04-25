@@ -256,4 +256,21 @@ Decimos que un programa S es correcto respecto a una especificación si se cumpl
 Notación para indicar que S es correcto respecto a la especificación (P, Q) \\ 
 \[\{P\} \ S \ \{Q\}\]
 
+\subsection*{SmallLang}
+Es un lenguaje que nos permitirá poder validar la correctitud de un programa.
+Solo tiene dos operaciones: 
+\begin{itemize}
+    \item x := E \(\equiv\) asignación
+    \item skip \(\equiv\) no hace nada
+\end{itemize}
+
+Nota: E es una expresión cualquiera. Un valor, una función, cualquier cosa.
+
+\subsection*{Estructuras de Control en SmallLang}
+\begin{itemize}
+    \item Secuencia de pasos: S1; S2 es un programa \(\iff\) S1 y S2 son dos programas.
+    \item Condicionales: if B then S1 else S2 endif es un programa \(\iff\) B es una condición lógica (guarda) y S1 y S2 son programas.
+    \item Ciclo: while B do S endwhile es un programa \(\iff\) B es una condición lógica y S un programa.
+\end{itemize}
+
 \end{document}
