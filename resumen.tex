@@ -148,7 +148,7 @@ Considere \(x = \True \land y = \bot \land z = \False \)
 \begin{itemize}
     \item Viven en el mundo de la lógica. 
     \item Nos sirven para poder modularizar nuestras especificaciones. 
-    \item Solamente devuelven valores de verdad True y False y es necesario castearlos en caso de querer devolver true como tipo de dato.
+    \item Solamente devuelven valores de verdad True y False y es necesario castearlos en caso de querer devolver bool como tipo de dato.
     \item Los predicados pueden llamar a otros predicados o funciones auxiliares.
     \item Pueden utilizar cuantificadores.
     \item No tienen requiere ni asegura.
@@ -195,7 +195,6 @@ Ejemplo usando un predicado sin necesidad de transformar el valor de verdad a ti
 \end{itemize}
 
 \leavevmode
-\\
 \aux{sumar}{n: \ent, m: \ent}{\ent}{
     n + m
 }
@@ -230,7 +229,7 @@ Cuando necesitamos hablar del estado de una variable en un instante específico,
 
 \subsection*{Metavariables}
 Llamamos metavariable a una variable en un instante dado. Es útil cuando tenemos que predicar como cambio el valor de una variable con respecto al inicial. \\
-Cuando tenemos que utilizar metavariables, podemos referirnos al instante de tiempo como \(S_{t}\) donde t indica el momento. \\ \\ 
+Cuando tenemos que utilizar metavariables, sea S una variable cualquiera podemos referirnos al instante de tiempo de S como \(S_{t}\) donde t indica el momento. \\ \\ 
 Notación \(S = S_{0}\)
 
 \begin{proc}{multiplicarPorDosAImpares}{\Inout l: \TLista{\ent}}{}
@@ -309,7 +308,7 @@ Cuando hablamos de este predicado hablamos de reemplazar las ocurrencias de x po
 \end{itemize} 
 
 \subsection*{Axioma 1 con secuencias}
-El axioma 1 nos sirve para asignar una epxresión a una variable. Si tenemos que guardar algo en una secuencia debemos utilizar el setAt.
+El axioma 1 nos sirve para asignar una expresión a una variable; Sin embargo, si tenemos que guardar algo en una secuencia debemos utilizar el setAt.
 \begin{itemize}
     \item \(wp(b[i]:=E, Q) \\
     \equiv def(setAt(b, i, E)) \yLuego Q^{b[i]}_{setAt(b, i, E)} \\
