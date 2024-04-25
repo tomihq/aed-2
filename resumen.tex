@@ -144,6 +144,9 @@ Considere \(x = \True \land y = \bot \land z = \False \)
     \item Nos sirven para poder modularizar nuestras especificaciones. 
     \item Solamente devuelven valores de verdad True y False y es necesario castearlos en caso de querer devolver true como tipo de dato.
     \item Los predicados pueden llamar a otros predicados o funciones auxiliares.
+    \item Pueden utilizar cuantificadores.
+    \item No tienen requiere ni asegura.
+    \item No admite parámetros in, out, inout.
 \end{itemize}
 
 \leavevmode
@@ -171,6 +174,33 @@ Ejemplo usando un predicado sin necesidad de transformar el valor de verdad a ti
 \begin{proc}{todosPares}{\In l: \TLista{\ent}}{\bool}
     \requiere{todosSonPares(l)}
 \end{proc}
+\newpage
+\subsection*{Funciones Auxiliares}
+\begin{itemize}
+    \item Son reemplazos sintácticos. 
+    \item Nos ayudan a modularizar las especificaciones.
+    \item No pueden ser recursivas.
+    \item Solo hacen cuentas.
+    \item No pueden utilizar cuantificadores.
+    \item Pueden llamar a predicados.
+    \item Devuelven un tipo de dato.
+    \item No tienen requiere ni asegura.
+    \item No admite parámetros in, out, inout.
+\end{itemize}
+
+\leavevmode
+\\
+\aux{sumar}{n: \ent, m: \ent}{\ent}{
+    n + m
+}
+
+\aux{sumarTodos}{s: \TLista{\ent}}{\ent}{
+    \sum_{i=0}^{\longitud{s}-1}{s[i]}
+}
+
+
+\subsection*{Aridad}
+Decimos que una función es de aridad \(n\) cuando la función recibe \(n\) cantidad de parámetros.
 
 \subsection*{Variables Ligadas y Libres}
 Las variables son ligadas \(\iff\) están dentro de un cuantificador mientras que son libres cuando no lo están.
@@ -187,6 +217,5 @@ Anidamos cuantificadores cuando el rango de las variables es exactamente el mism
 \begin{itemize}
     \item \((\forall i, j: \ent)(0 \le i, j < \longitud{s} \implicaLuego n \ge s[i][j]) \equiv (\forall i: \ent)((0 \le i < \longitud{s}\implicaLuego (\forall  j: \ent)(0 \le j < \longitud{s} \implicaLuego n \ge s[i][j]))) \) 
 \end{itemize}
-
 
 \end{document}
