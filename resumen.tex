@@ -178,6 +178,7 @@ Las variables son ligadas \(\iff\) están dentro de un cuantificador mientras qu
 \begin{itemize}
     \item \((\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego n \ge s[i])\) i es una variable ligada mientras que n y s son variables libres.
     \item \((\exists j: \ent)(0 \le j < \longitud{s} \yLuego n \ge s[i])\) j es una variable ligada mientras que n y s son variables libres.
+    \item \((\forall i: \ent)(0 \le i < \longitud{s} \implicaLuego n \ge s[i]) \land P(i)\) Ojo acá. i es una variable ligada, pero la i que está fuera del cuantificador \(P(i)\) no está ligada. Esta última debería ser renombrada para no tener problemas y confusiones.
 \end{itemize}
 
 Cuando tenemos variables ligadas \textbf{no} podemos hacer nada sobre ellas, entre esas cosas, no podemos reemplazarlas porque no dependen de nosotros sino de los cuantificadores.
