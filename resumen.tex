@@ -396,7 +396,16 @@ Luego,
 \textbf{Recordatorio importante}: Para todo lo que es wp usamos SmallLang, es decir, cuando tenemos que validar la tripla de Hoare. En todos los demás casos usamos lógica. \\
 Ej: No sería válido tener un if en un invariante.
 
-
+\subsection*{Reglas generales para validar correctitud de ciclo y terminación}
+\begin{itemize}
+    \item Cuando tenemos que iterar sobre listas, tendremos un índice i que irá hasta incluida la longitud (pues nos sirve) para negar la guarda, mientras que el j será para usar dentro del ciclo. 
+    \((0\le i \le \longitud{s} \yLuego (0 \le j < i \implicaLuego res = \sum_{j=0}^{i}{s[j]}))\)
+    \item Si tengo algo en \(I\) deberá estar en \(P_{c}\) y/o \(Q_{c}\). Esto es porque cuando tengamos que hacer las implicancias, deberíamos comparar de ambos lados y si el invariante tiene algo que los demás no, es siempre falso. 
+    \item Si tengo algo en \(P_{c}\) o \(Q_{c}\) no necesariamente tiene que estar en \(I\)
+    \item En \(Q_{c}\) se acostumbra a colocar que \(i = \longitud{s}\) porque nos ayuda a demostrar la terminación del ciclo.
+    \item En la función variante: i va negada si i crece en el ciclo; i va positivo si i decrece en el ciclo.
+    \item En \(Q_{c}\) rara vez tenemos que hablar de rangos de variables.
+\end{itemize} 
 
 
 
