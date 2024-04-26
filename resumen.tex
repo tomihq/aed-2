@@ -395,7 +395,16 @@ Luego,
 \textbf{Recordatorio}: Si aparece la S es que tenemos que calcular la wp porque es parte de la Tripla de Hoare. \\
 \textbf{Recordatorio importante}: Para todo lo que es wp usamos SmallLang, es decir, cuando tenemos que validar la tripla de Hoare. En todos los demás casos usamos lógica. \\
 Ej: No sería válido tener un if en un invariante.
-
+\subsection*{Teorema de Terminación de Ciclo}
+Utilizamos el teorema de terminación de ciclo para garantizar que cumpliendo la precondición de un ciclo, el programa siempre termina.
+Para poder probar esto, necesito una función variante \(f_{v}\). \\
+Llamamos función variante \(f_{v}\) a una función que es siempre estrictamente decreciente y representa una cantidad que se va reduciendo a lo largo de las iteraciones.
+La función \(f_{v}\) debe garantizar
+\begin{itemize}
+    \item \(\{I \land B \land v_{0} = f_{v}\} \ S \ \{f_{v} < v_{0}\}\)
+    \item \(\{I  \land f_{v} \le 0 \implies \neg B\}\)
+   
+\end{itemize}
 \subsection*{Reglas generales para validar correctitud de ciclo y terminación}
 \begin{itemize}
     \item Cuando tenemos que iterar sobre listas, tendremos un índice i que irá hasta incluida la longitud (pues nos sirve) para negar la guarda, mientras que el j será para usar dentro del ciclo. 
@@ -407,7 +416,55 @@ Ej: No sería válido tener un if en un invariante.
     \item En \(Q_{c}\) rara vez tenemos que hablar de rangos de variables.
 \end{itemize} 
 
+\section*{TADs (Tipos Abstractos de Datos)}
+Es un tipo de datos porque define un conjunto de valores y las operaciones que se pueden realizar sobre ellos. Es abstracto ya que para utilizarlos no necesitamos saber como está implementado.
+Describe el qué y no el cómo.
+Son una forma de modularizar a nivel de los datos.  \\ \\
+Importante: En todo enunciado ambiguo, queda en nosotros interpretarlo y eliminar esas ambiguedades decidiendo como lo vamos a considerar.\\ \\
+Ej: En varios ejercicios te piden que un punto deba cambiarse el centro y hay dos maneras de plantearlo
+\begin{itemize}
+    \item Agarrar el centro que vienen por parámetro y sumar coordenada a coordenada con respecto a las de la instancia de mi TAD. 
+    \item Agarrar el centro que viene por parámetro y considerarlo como el centro final en la instancia del TAD.
+\end{itemize}
+Importante: En un TAD podemos usar todos los mismos tipos de datos de especificación y sus funciones correspondientes.
 
+\subsection*{Observadores}
+Los observadores son una especie de atributo en un objeto en POO.
+Nos permiten saber qué valores tienen y en qué momento.
+\begin{itemize}
+    \item Sirven para describir el estado de una instancia de un TAD y nos permiten consultar su estado virtual.
+    \item Tenemos que poder observar todas las características que nos interesan de las instancias.
+    \item En un instante de tiempo, el estado de una instancia del TAD estará dado por el estado de todos sus observadores (como un debugger).
+    \item Nos permiten distinguir si dos instancias son distintas.
+    \item Todas las operaciones tienen que poder ser descriptas a partir de los observadores.
+\end{itemize} 
+Ejemplo de un TAD con observadores de tipo dato:
+\begin{lstlisting}
+    TAD lista {
+        obs elems: conj<T>
+        obs cantElems: int
+    }
+\end{lstlisting}
 
+Los observadores también pueden ser funciones auxiliares.
+\begin{itemize}
+    \item Son las auxiliares de nuestro lenguaje de especificación 
+    \item No pueden tener efectos colaterales ni modificar los parámetros
+    \item Pueden usar tipos de nuestro lenguaje de especificación 
+\end{itemize} 
+Ejemplo de un TAD con observadores de tipo dato:
+\begin{lstlisting}
+    TAD lista {
+        obs elems: conj<T>
+        obs estaElem(e: T): bool
+    }
+\end{lstlisting}
+
+\subsection*{Igualdad Observacional}
+Decimos que dos TADs son iguales \(\iff\) todos sus observadores son iguales.
+
+\subsection*{Operaciones de un TAD}
+Las operaciones de un TAD deben estar especificadas y nos indican qué se puede hacer con una instancia.
+Antes y una vez aplicada una operación tenemos que hablar del estado en el que quedó el TAD con respecto a sus observadores.
 
 \end{document}
