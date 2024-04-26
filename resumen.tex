@@ -335,10 +335,70 @@ Luego, \(\{x \ge 4\} \implicaLuego \{x \ge 4\}\) es \(\True\)
 
 Por lo tanto, \(wp(x:=x+1, x \ge 5) \equiv \{x \ge 4\}\)
 
-Finalmente, probamos que para poder satisfacer Q la precondición más debil que cumple P es cuaqluier \(x \ge 4\).
+Finalmente, probamos que para poder satisfacer Q la precondición más debil que cumple P es cuaqluier \(x \ge 4\). \\
+
+Nota importante: Muchas veces puede ser que se nos solicite indicar que \(wp\) es incorrecta. Cuando se dice esto, significa que son precondiciones válidas pero hay algunas que no son la más débil.
 
 \newpage 
 \section*{Precondición más débil en ciclos}
+Consideremos el siguiente ejemplo
+\(\{???\} S \{x=0\}\)
+donde S es el siguiente programa 
+
+\begin{lstlisting}
+     while(x>0) do
+        x := x-1
+    endwhile
+ \end{lstlisting}
+
+ Recordemos que esto es una tripla de Hoare, pero no podemos utilizar wp(S, Q) porque el programa es en base a ciclos. La precondición P más débil acá sería que x\(\ge\)0 porque para cumplir la postcondición Q me da igual si entra al ciclo o no.
+ Eso tiene que quedar siempre claro, cuando estamos hablando en ciclos, si no entra al ciclo y satisface igual ya está.
+ \subsection*{Predicado \(H_{k}\)}
+ Definimos el predicado \(H_{k}\) para poder controlar la cantidad de iteraciones que hace un ciclo y poder calcular la precondición más débil.
+ \begin{itemize}
+    \item \(H_{0}(Q) \equiv def(B) \land \neg B \land Q\)
+    \item \(H_{k+1}(Q) \equiv def(B) \land B \land wp(S, H_{k}(Q)) \ para \ k \ge 0\) 
+\end{itemize} 
+\subsection*{Axiomas}
+Definimos el Axioma 5 para poder verificar la correctitud de ciclos que hacen una cantidad de iteraciones fijas como \\
+\[wp(while \ B \ do \ S \ endwhile, Q) \equiv (\exists_{i\ge0})(H_{i}(Q))\]
+
+¿Cual es el problema del Axioma 5 y el Predicado \(H_{k}\)? El problema es que ambos nos sirven para poder validar la precondición de un ciclo que sabemos que finaliza luego de \(n\) iteraciones.
+
+\subsection*{Predicado \(I\) - Invariante}
+Definimos el Invariante de un ciclo como un predicado que:
+\begin{itemize}
+    \item Demuestra que el ciclo realmente funciona y nos ayuda a demostrar la correctitud parcial "si termina el ciclo... entonces se cumple Q"
+    \item Vale antes de entrar al ciclo y luego de salir del ciclo.
+    \item En cada iteración, el invariante debe volver a ser válido. En el medio de la iteración puede que deje de valer.
+    \item Un buen invariante incluye el rango de la(s) variable(s) de control del ciclo.
+    \item Un buen invariante tiene alguna afirmación sobre el acumulador del ciclo.
+\end{itemize} 
+
+\subsection*{Teorema del Invariante}
+Para poder probar que un ciclo es correcto, usamos el teorema del invariante.
+\begin{itemize}
+    \item \(P \equiv \) Las condiciones del requiere
+    \item \(P_{c} \equiv\) Las precondiciones que necesita el ciclo para poder ingresar, muchas veces son las líneas que están por encima del while y el requiere (¡no todas las del requiere!)
+    \item \(I \equiv \) Las condiciones que suceden antes y después de entrar al ciclo
+    \item \(B \equiv \) La guarda del ciclo
+    \item \(Q_{c} \equiv\) La postcondición del ciclo
+  
+\end{itemize} 
+Luego, 
+\begin{itemize}
+    \item \(\ \{P\} \ S \ \{P_{c}\}\)
+    \item \(\ P_{c} \implies I\)
+    \item \(\{I \land B\} \ S \ \{I\}\)
+    \item \(\{I \land \neg B\} \implies Q_{c}\)
+\end{itemize} 
+\textbf{Recordatorio}: Si aparece la S es que tenemos que calcular la wp porque es parte de la Tripla de Hoare. \\
+\textbf{Recordatorio importante}: Para todo lo que es wp usamos SmallLang, es decir, cuando tenemos que validar la tripla de Hoare. En todos los demás casos usamos lógica. \\
+Ej: No sería válido tener un if en un invariante.
+
+
+
+
 
 
 \end{document}
