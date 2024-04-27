@@ -317,6 +317,13 @@ El axioma 1 nos sirve para asignar una expresión a una variable; Sin embargo, s
     \equiv setAt(b, i, E)[j] = \{E \ si \ i = j, b[j] \ si \ i \neq j\}\)
 \end{itemize}
 
+Algunos ejemplos:\\
+\(wp(s[i]:=s[i-1], Q) \\
+wp(setAt(s, i, s[i-1]), Q) \equiv \\
+def(setAt(s, i, s[i-1])) \equiv (def(s) \land def(i)) \yLuego 0 \le i < \longitud{s} \yLuego def(s[i-1]) \equiv \\ 0\le i < \longitud{s} \yLuego (def(s) \land def(i)) \yLuego 0\le i-1 < \longitud{s} \equiv  0\le i < \longitud{s} \yLuego 1\le i < \longitud{s} + 1 \equiv  \textcolor{blue}{1 \le i < \longitud{s}}
+\)
+
+
 TODO: Luego mostrar un ejercicio y aclarar que por cada condición se separan n cuantificadores.
 
 \subsection*{Precondición más débil (Weakest Precondition)}
