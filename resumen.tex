@@ -474,5 +474,26 @@ Muchas veces no nos basta con la igualdad por defecto con los observadores, y te
 \subsection*{Operaciones de un TAD}
 Las operaciones de un TAD deben estar especificadas y nos indican qué se puede hacer con una instancia.
 Antes y una vez aplicada una operación tenemos que hablar del estado en el que quedó el TAD con respecto a sus observadores.
+\section*{Implementación de un TAD}
+\subsection*{Módulos}
+Los módulos son la implementación de un TAD. Los módulos implementan el TAD.
+\subsection*{Invariante de Representación}
+\begin{itemize}
+    \item Es equivalente al invariante en ciclos, pero acá aplicado a TAD's
+    \item Este es inicializado en el constructor una vez realizada la instancia
+    \item Vale siempre antes de llamar a los métodos y luego de cada método. Siempre y cuando tenemos un parámetro inout, tenemos que ver que los cambios que hagamos hagan seguir valiendo a la invariante de representación.
+    \item Todos los métodos pueden asumir que el invariante de representación siempre vale al ser llamados.
+\end{itemize}
+\subsection*{Función de Abstracción}
+Definimos función de abstracción (\(\alpha\)) como la representación física de lo que tiene el código, es decir, cuando acá hablamos de instancia.elems decimos que el código tiene un campo llamado elems. En TAD cuando nosotros hablabamos de un observador podía existir o no en la implementación como atributo pero seguir cumpliendo la especificación. 
+\subsection*{Contrato entre métodos de un módulo}
+Los métodos de un Módulo tienen un contrato entre sí.
+Supongamos que necesitamos que la complejidad de búsqueda de un método de mi módulo sea o(log n) sabiendo que mi lista está ordenada. Aquí, el método busqueda podrá usar la búsqueda binaria para poder hacer el proceso lo más rápido posible, pero ¿qué sucede si al agregar un elemento en el método agregar() la lista de salida que se modifica en el módulo no está ordenada? \\ El contrato de búsqueda no se cumpliría porque la búsqueda binaria no funcionaría porque necesita que la lista esté ordenada. \\
+
+En este caso, que la lista esté ordenada debería ser una condición del invariante de representación para evitar estos problemas. \\
+
+Este módulo es bueno para la búsqueda de un elemento pero el agregar un elemento es mucho más costoso por el tema de reordenar la lista nuevamente. \\
+
+\textbf{Mirada al futuro}: Los métodos deben cumplir una complejidad algorítimica dada.
 
 \end{document}
