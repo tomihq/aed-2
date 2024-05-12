@@ -477,15 +477,31 @@ Antes y una vez aplicada una operación tenemos que hablar del estado en el que 
 \section*{Implementación de un TAD}
 \subsection*{Módulos}
 Los módulos son la implementación de un TAD. Los módulos implementan el TAD.
+\subsection*{Variables de Estado}
+Lo que en los TADs eran observadores, acá son variables de estado. Serán manipuladas por las operaciones mediante el código de los algoritmos. 
+Tipos válidos para variables de estado: 
+\begin{itemize}
+    \item int, real, bool, char, string
+    \item tupla<T1, T2, T3>, struct<campo1: val1, campo2: val2>
+    \item Array<T> (arrays de tamaño fijo)
+    \item No es posible usar tipos de especificación como conj<T> o seq<T>
+\end{itemize}
 \subsection*{Invariante de Representación}
 \begin{itemize}
+    \item Define una restricción sobre el conjunto de valores que pueden tomar las variables de estado para que se considere una instancia válida.
     \item Es equivalente al invariante en ciclos, pero acá aplicado a TAD's
     \item Este es inicializado en el constructor una vez realizada la instancia
     \item Vale siempre antes de llamar a los métodos y luego de cada método. Siempre y cuando tenemos un parámetro inout, tenemos que ver que los cambios que hagamos hagan seguir valiendo a la invariante de representación.
     \item Todos los métodos pueden asumir que el invariante de representación siempre vale al ser llamados.
 \end{itemize}
 \subsection*{Función de Abstracción}
-Definimos función de abstracción (\(\alpha\)) como la representación física de lo que tiene el código, es decir, cuando acá hablamos de instancia.elems decimos que el código tiene un campo llamado elems. En TAD cuando nosotros hablabamos de un observador podía existir o no en la implementación como atributo pero seguir cumpliendo la especificación. 
+Definimos función de abstracción (\(\alpha\)) como la representación física de lo que tiene el código, es decir, cuando acá hablamos de instancia.elems decimos que el código tiene un campo llamado elems. En TAD cuando nosotros hablabamos de un observador podía existir o no en la implementación como atributo pero seguir cumpliendo la especificación. \\
+\begin{itemize}
+    \item Es un predicado
+    \item Toma como parámetro una instancia del módulo y una instancia del TAD.
+    \item Hacemos referencia a observadores y a otros predicados, no procs
+    \item Todos los observadores del TAD deben tener un vinculo con una variable de estado pero no necesariamente al revés
+\end{itemize}
 \subsection*{Contrato entre métodos de un módulo}
 Los métodos de un Módulo tienen un contrato entre sí.
 Supongamos que necesitamos que la complejidad de búsqueda de un método de mi módulo sea o(log n) sabiendo que mi lista está ordenada. Aquí, el método busqueda podrá usar la búsqueda binaria para poder hacer el proceso lo más rápido posible, pero ¿qué sucede si al agregar un elemento en el método agregar() la lista de salida que se modifica en el módulo no está ordenada? \\ El contrato de búsqueda no se cumpliría porque la búsqueda binaria no funcionaría porque necesita que la lista esté ordenada. \\
