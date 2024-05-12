@@ -634,4 +634,10 @@ Ventajas de las Singly Linked Lists:
 \subsection*{Double Linked Lists - Listas doblemente enlazadas}
 Exactamente igual que la Singly Linked Lists pero acá los Nodos tienen almacenado: Referencia al nodo previo, valor y referencia al nodo siguiente. 
 Nota: Si el Nodo actual es el último de la Double Linked List lo notamos porque el ultimo.siguiente = null.
+\subsection*{Listas vs Linked Lists}
+Ambas son bastante rápidas a la hora de iterar sobre ellas, sin embargo: 
+\begin{itemize}
+    \item Las listas nos permiten acceder rápidamente a un elemento mientras que las Linked Lists no.
+    \item Las Linked Lists nos permiten agregar elementos rápidamente al inicio (O(1)) y no necesitamos reacomodar nada más que decir que el anterior primero ahora es el segundo mientras que en la lista tenemos que reacomodar todos los elementos como antes pero colocar el nuevo al principio (O(n))
+\end{itemize}
 \end{document}
