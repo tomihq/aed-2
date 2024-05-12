@@ -482,10 +482,11 @@ Lo que en los TADs eran observadores, acá son variables de estado. Serán manip
 Tipos válidos para variables de estado: 
 \begin{itemize}
     \item int, real, bool, char, string
-    \item tupla<T1, T2, T3>, struct<campo1: val1, campo2: val2>
-    \item Array<T> (arrays de tamaño fijo)
-    \item No es posible usar tipos de especificación como conj<T> o seq<T>
+    \item tupla\(<\)T1, T2, T3\(>\), struct\(<\)campo1: val1, campo2: val2\(>\)
+    \item Array\(<\)T\(>\) (arrays de tamaño fijo)
+    \item No es posible usar tipos de especificación como conj\(<\)T\(>\) o seq\(<\)T\(>\)
 \end{itemize}
+El módulo puede tener variables de estado que no hagan referencia a ningún observador de un TAD, por ejemplo: guardar un máximo en un módulo aunque el TAD no lo pida. A veces estas cosas se hacen solo por temas de a la hora de implementarlo en un lenguaje de programación.
 \subsection*{Invariante de Representación}
 \begin{itemize}
     \item Define una restricción sobre el conjunto de valores que pueden tomar las variables de estado para que se considere una instancia válida.
@@ -502,6 +503,50 @@ Definimos función de abstracción (\(\alpha\)) como la representación física 
     \item Hacemos referencia a observadores y a otros predicados, no procs
     \item Todos los observadores del TAD deben tener un vinculo con una variable de estado pero no necesariamente al revés
 \end{itemize}
+\subsection*{Operaciones de un Módulo}
+Como un módulo implementa un TAD, todas sus operaciones deben estar implementados en código.
+Para escribir las implementaciones de los procs usamos una especie de SmallLang.
+\begin{itemize}
+    \item Declaración de variables: 
+    \begin{itemize}
+        \item var x: int
+        \item var c: ConjuntoArr<int>
+    \end{itemize}
+    \item Asignación: x := valor
+    \item Condicional: if condicion then codigo else codigo endif
+    \item Ciclo: while condicion do codigo endwhile
+    \item Llamar a un proc:
+    \begin{itemize}
+        \item c.vacio()
+        \item b : = c.vacio();
+    \end{itemize}
+\end{itemize}
+\subsection*{Memoria dinámica}
+Los tipos complejos son usados siempre por referencia. El valor indefinido es identificado por la palabra null. Acceder a algo null explota. \\
+Las variables de tipos complejos deben ser inicializadas mediante el operador new.
+Tipos nativos: 
+\begin{lstlisting}
+   var a: Array<int>
+   var b: int
+   if a == null then 
+   ...codigo
+   endif
+   a := new Array<int>(10)
+   b := a[0]
+\end{lstlisting}
+Tipos de otros módulos: 
+\begin{lstlisting}
+    var a: ConjArr<int>
+    a := new ConjArr(10) //longitud 10
+\end{lstlisting}
+Pasaje por referencia:
+\begin{lstlisting}
+    var a: ConjArr<int>
+    var b: ConjArr<int>
+    a := new ConjArr(10); //longitud 10
+    b := a
+\end{lstlisting}
+
 \subsection*{Contrato entre métodos de un módulo}
 Los métodos de un Módulo tienen un contrato entre sí.
 Supongamos que necesitamos que la complejidad de búsqueda de un método de mi módulo sea o(log n) sabiendo que mi lista está ordenada. Aquí, el método busqueda podrá usar la búsqueda binaria para poder hacer el proceso lo más rápido posible, pero ¿qué sucede si al agregar un elemento en el método agregar() la lista de salida que se modifica en el módulo no está ordenada? \\ El contrato de búsqueda no se cumpliría porque la búsqueda binaria no funcionaría porque necesita que la lista esté ordenada. \\
