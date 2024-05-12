@@ -582,7 +582,11 @@ Operaciones con iteradores:
     \item Retroceder al elemento anterior (sii es bidireccional)
 \end{itemize}
 Los Iteradores son una clase privada que van dentro de la clase que queremos que se instancie y se pueda recorrer. \\
-Es privada porque no queremos que sea instanciada más que por la instancia de la clase que queremos recorrer.
+Es privada porque no queremos que sea instanciada más que por la instancia de la clase que queremos recorrer. \\
+Los Iteradores no van hasta n, van hasta n+1.
+\begin{figure}[h]
+    \includegraphics[]{assets/iterador.png}
+\end{figure}
 \begin{lstlisting}
     public class Vector<T> implements List<T>{
         private T[] elementos;
@@ -608,5 +612,26 @@ Es privada porque no queremos que sea instanciada más que por la instancia de l
             return new Iterador();
         }
     }
+
+    Iterator it = vector.iterator();
+    while(it.hasNext()){
+        System.out.println(it.next());
+    }
 \end{lstlisting}
+
+\subsection*{Singly Linked Lists - Listas simplemente enlazadas}
+Es una estructura que sirve para representar una secuencia de elementos donde cada elemento es un Nodo que tiene un valor y una referencia al siguiente. \\ 
+Nota: Si el Nodo actual es el último de la Singly Linked List lo notamos porque el ultimo.siguiente = null.
+El Nodo debe ser responsable de guardar al siguiente porque caso contrario, no existirá otra referencia al siguiente Nodo.
+Ventajas de las Singly Linked Lists:
+\begin{itemize}
+    \item Mas fino uso de la memoria.
+    \item Insertamos fácilmente al principio y al final.
+    \item El costo de insertar al final es o(n) pues debemos recorrer todos los nodos para insertar uno nuevo. Es por eso que es común guardar el último nodo almacenado en la clase.
+    \item Eficiente para reacomodar elementos.
+    \item Es malo en rendimiento o(n) si necesito buscar un elemento en específico
+\end{itemize}
+\subsection*{Double Linked Lists - Listas doblemente enlazadas}
+Exactamente igual que la Singly Linked Lists pero acá los Nodos tienen almacenado: Referencia al nodo previo, valor y referencia al nodo siguiente. 
+Nota: Si el Nodo actual es el último de la Double Linked List lo notamos porque el ultimo.siguiente = null.
 \end{document}
