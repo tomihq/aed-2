@@ -557,5 +557,56 @@ En este caso, que la lista esté ordenada debería ser una condición del invari
 Este módulo es bueno para la búsqueda de un elemento pero el agregar un elemento es mucho más costoso por el tema de reordenar la lista nuevamente. \\
 
 \textbf{Mirada al futuro}: Los métodos deben cumplir una complejidad algorítimica dada.
+\section*{Estructuras de Datos}
+\subsection*{Colección}
+Representa un grupo de objetos. Provee de una arquitectura para su almacenamiento y manipulación.
+\begin{itemize}
+    \item Secuencia
+    \item Conjunto
+    \item Multiconjunto
+    \item Diccionario
+\end{itemize}
+¿Por qué una tupla no es parte del grupo? Porque la tupla es fija, una vez definida e inicializada su longitud no cambia.
+\subsection*{Tipos paramétricos}
+Son variables de tipo, es decir, variables con tipo genérico.
+La manera más común de indicar un genérico son T, K o V.  \\
+Hay que tener cuidado con las operaciones que se realizan con las variables genéricas porque algunos operadores nos restringuen su uso a ciertos tipos. \\
+Ej: No puedo utilizar X - Y si X, Y son genéricos y nos envían X, Y como char.
+\subsection*{Iteradores}
+Nos permiten recorrer colecciones de una manera abstracta sin saber su estructura. \\
+Operaciones con iteradores:
+\begin{itemize}
+    \item ¿Estoy sobre un elemento? 
+    \item Obtener el elemento actual
+    \item Avanzar al siguiente elemento
+    \item Retroceder al elemento anterior (sii es bidireccional)
+\end{itemize}
+Los Iteradores son una clase privada que van dentro de la clase que queremos que se instancie y se pueda recorrer. \\
+Es privada porque no queremos que sea instanciada más que por la instancia de la clase que queremos recorrer.
+\begin{lstlisting}
+    public class Vector<T> implements List<T>{
+        private T[] elementos;
+        private int size;
+        
+        private class Iterador implements Iterator<T>{
+            int indice;
+            
+            Iterador(){
+                indice = 0;
+            }
+            public boolean hasNext(){
+                return indice != size;
+            }
+            public T next(){
+                int i = indice;
+                indice = indice + 1;
+                return elementos[i];
+            }
+        }
 
+        public Iterator<T> iterator(){
+            return new Iterador();
+        }
+    }
+\end{lstlisting}
 \end{document}
