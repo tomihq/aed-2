@@ -701,4 +701,11 @@ Es decir, podemos generalizar las operaciones elementales a:
     \item T(n): complejidad temporal (o en tiempo) para una entrada de tamaño n
     \item S(n): complejidad espacial para una entrada de tamaño n
 \end{itemize}
+\textbf{Importante}: NUNCA hay que restringir la longitud de entrada de una lista; Por ejemplo: no tiene decir que el mejor caso sea que la lista esté vacía, porque la complejidad se da en base a listas de longitud n sin ningún tipo de restricción.
+\subsection*{Análisis de los casos}
+\begin{itemize}
+    \item T\(_{mejor}(n)\) = min\(_{instancias \ l},\ _{\longitud{l} \ = \ n}\ \) \{t(l)\}. Recorriendo una lista, el mejor caso es que esté en primera posición.
+    \item T\(_{peor}(n)\) = max\(_{instancias \ l},\ _{\longitud{l} \ = \ n}\ \) \{t(l)\}. Recorriendo una lista, el peor caso es que el elemento no esté.
+    \item T\(_{prom}(n)\) = No lo vamos a usar pero, es algo más parecido a estadística.
+\end{itemize}
 \end{document}
