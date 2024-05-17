@@ -679,7 +679,7 @@ El análisis se puede hacer de forma experimental / teórica aunque acá lo vamo
 \end{itemize}
 
 \subsection*{Operaciones Elementales}
-t(l) será una función que mida el número de operaciones elementales requeridas para la instancia l.
+T(l) será una función que mida el número de operaciones elementales requeridas para la instancia l.
 Las operaciones elementales (OE) serán aquellas que el procesador realiza en tiempo acotado por una constante (no depende del tamaño de la entrada).
 Ej: x = 0, if(x = 2).
 Es decir, podemos generalizar las operaciones elementales a:
@@ -688,5 +688,17 @@ Es decir, podemos generalizar las operaciones elementales a:
     \item Comparaciones lógicas
     \item Transferencias de control
     \item Asignaciones a variables de tipos básicos
+\end{itemize}
+\subsection*{Cálculo de Operaciones Elementales}
+\begin{itemize}
+    \item T(If C Then S1 Else S2 Endif;) = T(C) + max{t(S1), t(S2)}
+    \item T(Case C Of v1:S1 \(|\) v2:S2 \(|\) ... \(|\) vn:Sn End;) = T(C) + max{t(S1), t(S2), ..., T(Sn)}
+    \item T(While C Do S End;) = T(c) + (nº iteraciones) * (T(S) + T(C))
+    \item T(MiFuncion(P1, P2, ..., Pn)) = 1 + T(P1) + T(P2) + ... + T(Pn)
+\end{itemize}
+\subsection*{Tamaño de la entrada}
+\begin{itemize}
+    \item T(n): complejidad temporal (o en tiempo) para una entrada de tamaño n
+    \item S(n): complejidad espacial para una entrada de tamaño n
 \end{itemize}
 \end{document}
