@@ -660,4 +660,33 @@ Esto es importante porque nos permite optimizar:
     \item Utilización de la red de comunicaciones (para algoritmos paralelos)
 \end{itemize}
 
+El análisis se puede hacer de forma experimental / teórica aunque acá lo vamos a ver de una forma mas teórica. \\
+
+\textbf{Ventajas del enfoque teórico}:
+\begin{itemize}
+    \item Se hace antes de escribir código
+    \item Vale para todas las instancias del problema (no en un caso específico)
+    \item Es independiente del lenguaje de programación
+    \item Es independiente de la máquina donde se ejecuta (el tiempo no varía)
+    \item Es independiente del programador
+\end{itemize}
+
+\subsection*{Análisis Teórico}
+\begin{itemize}
+    \item Se realiza en función del tamaño del input 
+    \item Para distintos tipos de input 
+    \item Análisis asintótico
+\end{itemize}
+
+\subsection*{Operaciones Elementales}
+t(l) será una función que mida el número de operaciones elementales requeridas para la instancia l.
+Las operaciones elementales (OE) serán aquellas que el procesador realiza en tiempo acotado por una constante (no depende del tamaño de la entrada).
+Ej: x = 0, if(x = 2).
+Es decir, podemos generalizar las operaciones elementales a:
+\begin{itemize}
+    \item Operaciones aritméticas básicas
+    \item Comparaciones lógicas
+    \item Transferencias de control
+    \item Asignaciones a variables de tipos básicos
+\end{itemize}
 \end{document}
