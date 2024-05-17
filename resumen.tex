@@ -495,6 +495,7 @@ El módulo puede tener variables de estado que no hagan referencia a ningún obs
     \item Vale siempre antes de llamar a los métodos y luego de cada método. Siempre y cuando tenemos un parámetro inout, tenemos que ver que los cambios que hagamos hagan seguir valiendo a la invariante de representación.
     \item Todos los métodos pueden asumir que el invariante de representación siempre vale al ser llamados.
     \item ¡Prestar atencion a las verificaciones bidireccionales! En el sentido de que si tengo \(dict<Alarma, Conj<Sensores>>\) y \(dict<Sensor, Conj<Alarmas>>\) si en \(dict<Alarma, ...>\) tengo varios sensores, esos sensores estan en Sensor y ademas, si busco en las alarmas de cada sensor deberia estar la \(dict<Alarma, ...>\)
+    \item Cuando tengo un diccionario tengo que usar un cuantificador para hablar y tengo que acceder y hablar si o si por la key.
 \end{itemize}
 \subsection*{Función de Abstracción}
 Definimos función de abstracción (\(\alpha\)) como la representación física de lo que tiene el código, es decir, cuando acá hablamos de instancia.elems decimos que el código tiene un campo llamado elems. En TAD cuando nosotros hablabamos de un observador podía existir o no en la implementación como atributo pero seguir cumpliendo la especificación. \\
@@ -647,4 +648,16 @@ Ambas son bastante rápidas a la hora de iterar sobre ellas, sin embargo:
     \item Las listas nos permiten acceder rápidamente a un elemento mientras que las Linked Lists no.
     \item Las Linked Lists nos permiten agregar elementos rápidamente al inicio (O(1)) y no necesitamos reacomodar nada más que decir que el anterior primero ahora es el segundo mientras que en la lista tenemos que reacomodar todos los elementos como antes pero colocar el nuevo al principio (O(n))
 \end{itemize}
+
+\section*{Complejidad Algorítmica}
+\subsection*{Analisis de la Complejidad de Algoritmos}
+Nos permite elegir entre distintos algoritmos para resolver el mismo problema o distintas formas de implementar un TAD.
+Esto es importante porque nos permite optimizar:
+\begin{itemize}
+    \item Tiempo de ejecución
+    \item Espacio (memoria)
+    \item Cantidad de procesadores (en caso de algoritmos paralelos)
+    \item Utilización de la red de comunicaciones (para algoritmos paralelos)
+\end{itemize}
+
 \end{document}
