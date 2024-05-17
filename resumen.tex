@@ -741,15 +741,32 @@ Ej: 100\(n^{2} + 300n + 1000 \in Omega(n^{2})\) \(\land\) 100\(n^{2} + 300n + 10
     \item \(n^{2} \in \Omega(n)\)
     \item \(n^{k} \in \Omega(n)\) 
 \end{itemize}
-\subsection*{\(\Theta\) (orden exacto)}
-\[f (n) \in \Theta(g(n)) \iff f (n) \in O(g(n)) \ y \ f (n) \in \Omega(g(n)).\ Es \ decir, \ \Theta(g(n)) = O(g(n)) \cap \Omega(g(n))\]
+\subsection*{\(\theta\) (orden exacto)}
+\[f (n) \in \theta(g(n)) \iff f (n) \in O(g(n)) \ y \ f (n) \in \Omega(g(n)).\ Es \ decir, \ \theta(g(n)) = O(g(n)) \cap \Omega(g(n))\]
 Básicamente: Tiene que valer en O y en \(\Omega\)
 \subsection*{Propiedades}
 \begin{itemize}
     \item Suma: O(f) + O(g) = O(f+g) = O(max{f,g})
     \item Producto: O(f) \(\ast\) O(g) = O(f*g)
     \item Reflexividad: f \(\in O(f)\)
-    \item Simetría: Solo vale en \(\Theta\) = \(f \in \Theta(g) \implies g \in \theta(f)\)
+    \item Simetría: Solo vale en \(\theta\) = \(f \in \theta(g) \implies g \in \theta(f)\)
     \item Transitividad: \(f \in O(g) \land g \in O(h) \implies f \in O(h)\)
+\end{itemize}
+\subsection*{Diferentes casos de Análisis de Complejidad posibles}
+\begin{itemize}
+    \item Mejor caso != Peor caso (cuando el ciclo corta antes)
+    \item Mejor caso = Peor caso (cuando el ciclo no corta nunca)
+\end{itemize}
+\subsection*{Cota Ajustada}
+Usamos \(\theta\) para indicar cotas ajustadas al momento de tener que calcular el peor y el mejor caso.
+\subsection*{Complejidad Algorítmica en Polinomios}
+Usamos límites para estos casos \\
+
+Sean f, g: \(\mathds{N} \implies \float_{>0}\). Si existe:
+\[ \lim_{n\to\infty} f(x)/g(n) = l \in \float_{\ge 0} \cup \{ +\infty \} \]
+\begin{itemize}
+    \item \(f \in \theta(g) \iff 0<l<+\infty\)
+    \item \(f \in O(g) \ y \ f \notin \Omega(g) \iff l = 0\)
+    \item \(f \in \Omega(g) \ y \ f \notin O(g) \iff l = +\infty\)
 \end{itemize}
 \end{document}
