@@ -721,7 +721,6 @@ Nota: Las funciones f y g dependen de un n. No existen funciones constantes meno
 Sirve para representar el límite o cota superior del tiempo de ejecución de un algoritmo. \\
 La notación f \(\in\) O(g) expresa que la función f no crece más rápido que alguna función proporcional a g (g es la cota superior de f). \\
 Ej: 100\(n^{2} + 300n + 1000 \in O(n^{2})\) \(\land\) 100\(n^{3} + 300n + 1000 \in O(n^{2})\) \\ \\
-Nótese que ambos pertenecen a la familia de algo más grande pero siempre nos quedamos con el conjunto más chico.
 
 \[ f (n) \in O(g(n)) \iff \exists c \in R>0, n_{0} \in N \ tal \ que \
 \forall n \ge n_{0} : f (n) \le c \ast g(n) \]
@@ -732,6 +731,25 @@ Las funciones f son aquellas que crecen más lento, ej si me dan O(n) busco func
     \item 2n \(\in\) O(n) porque al ser dos veces n (n+n) y es una constante, no cambia nada.
     \item n+1 \(\in\) O(n) porque al ser +1 una constante, no cambia nada.
 \end{itemize}
-
-
+\subsection*{\(\Omega\) (cota inferior)}
+Sirve para representar el límite o cota inferior del tiempo de ejecución de un algoritmo.
+La notación f \(\in \Omega(g)\) expresa que la función f está acotada inferiormente por alguna función proporcional a g (g es cota inferior de f). \\
+Ej: 100\(n^{2} + 300n + 1000 \in Omega(n^{2})\) \(\land\) 100\(n^{2} + 300n + 1000 \in Omega(n)\)
+\begin{itemize}
+    \item \(n/2 \in \Omega(n)\)
+    \item n-1 \(\In \Omega(n)\)
+    \item \(n^{2} \in \Omega(n)\)
+    \item \(n^{k} \in \Omega(n)\) 
+\end{itemize}
+\subsection*{\(\Theta\) (orden exacto)}
+\[f (n) \in \Theta(g(n)) \iff f (n) \in O(g(n)) \ y \ f (n) \in \Omega(g(n)).\ Es \ decir, \ \Theta(g(n)) = O(g(n)) \cap \Omega(g(n))\]
+Básicamente: Tiene que valer en O y en \(\Omega\)
+\subsection*{Propiedades}
+\begin{itemize}
+    \item Suma: O(f) + O(g) = O(f+g) = O(max{f,g})
+    \item Producto: O(f) \(\ast\) O(g) = O(f*g)
+    \item Reflexividad: f \(\in O(f)\)
+    \item Simetría: Solo vale en \(\Theta\) = \(f \in \Theta(g) \implies g \in \theta(f)\)
+    \item Transitividad: \(f \in O(g) \land g \in O(h) \implies f \in O(h)\)
+\end{itemize}
 \end{document}
