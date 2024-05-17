@@ -714,4 +714,24 @@ Si dos algoritmos solo varían en una constante, entonces no nos importa porque 
 \[T_{1}(n) \le cT_{2}(n)\]
 c: constante real  \(c>0\) \\
 \(n_{0} \in N\) tales que \(\forall n \ge n_{0}\)
+\subsection*{Comportamiento Asintótico}
+Comportamiento para los valores de la entrada suficientemente grandes. \\
+Nota: Las funciones f y g dependen de un n. No existen funciones constantes menores que O(1).
+\subsection*{O (cota superior)}
+Sirve para representar el límite o cota superior del tiempo de ejecución de un algoritmo. \\
+La notación f \(\in\) O(g) expresa que la función f no crece más rápido que alguna función proporcional a g (g es la cota superior de f). \\
+Ej: 100\(n^{2} + 300n + 1000 \in O(n^{2})\) \(\land\) 100\(n^{3} + 300n + 1000 \in O(n^{2})\) \\ \\
+Nótese que ambos pertenecen a la familia de algo más grande pero siempre nos quedamos con el conjunto más chico.
+
+\[ f (n) \in O(g(n)) \iff \exists c \in R>0, n_{0} \in N \ tal \ que \
+\forall n \ge n_{0} : f (n) \le c \ast g(n) \]
+
+Las funciones f son aquellas que crecen más lento, ej si me dan O(n) busco funciones que crezcan mas lento que n
+\begin{itemize}
+    \item n-1 \(\in\) O(n) porque al ser -1 una constante, no cambia nada.
+    \item 2n \(\in\) O(n) porque al ser dos veces n (n+n) y es una constante, no cambia nada.
+    \item n+1 \(\in\) O(n) porque al ser +1 una constante, no cambia nada.
+\end{itemize}
+
+
 \end{document}
