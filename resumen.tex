@@ -494,6 +494,7 @@ El módulo puede tener variables de estado que no hagan referencia a ningún obs
     \item Este es inicializado en el constructor una vez realizada la instancia
     \item Vale siempre antes de llamar a los métodos y luego de cada método. Siempre y cuando tenemos un parámetro inout, tenemos que ver que los cambios que hagamos hagan seguir valiendo a la invariante de representación.
     \item Todos los métodos pueden asumir que el invariante de representación siempre vale al ser llamados.
+    \item ¡Prestar atencion a las verificaciones bidireccionales! En el sentido de que si tengo \(dict<Alarma, Conj<Sensores>>\) y \(dict<Sensor, Conj<Alarmas>>\) si en \(dict<Alarma, ...>\) tengo varios sensores, esos sensores estan en Sensor y ademas, si busco en las alarmas de cada sensor deberia estar la \(dict<Alarma, ...>\)
 \end{itemize}
 \subsection*{Función de Abstracción}
 Definimos función de abstracción (\(\alpha\)) como la representación física de lo que tiene el código, es decir, cuando acá hablamos de instancia.elems decimos que el código tiene un campo llamado elems. En TAD cuando nosotros hablabamos de un observador podía existir o no en la implementación como atributo pero seguir cumpliendo la especificación. \\
@@ -503,6 +504,7 @@ Definimos función de abstracción (\(\alpha\)) como la representación física 
     \item Hacemos referencia a observadores y a otros predicados, no procs
     \item Todos los observadores del TAD deben tener un vinculo con una variable de estado pero no necesariamente al revés
     \item Para poder escribir, usamos lenguaje de especificación como lo conocemos. Podemos usar por ejemplo |a.data| o a.data.length da igual, pero hay que ser consistentes
+    \item Rara vez se colocan rangos acá, casi nunca, excepto cuando hay alguna variable de estado y observadora que hablan de capacidades.
 \end{itemize}
 Es importante considerar que todo lo que está en el invariante de representación ya está implícito en la función de abstracción. \\
 Ej: Tenemos un módulo que tiene ventas, mayorProductoVentas, y mayorPrecio pero el TAD solo tiene ventas. En este caso, en el invariante de representación hablamos de mayorProductoVentas y mayorPrecio haciendo las relaciones con ventas (en temas de key del producto) pero en el predicado de astracción NO hablás de mayorProductoVentas y mayorPrecio primero porque no son observadores del TAD pero tampoco hay que garantizar nada porque ya está implicado por el invariante de representación
