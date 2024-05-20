@@ -727,23 +727,38 @@ Ej: 100\(n^{2} + 300n + 1000 \in O(n^{2})\) \(\land\) 100\(n^{3} + 300n + 1000 \
 
 Las funciones f son aquellas que crecen más lento, ej si me dan O(n) busco funciones que crezcan mas lento que n
 \begin{itemize}
-    \item n-1 \(\in\) O(n) porque al ser -1 una constante, no cambia nada.
-    \item 2n \(\in\) O(n) porque al ser dos veces n (n+n) y es una constante, no cambia nada.
-    \item n+1 \(\in\) O(n) porque al ser +1 una constante, no cambia nada.
+    \item \(n-1 \in O(n) \) porque al ser -1 una constante, no cambia nada.
+    \item \(2n \in O(n)\) porque al ser dos veces n (n+n) y es una constante, no cambia nada.
+    \item \(n+1 \in O(n)\)  porque al ser +1 una constante, no cambia nada.
+    \item \(n\ log(n) \in O(n)\)
+    \item \(log(n) \in O(n)\)
+    \item \(n^{2} \notin O(n)\)
 \end{itemize}
+\[\begin{minipage}[b]{0.5\textwidth}
+    \includegraphics[width=\linewidth]{assets/notacion_o.png}
+\end{minipage}\]
 \subsection*{\(\Omega\) (cota inferior)}
 Sirve para representar el límite o cota inferior del tiempo de ejecución de un algoritmo.
 La notación f \(\in \Omega(g)\) expresa que la función f está acotada inferiormente por alguna función proporcional a g (g es cota inferior de f). \\
 Ej: 100\(n^{2} + 300n + 1000 \in Omega(n^{2})\) \(\land\) 100\(n^{2} + 300n + 1000 \in Omega(n)\)
 \begin{itemize}
     \item \(n/2 \in \Omega(n)\)
-    \item n-1 \(\In \Omega(n)\)
+    \item \(n-1 \in \Omega(n)\)
     \item \(n^{2} \in \Omega(n)\)
     \item \(n^{k} \in \Omega(n)\) 
+    \item \(log(n) \notin \Omega(n)\) 
 \end{itemize}
+\[\begin{minipage}[b]{0.5\textwidth}
+    \includegraphics[width=\linewidth]{assets/notacion_omega.png}
+\end{minipage}\]
 \subsection*{\(\theta\) (orden exacto)}
 \[f (n) \in \theta(g(n)) \iff f (n) \in O(g(n)) \ y \ f (n) \in \Omega(g(n)).\ Es \ decir, \ \theta(g(n)) = O(g(n)) \cap \Omega(g(n))\]
-Básicamente: Tiene que valer en O y en \(\Omega\)
+Básicamente: Tiene que valer en O y en \(\Omega\), no debe pasarse de \(\Omega\) pero tampoco estar por debajo de O.
+\[\begin{minipage}[b]{0.5\textwidth}
+    \includegraphics[width=\linewidth]{assets/notacion_theta.png}
+\end{minipage}\]
+\subsection*{Definición parecida a inducción corrida en Complejidad}
+Tanto en la definición de \(O, \ \Omega \ y \ \theta\) se nombra para un \(n > n_{0}\). Esto es porque no todas las funciones cumplirán la definición, sino aquellas que son mayores a \(n_{0}\). Es por eso que en las imágenes se ven como inicialmente no cumple, pero a partir de un \(x_{0} \ (n_{0})\) vale para todo n.
 \subsection*{Propiedades}
 \begin{itemize}
     \item Suma: O(f) + O(g) = O(f+g) = O(max{f,g})
