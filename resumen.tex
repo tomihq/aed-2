@@ -687,7 +687,7 @@ Es decir, podemos generalizar las operaciones elementales a:
     \item Operaciones aritméticas básicas (suma, resta, división, multiplicación)
     \item Comparaciones y/o operaciones lógicas
     \item Acceder a elemento de array
-    \item Asignaciones a variables de tipos básicos (las inicializaciones no co0'9nsumen tiempo)
+    \item Asignaciones a variables de tipos básicos (las inicializaciones no consumen tiempo)
 \end{itemize}
 \subsection*{Cálculo de Operaciones Elementales}
 \begin{itemize}
@@ -782,7 +782,7 @@ Sean f, g: \(\mathds{N} \implies \float_{>0}\). Si existe:
         return ans[0][0];
     }
 \end{lstlisting}
-Comenzamos colocando la cantidad de operaciones que se realizan, línea a línea. Los ciclos, en el caso del for, posee 3 casos: el caso inicial, caso intermedio, caso fin.
+$\textbf{Parte 1}$: Comenzamos colocando la cantidad de operaciones que se realizan, línea a línea. Los ciclos, en el caso del for, posee 3 casos: el caso inicial, caso intermedio, caso fin.
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
     0    int ans[n][n];
@@ -795,5 +795,48 @@ Comenzamos colocando la cantidad de operaciones que se realizan, línea a línea
     }
 \end{lstlisting}
 Obs: j = j+1 $\neq$ j++ en temas de cantidad de operaciones. El j++ es una operación menos aunque hagan lo mismo.
-Obs: El return funciona como una asignación, por lo tanto también cuenta en operaciones.
+Obs: El return funciona como una asignación, por lo tanto también cuenta en operaciones. \\
+$\textbf{Parte 2}$: Elegimos si empezamos por el mejor, o el peor caso. El peor caso suele ser el más tedioso así que empecemos por ese. \\
+$\textbf{Parte 2.1: Peor caso}$ \\
+$\textbf{Parte 2.1.1 }$: Empezamos considerando el caso intermedio del ciclo.
+\begin{lstlisting}
+    2 3 3   for(int j = 0; j < n; j = j+1){
+    8           ans[i][j] = mat1[i][j] + mat2[i][j];
+            }
+\end{lstlisting}
+$ \sum_{j=0}^{n-1}{(8+3)} $ \\
+Ahora consideramos el caso inicial del ciclo, y el final: $ 2 + \sum_{j=0}^{n}{(8+3)} + 3$ \\
+Definimos:  $a \equiv 2 + \sum_{j=0}^{n-1}{(8+3)} + 3$ \\
+$\textbf{Parte 2.1.2}$: 
+\begin{lstlisting}
+2 2 2   for(int i = 0; i < n; i++){
+            a
+        }
+\end{lstlisting}
+Comenzamos considerando el caso intermedio del ciclo.
+$ \sum_{i=0}^{n}{(a+2)} $ \\
+Ahora consideramos el caso inicial del ciclo, y el final:
+$ 2 + \sum_{i=0}^{n}{(a+2)} + 2 $ \\ 
+Definimos:  $b \equiv 2 + \sum_{i=0}^{n-1}{(a+2)} + 2 $ \\
+$\textbf{Parte 2.1.3}$: Juntar ambos ciclos
+$c \equiv 2 + \sum_{i=0}^{n-1}{((2 + \sum_{j=0}^{n-1}{(8+3)} + 3)+2)} + 2 $ \\ 
+$\textbf{Parte 2.4}$: Resolver los ciclos, uniéndolos de alguna forma \\
+$\equiv 2 + \sum_{i=0}^{n-1}{((2 + \sum_{j=0}^{n-1}{(\textbf{8+3})} + 3)+2)} + 2 $ \\ 
+$\equiv 2 + \sum_{i=0}^{n-1}{((\textbf{2} + \sum_{j=0}^{n-1}{11} + \textbf{3})+2)} + 2 $ \\ 
+$\equiv 2 + \sum_{i=0}^{n-1}{((\sum_{j=0}^{n-1}{\textbf{11}} + 5)+2)} + 2 $ \\ 
+$\equiv 2 + \sum_{i=0}^{n-1}{((11 * \sum_{j=0}^{n-1}{1} + 5)+2)} + 2 $ \\
+$\equiv \textbf{2} + \sum_{i=0}^{n-1}{((11 * n + 5)+2)} + \textbf{2} $ \\  
+$\equiv 4 + \sum_{i=0}^{n-1}{(11 * n + 5+2)} $ \\  
+$\equiv 4 + \sum_{i=0}^{n-1}{(11 * n + 7)} $ \\
+$\equiv 4 + n * (11 * n + 7) $ \\    
+$\equiv 4 + 11n^{2} + 7n $ \\   
+$\textbf{Parte 2.1.5}$: Agregar el caso del return 
+$\equiv 3 + 4 + 11n^{2} + 7n $ \\   
+$\equiv 11n^{2} + 7n + 7 $ \\
+$\textbf{Parte 2.1.6}$: Observar cual es la variable con mayor exponente.
+En este caso, es $11n^{2}$ por lo tanto, $T{peor}(n) = \Theta(max\{11n^{2}, n, 7\})$. Luego,  
+$T{peor}(n) = \Theta(n^{2})$ \\ 
+Nota: En la materia no utilizan los números de operaciones, pero acá por ejemplo 2, 8, 3, 3, 2 (operaciones elementales) serían $\Theta(1)$, osea nuestro cálculo de la Parte 2.1.5 se vería así: $\Theta(n^{2}) + \Theta(n) + \Theta(1)$ \\ 
+$\textbf{Parte 2.2: Mejor caso}$ \\ 
+El mejor caso es igual al peor caso porque no tenemos restricciones del ciclo más que las matrices de entradas y tampoco tenemos ninguna condición de corte. Siempre se recorre la misma cantidad de veces.
 \end{document}
