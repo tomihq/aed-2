@@ -790,7 +790,7 @@ Sean f, g: \(\mathds{N} \implies \float_{>0}\). Si existe:
     \item \(f \in \Omega(g) \ y \ f \notin O(g) \iff l = +\infty\)
 \end{itemize}
 
-\subsection*{Ejemplo en cálculo de complejidad}
+\subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
         int ans[n][n];
@@ -859,4 +859,51 @@ $T{peor}(n) = \Theta(n^{2})$ \\
 Nota: En la materia no utilizan los números de operaciones, pero acá por ejemplo 2, 8, 3, 3, 2 (operaciones elementales) serían $\Theta(1)$, osea nuestro cálculo de la Parte 2.1.5 se vería así: $\Theta(n^{2}) + \Theta(n) + \Theta(1)$ \\ 
 $\textbf{Parte 2.2: Mejor caso}$ \\ 
 El mejor caso es igual al peor caso porque no tenemos restricciones del ciclo más que las matrices de entradas y tampoco tenemos ninguna condición de corte. Siempre se recorre la misma cantidad de veces.
+\subsection*{Ejemplo 2 en cálculo de complejidad}
+\begin{lstlisting}
+   int russian(int a, int b){
+        int res = 0;
+        while(b > 0){
+            if(b % 2 == 1){
+                res = res + a;
+            }
+            a = a * 2;
+            b = b/2;
+        }
+        return res;
+   }
+\end{lstlisting}
+A simple vista podemos notar algo, estamos usando un while y la guarda depende de un b que desconocemos. Veamos como va variando la variable b; Se observa que se va dividiendo por dos, entonces es algo más rápido que hacer b-1. Seguramente, el peor caso sea logarítmico (como en búsqueda binaria que se va partiendo la lista en dos)
+\newpage
+\textbf{Parte 1}: Comenzamos colocando la cantidad de operaciones que se realizan, línea a línea. 
+\begin{lstlisting}
+    int russian(int a, int b){
+        1    int res = 0;
+        1    while(b > 0){
+        2        if(b % 2 == 1){
+        2           res = res + a;
+                 }
+        2        a = a * 2;
+        2        b = b/2;
+            }
+        1   return res;
+    }
+ \end{lstlisting}
+$\textbf{Parte 2}$: Elegimos si empezamos por el mejor, o el peor caso. El peor caso suele ser el más tedioso así que empecemos por ese. \\
+$\textbf{Parte 2.1: Peor caso}$ \\
+$\textbf{Parte 2.1.1}$: Observamos que nuestro peor caso es que b $>$ 0 y al dividir b por 2 sea impar. \\ Dentro del ciclo tenemos: (1 + (2+2) + 2 + 2) operaciones elementales. \\
+Nótese que el 1 es de la condición de la guarda. \\ 
+El ciclo es algo inverso, se comienza siendo algo muy grande y se va achicando, y el ciclo termina cuando b = 0. ¿Cuantas veces tengo que dividir b entre 2 para que podamos llegar a 0? El logaritmo base 2 de b, pero acá b lo llamamos n. \\ 
+$\textbf{Parte 2.1.2}$: Utilizar logaritmo para hablar del ciclo \\
+$\log(n)(1+(2+2) + 2 + 2)$ \\
+Nótese que eliminamos la base 2 porque en complejidad, la base del logaritmo da igual.  \\
+$\textbf{Parte 2.1.3}$: Considerar la asignación inicial y el return junto al ciclo \\ 
+$1 + \log(n)(1+(2+2) + 2 + 2) + 1 \equiv 1 + \log(n)(8) + 1$ \\ 
+\textbf{Parte 2.1.4}: Calcular la complejidad
+$T_{peor}(n) = \Theta(1) + \Theta(log(n)) + \Theta(1) \equiv \Theta(max\{1, log(n), 1\}) \equiv \Theta(log(n)) $ \\
+\textbf{Parte 2.2: Mejor caso} \\
+Si b = 0 inicialmente, no entra nunca al ciclo por lo tanto no hay complejidad alguna porque todas son operaciones elementales. \\
+$T_{mejor}(n) = \Theta(1) + \Theta(1) + \Theta(1) \equiv \Theta(max\{1, 1, 1\}) \equiv \Theta(1)$ \\
+
+
 \end{document}
