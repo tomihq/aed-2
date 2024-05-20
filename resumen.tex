@@ -767,11 +767,15 @@ Tanto en la definición de \(O, \ \Omega \ y \ \theta\) se nombra para un \(n > 
     \item Simetría: Solo vale en \(\theta\) = \(f \in \theta(g) \implies g \in \theta(f)\)
     \item Transitividad: \(f \in O(g) \land g \in O(h) \implies f \in O(h)\)
 \end{itemize}
-\subsection*{Diferentes casos de Análisis de Complejidad posibles}
+\subsection*{Intuición de Análisis de Complejidad posibles}
 \begin{itemize}
     \item Mejor caso != Peor caso (cuando el ciclo corta antes)
-    \item Mejor caso = Peor caso (cuando el ciclo no corta nunca)
+    \item Mejor caso = Peor caso (cuando el ciclo no tiene condición de corte)
+    \item Cuando tengo ramas if else, la complejidad mayor se dará por la rama que tenga mayor cantidad de operaciones en cuanto a ciclos.
+    \item Cuando tenga guardas como por ejemplo, while b > 0 y la variable se va dividiendo entre dos, la complejidad será algo parecida a log n.
+    \item Cuando una función recibe dos parámetros, pero uno de ellos no tiene un rol fundamental en algún ciclo o guarda, entonces raramente esté en el cálculo final de la complejidad.
 \end{itemize}
+
 \subsection*{Cota Ajustada}
 Usamos \(\theta\) para indicar cotas ajustadas al momento de tener que calcular el peor y el mejor caso.
 \subsection*{Complejidad Algorítmica en Polinomios}
