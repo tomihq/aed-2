@@ -772,11 +772,11 @@ Tanto en la definición de \(O, \ \Omega \ y \ \theta\) se nombra para un \(n > 
     \item Mejor caso != Peor caso (cuando el ciclo corta antes)
     \item Mejor caso = Peor caso (cuando el ciclo no tiene condición de corte)
     \item Cuando tengo ramas if else, la complejidad mayor se dará por la rama que tenga mayor cantidad de operaciones en cuanto a ciclos.
-    \item Cuando tenga guardas como por ejemplo, while b > 0 y la variable se va dividiendo entre dos, la complejidad será algo parecida a log n.
+    \item Cuando tenga guardas como por ejemplo, while $b>0$ y la variable se va dividiendo entre dos, la complejidad será algo parecida a log n.
     \item Cuando una función recibe dos parámetros, pero uno de ellos no tiene un rol fundamental en algún ciclo o guarda, entonces raramente esté en el cálculo final de la complejidad.
     \item Recordar que es normal ver casos donde se aplique la sumatoria de gauss o tengamos que masajear la expresión para que aparezca.
-    \item Si la guarda del ciclo se incrementa de manera: i * 2 o i/2 entonces la complejidad del ciclo será logarítmica.
-    \item Para poder calcular la complejidad, si tenemos una suma basta con quedarnos con el término más grande.
+    \item Si la guarda del ciclo se incrementa de manera: $i*2$ o $i/2$ entonces la complejidad del ciclo será logarítmica.
+    \item Para poder calcular la complejidad, si tenemos una suma basta con quedarnos con el término más grande. (ej: n + m tiene 2 casos)
 \end{itemize}
 
 \subsection*{Cota Ajustada}
@@ -792,6 +792,7 @@ Sean f, g: \(\mathds{N} \implies \float_{>0}\). Si existe:
     \item \(f \in \Omega(g) \ y \ f \notin O(g) \iff l = +\infty\)
 \end{itemize}
 
+\section*{Algunos ejercicios}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
@@ -911,7 +912,7 @@ $T_{mejor}(n) = \Theta(1) + \Theta(1) + \Theta(1) \equiv \Theta(max\{1, 1, 1\}) 
     function AlgoritmoQueHaceAlgo(arreglo A)
     int i : = 1; int j := 1;
     int suma := 1; int count := 0;
-    while i<=tam(A) do 
+    while i <= tam(A) do 
         if i != A[i] do 
             count : = count + 1;
         end if 
@@ -946,4 +947,34 @@ $ \equiv log(|A|) * |A|^{2} + log(|A|) * |A|  \leftarrow $ Saco denominadores, s
 $ \equiv log(|A|) * |A|^{2} $ \\ 
 $ \equiv \Theta(log(|A|) * |A|^{2}) $ \\
 Conclusión: Es importante revisar que si el ciclo depende de una guarda como $ j \le count$ revisar como va creciendo count; como count depende del valor de i, i va siendo 1, 2, 3, 4, osea que no sucede una sola vez y no podemos generalizar. El peor caso sería que i pase por 1, 2, 3, 4, hasta tam(A), entonces el ciclo que depende de count se ejecuta 1 vez, despues 2 veces, después 3 y así.
+\subsection*{Ejemplo 3 en cálculo de complejidad}
+Recuerdo:
+\begin{itemize}
+    \item $\Theta(n)$: Cota ajustada, exactamente n. 
+    \item $\Omega(n)$: Funciones mayores a n.
+    \item $O(n)$: Funciones menores a n.
+    \item c: Variable real mayor a 0. Nos basta con que exista una. 
+    \item n: Mayor a n0 donde ambas son naturales, donde n es suficientemente grande.
+\end{itemize}
+Determine la verdad o falsedad de las siguientes afirmaciones: \\ \\ 
+\textbf{1.} $ 2^{n} = O(1) $ \\
+Para empezar, la igualdad de una función con un grupo de funciones significa lo siguiente $ 2^{n} \le c \ast 1 $ \\ 
+Luego, $ 2^{n} = c $ es claramente es falso. \\ 
+Contraejemplo: $ n = 4, 2^4 \neq O(1)$ \\ \\
+\textbf{2.} $ n = O(n!) $ \\
+Esperaría que sea verdadero porque es cierto que el conjunto de funciones menores a n! incluye a n.
+$ n \le c * n!$ \\
+$ n \le c * (n-1)! * n$ \\
+$ 1 \le c * (n-1)! \leftarrow $ trivialmente verdadero para n suficientemente grande y c mayor que cero.\\ \\
+\textbf{3.} $ n+m = O(nm) $ \\
+Sabemos que n y m son dos valores de salida de una función. Parecería verdadero que una multiplicación de dos cosas incluya a la suma de ambas. \\
+$ n+m \le c * nm $ \\
+$ n/nm + m/nm \le c $ \\
+$ 1/m + 1/n \le c \leftarrow $ trivialmente verdadero porque un $c>0$ siempre va a ser mayor a dos racionales que tienden a 0. \\ \\ 
+\textbf{4.} $ f \in O(log \ n) \ entonces \ f \in O(n) $ \\
+Esto es trivialmente verdadero a la vista porque sabemos que si f es una función que es menor a O(log n) entonces obligatoriamente f es menor a O(n) por transitividad $ \implies f \le O(log \ n) \le O(n) $ \\ \\  
+$ f \in O(log \ n) \equiv f \le c * log(n), \ f \in O(n) \equiv f \le c * n $ \\
+$ \implies f \le c * log(n) \implies f \le c * n $ \\
+$ \implies c * log(n) \le c * n $ \\
+$ \implies log(n) \le n \leftarrow $ trivialmente verdadero.
 \end{document} 
