@@ -791,6 +791,25 @@ Sean f, g: \(\mathds{N} \implies \float_{>0}\). Si existe:
     \item \(f \in O(g) \ y \ f \notin \Omega(g) \iff l = 0\)
     \item \(f \in \Omega(g) \ y \ f \notin O(g) \iff l = +\infty\)
 \end{itemize}
+\section*{Árboles / Árboles binarios}
+Se definen recursivamente y sus operaciones necesitan de ella. Utilizamos nodos.
+Terminología variada que vamos a usar en la materia:
+raíz, hoja aunque existen otras. \\ 
+Para poder obtener un elemento de un árbol se debe empezar por la raíz y recorrer cada una de las hojas recursivamente hasta que se encuentre. \\ \\
+OBS: Las hojas pueden tener o no nodos hijos, si tienen hijos entonces también son árboles.  \\ \\ 
+\textbf{Árboles binarios}
+Son aquellos en los cuales cada nodo tiene máximo 2 elementos.
+\subsection*{Árboles binarios de búsqueda}
+Para todo nodo, los valores del subárbol izquierdo son menores que el valor del nodo y los valores del subárbol derecho son mayores. \\ 
+\begin{minipage}[b]{0.8\textwidth}
+    \includegraphics[width=\linewidth]{assets/abb-1.jpg}
+    \centering
+    \label{fig:abb-1}
+\end{minipage} \\ 
+Nótese que de ninguna rama derecha puede haber un número mayor a la raíz; de ninguna rama izquierda puede haber un número menor a la raíz. \\ 
+La complejidad de búsqueda en el peor caso es de $O(log n)$
+
+
 
 \section*{Algunos ejercicios}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
