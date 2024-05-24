@@ -792,11 +792,10 @@ Sean f, g: \(\mathds{N} \implies \float_{>0}\). Si existe:
     \item \(f \in \Omega(g) \ y \ f \notin O(g) \iff l = +\infty\)
 \end{itemize}
 \section*{Árboles / Árboles binarios}
-Se definen recursivamente y sus operaciones necesitan de ella. Utilizamos nodos.
-Terminología variada que vamos a usar en la materia:
-raíz, hoja aunque existen otras. \\ 
-Para poder obtener un elemento de un árbol se debe empezar por la raíz y recorrer cada una de las hojas recursivamente hasta que se encuentre. \\ \\
-OBS: Las hojas pueden tener o no nodos hijos, si tienen hijos entonces también son árboles.  \\ \\ 
+Se definen recursivamente y sus operaciones necesitan de ella. Utilizamos nodos. \\
+Terminología que vamos a usar: Raíz \& Hoja \\ 
+Para poder obtener un elemento de un árbol se debe empezar por la raíz y recorrer cada una de las hojas recursivamente. \\ \\
+OBS: Las hojas pueden tener o no nodos hijos; si tienen hijos entonces también son árboles.  \\ 
 \textbf{Árboles binarios}
 Son aquellos en los cuales cada nodo tiene máximo 2 elementos.
 \subsection*{Árboles binarios de búsqueda}
@@ -808,7 +807,19 @@ Para todo nodo, los valores del subárbol izquierdo son menores que el valor del
 \end{minipage} \\ 
 Nótese que de ninguna rama derecha puede haber un número mayor a la raíz; de ninguna rama izquierda puede haber un número menor a la raíz. \\ 
 La complejidad de búsqueda en el peor caso es de $O(log n)$
-
+Algoritmos comúnes en árboles binarios de búsqueda:
+\begin{itemize}
+    \item Arbol vacío: Aquel que tiene la raíz en null
+    \item Búsqueda de elemento: Si el nodo es null o el elem es igual al valor del nodo devuelvo n. Caso contrario, si el valor a buscar es menor al dato del nodo entonces busco más a la izquierda, caso contrario busco a la derecha. Cuando busca, habla de llamar a la misma función recursivamente. Complejidad O(n) con n la altura del árbol porque pasa solo una vez por cada nodo.
+    \item Insertar elemento: Primero agarro la raiz del árbol, si la raiz es null entonces no hago nada. Si el árbol no tiene una raíz, entonces mi elem es la raíz; Si ya tiene una raíz me fijo si el elem a insertar es menor o mayor a la raíz, si es mayor entonces voy al primer hijo derecho de la raíz (no entiendo la parte final) dice algo como si el elem<prev.dato then padre.izq = newnodo osea tiene sentido pero en el pseudocodigo prev no existe enn ningun lado definido. Complejidad O(n) para agregar, aunque si hay distribución uniforme de las claves O(log n)
+    \item Eliminar elemento: hay 3 casos. Sea u una variable cualquiera
+    \begin{itemize}
+        \item u es una hoja: Si u es una hoja significa que no tiene hijos, por lo tanto lo puedo eliminar sin necesidad de reordenar nada.
+        \item u tiene un solo hijo: Si u es una hoja con un solo hijo (a la izq o a la derecha) basta con mover el hijo a la posición del nodo a eliminar.
+        \item u tiene dos hijos: Si u es un nodo con dos hijos hay que encontrar al predecesor inmediato (v) de u. \textbf{v no puede tener dos hijos, en caso contrario no es predecesor inmediato}, una vez encontrado copiar la clave de v en lugar de la de u, borrar el nodo v (acá hay que revisar qué sucede si tiene un hijo, iría al caso 2, caso contrario caso 1). Lo mismo se puede hacer con el sucesor inmediato (mismas reglas que predecesor inmediato). 
+        \item Complejidad O(n) para cualquier tipo de borrado.
+    \end{itemize}
+\end{itemize}
 
 
 \section*{Algunos ejercicios}
