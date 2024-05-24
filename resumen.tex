@@ -929,9 +929,9 @@ $T_{mejor}(n) = \Theta(1) + \Theta(1) + \Theta(1) \equiv \Theta(max\{1, 1, 1\}) 
     return suma
 \end{lstlisting}
 Lo primero que comenzamos viendo cual es el peor caso de las variables. \\
-El ciclo más de adentro con guarda k depende del tamaño de A, por lo tanto el ciclo itera máximo log(|A|) veces (xq k se va duplicando en cada caso). \\
-El ciclo con guarda j <= count depende de una variable count. En el peor caso ¿qué valor toma count? bueno, count se incrementa en el peor caso hasta ser count = |A| (observar el if, que por cada iteración hace el checkeo) por lo tanto el peor caso del while con guarda j <= count. Una observación importante es que count crece igual que |A| en el peor caso, pero el proceso lo hace |A| veces pasando por i = 0, i = 1 SIEMPRE. \\
-El ciclo más de afuera con guarda i depende del tamaño de A, por lo tanto el ciclo itera máximo |A| veces (xq empieza desde i = 1). \\
+El ciclo más de adentro con guarda k depende del tamaño de A, por lo tanto el ciclo itera máximo $log(|A|)$ veces (xq k se va duplicando en cada caso). \\
+El ciclo con guarda $j <= count$ depende de una variable count. En el peor caso ¿qué valor toma count? bueno, count se incrementa en el peor caso hasta ser $count = |A|$. Una observación importante es que count crece igual que |A| pero el proceso lo hace pasando por i = 0, i = 1 SIEMPRE. \\
+El ciclo más de afuera con guarda i depende del tamaño de A, por lo tanto el ciclo itera máximo $|A|$ veces (xq empieza desde i = 1). \\
 Luego, quedaría algo así: \\
 $ \Theta(1) + \Theta(1) + (\sum_{i=0}^{|A|}{\Theta(1) + \Theta(1) + \Theta(1) + (\sum_{j=1}^{i}{\Theta(1) + (\sum_{k=0}^{log(|A|)}{\Theta(1) + \Theta(1)}) + \Theta(1)})} + \Theta(1)) + \Theta(1)  $ \\
 $ \equiv \Theta(1) + \Theta(1) + (\sum_{i=0}^{|A|}{\Theta(1) + \Theta(1) + \Theta(1) + (\sum_{j=1}^{i}{log(|A|) \ast \Theta(1)})} + \Theta(1)) + \Theta(1) $ \\ 
@@ -944,5 +944,6 @@ $ \equiv log(|A|) * |A|^{2}/2 + |A|/2  $ \\
 $ \equiv log(|A|) * |A|^{2}/2 + log(|A|) * |A|/2   $ \\ 
 $ \equiv log(|A|) * |A|^{2} + log(|A|) * |A|  \leftarrow $ Saco denominadores, son constantes. \\ 
 $ \equiv log(|A|) * |A|^{2} $ \\ 
-$ \equiv \Theta(log(|A|) * |A|^{2}) $
+$ \equiv \Theta(log(|A|) * |A|^{2}) $ \\
+Conclusión: Es importante revisar que si el ciclo depende de una guarda como $ j \le count$ revisar como va creciendo count; como count depende del valor de i, i va siendo 1, 2, 3, 4, osea que no sucede una sola vez y no podemos generalizar. El peor caso sería que i pase por 1, 2, 3, 4, hasta tam(A), entonces el ciclo que depende de count se ejecuta 1 vez, despues 2 veces, después 3 y así.
 \end{document} 
