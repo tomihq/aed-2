@@ -640,8 +640,28 @@ Ventajas de las Singly Linked Lists:
     \item Es malo en rendimiento o(n) si necesito buscar un elemento en específico. Es decir, perdemos el acceso aleatorio a los elementos.
 \end{itemize}
 \subsection*{Double Linked Lists - Listas doblemente enlazadas}
-Exactamente igual que la Singly Linked Lists pero acá los Nodos tienen almacenado: Referencia al nodo previo, valor y referencia al nodo siguiente. 
+Exactamente igual que la Singly Linked Lists pero acá los Nodos tienen almacenado: Referencia al nodo previo, valor y referencia al nodo siguiente. \\ 
 Nota: Si el Nodo actual es el último de la Double Linked List lo notamos porque el ultimo.siguiente = null.
+\begin{lstlisting}
+    public class DoubleLinkedList<T> {
+        private Nodo primero;
+        private int longitud; 
+
+        private class Nodo {
+            Nodo prev;
+            Nodo sig;
+            T valor; 
+
+            public Nodo(T val){
+                this.val = val; 
+            }
+        }
+
+        public DoubleLinkedList(){
+            this.longitud = 0; 
+        }
+    }
+\end{lstlisting}
 \subsection*{Listas vs Linked Lists}
 Ambas son bastante rápidas a la hora de iterar sobre ellas, sin embargo: 
 \begin{itemize}
