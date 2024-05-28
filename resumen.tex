@@ -476,7 +476,11 @@ Las operaciones de un TAD deben estar especificadas y nos indican qué se puede 
 Antes y una vez aplicada una operación tenemos que hablar del estado en el que quedó el TAD con respecto a sus observadores.
 \section*{Implementación de un TAD}
 \subsection*{Módulos}
-Los módulos son la implementación de un TAD. Los módulos implementan el TAD.
+\begin{itemize}
+    \item Son la representación / implementación física en código de un TAD.
+    \item Los módulos implementan el TAD.
+    \item Un procedimiento de un módulo puede llamar a otros procedimientos del módulo.
+\end{itemize}
 \subsection*{Variables de Estado}
 Lo que en los TADs eran observadores, acá son variables de estado. Serán manipuladas por las operaciones mediante el código de los algoritmos. 
 Tipos válidos para variables de estado: 
@@ -486,7 +490,8 @@ Tipos válidos para variables de estado:
     \item Array\(<\)T\(>\) (arrays de tamaño fijo)
     \item No es posible usar tipos de especificación como conj\(<\)T\(>\) o seq\(<\)T\(>\)
 \end{itemize}
-El módulo puede tener variables de estado que no hagan referencia a ningún observador de un TAD, por ejemplo: guardar un máximo en un módulo aunque el TAD no lo pida. A veces estas cosas se hacen solo por temas de a la hora de implementarlo en un lenguaje de programación.
+El módulo puede tener variables de estado que no hagan referencia a ningún observador de un TAD, por ejemplo: guardar un máximo en un módulo aunque el TAD no lo pida. A veces estas cosas se hacen solo por temas de a la hora de implementarlo en un lenguaje de programación. \\ 
+\textbf{Nota: Una variable de estado también puede contener otro módulo.}
 \subsection*{Invariante de Representación}
 \begin{itemize}
     \item Define una restricción sobre el conjunto de valores que pueden tomar las variables de estado para que se considere una instancia válida.
@@ -840,7 +845,16 @@ Algoritmos comúnes en árboles binarios de búsqueda:
         \item Complejidad O(n) para cualquier tipo de borrado.
     \end{itemize}
 \end{itemize}
-
+\subsection*{ABB balanceados (AVL)}
+Un árbol AVL es un ABB balanceado en altura. \\
+Se define el factor de balanceo de un nodo v de un árbol binario como: \\
+\[fb(v) = A_{D} - A_{I}\] donde $ A_{x}$ es la altura del subárbol x \\
+Existen 3 posibles factores de balanceo para cada nodo: 
+\begin{itemize}
+    \item -1: La cantidad de ramas de la izquierda del nodo son más que la rama derecha.
+    \item 0: La cantidad de ramas a la izquierda o derecha del nodo son la misma cantidad.
+    \item 1: La cantidad de ramas de la derecha del nodo son más que la rama izquierda.
+\end{itemize}
 
 \section*{Algunos ejercicios}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
