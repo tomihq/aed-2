@@ -873,7 +873,7 @@ Algoritmos comúnes en árboles binarios de búsqueda:
 ¿Cuál es el problema de los ABB? que al hacer inserciones, eliminaciones o ver si un elemento dado pertenece al árbol, el costo en el peor caso es O(n). \\ 
 Para optimizar esto, existen los AVL que nos ponen restricciones en base a la cantidad de nodos que puede haber anidados en base ciertas reglas de balanceo.
 \subsection*{ABB balanceados (AVL)}
-Un árbol AVL es un ABB balanceado en altura. \\
+Un árbol AVL es un ABB balanceado en altura. Un árbol binario perfectamente balanceado de n nodos tiene una altura de: $ log_{2}(n) + 1 $ donde las hojas son más del 50\% de los nodos  \\
 Se define el factor de balanceo de un nodo v de un árbol binario como: \\
 \[fb(v) = A_{D} - A_{I}\] donde $ A_{x}$ es la altura del subárbol x \\
 Existen 3 posibles factores de balanceo para cada nodo: 
@@ -883,6 +883,7 @@ Existen 3 posibles factores de balanceo para cada nodo:
     \item 1: La cantidad de ramas de la derecha del nodo son más que la rama izquierda.
 \end{itemize}
 Llamamos entonces, árbol balanceado para cuando para cualquier nodo en él, la diferencia de longitud entre sus ramas izquierda y derecha difiere, a lo sumo, en una unidad. \\ 
+\textbf{Nota: los caminos no nos importan mucho, considerar cada nodo como un árbol distinto. Si los tengo en misma altura pero uno está más abajo que otro, está desbalanceado. }
 \begin{center}
     \begin{minipage}[b]{0.5\textwidth}
         \includegraphics[width=\linewidth]{assets/avl.png}
@@ -905,11 +906,32 @@ Viendo la figura de la izquierda: es un AVL porque si vemos, la rama de la izqui
         \label{fig:avl_problematica}
     \end{minipage}
 \end{center}
-Viendo la figura de la derecha, no está balanceado: porque la rama de la izquierda del 10 son 3 nodos y la derecha 1, y difieren en 2 nodos, por lo tanto no está balanceado. \\
+Viendo la figura de la derecha, no está balanceado: porque la rama de la izquierda del 10 son 3 nodos (altura 3) y la derecha 1 (altura 1), y difieren en 2 nodos, por lo tanto no está balanceado. \\
 ¿Cómo solucionamos esto para mantener el invariante? Rotaciones
-
+\newpage
 \subsection*{Rotaciones}
 Existen muchas rotaciones posibles para un árbol, pero las elegimos dependiendo de la estructura del árbol que tengamos que rebalancear. \\
+Es importante que cada vez que hacemos una rotación, el invariante debe seguir valiendo. \\
+\begin{center}
+    \begin{minipage}[b]{0.7\textwidth}
+        \includegraphics[width=\linewidth]{assets/avl_rotaciones.png}
+        \centering
+        \label{fig:avl_rotaciones}
+    \end{minipage}
+\end{center}
+Nótese que al rotar el árbol, sigue valiendo el invariante que $ A < x < B < y < C $, esto nos indica que al rotar conseguimos el mismo árbol. \\
+Consejos útiles:
+\begin{itemize}
+    \item Muchas veces, una rotación no siempre es suficiente para rectificar un nodo que está desequilibrado. 
+    \item El rebalanceo (realiza las rotaciones) se invoca para todos los nodos de la rama hasta la raíz (hay que mandar el árbol entero).
+\end{itemize}
+\begin{center}
+    \begin{minipage}[b]{0.7\textwidth}
+        \includegraphics[width=\linewidth]{assets/balanceo_avl.jpg}
+        \centering
+        \label{fig:balanceo_avl}
+    \end{minipage}
+\end{center}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
