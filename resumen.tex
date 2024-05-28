@@ -859,8 +859,19 @@ Algoritmos comúnes en árboles binarios de búsqueda:
         \item Complejidad O(n) para cualquier tipo de borrado.
     \end{itemize}
 \end{itemize}
-Aclaración: Predecesor inmediato (el más grande de los chiquitos), osea rama izquierda busco el último de la der a partir del nodo que estoy. \\ 
-Aclaración: Sucesor inmediato (el más chiquito de los grandes), osea rama derecha busco el último a la izquierda a partir del nodo que estoy.
+\textbf{Aclaración}: Predecesor inmediato (el más grande de los chiquitos), osea rama izquierda busco el último de la der a partir del nodo que estoy. \\ 
+\textbf{Aclaración}: Sucesor inmediato (el más chiquito de los grandes), osea rama derecha busco el último a la izquierda a partir del nodo que estoy. \\
+\subsection*{ABB con complejidad O(n) en ciertas operaciones}
+Árbol binario con n nodos anidados todos mayores o todos menores.
+\begin{center}
+    \begin{minipage}[b]{0.7\textwidth}
+        \includegraphics[width=\linewidth]{assets/peor_caso_abb.jpg}
+        \centering
+        \label{fig:avl}
+    \end{minipage}
+\end{center}
+¿Cuál es el problema de los ABB? que al hacer inserciones, eliminaciones o ver si un elemento dado pertenece al árbol, el costo en el peor caso es O(n). \\ 
+Para optimizar esto, existen los AVL que nos ponen restricciones en base a la cantidad de nodos que puede haber anidados en base ciertas reglas de balanceo.
 \subsection*{ABB balanceados (AVL)}
 Un árbol AVL es un ABB balanceado en altura. \\
 Se define el factor de balanceo de un nodo v de un árbol binario como: \\
@@ -871,7 +882,34 @@ Existen 3 posibles factores de balanceo para cada nodo:
     \item 0: La cantidad de ramas a la izquierda o derecha del nodo son la misma cantidad.
     \item 1: La cantidad de ramas de la derecha del nodo son más que la rama izquierda.
 \end{itemize}
+Llamamos entonces, árbol balanceado para cuando para cualquier nodo en él, la diferencia de longitud entre sus ramas izquierda y derecha difiere, a lo sumo, en una unidad. \\ 
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/avl.png}
+        \centering
+        \label{fig:avl}
+    \end{minipage}
+\end{center}
+\begin{itemize}
+    \item Negro: Factor de balanceo 0.
+    \item Rojo: Factor de balanceo -1.
+    \item Azul: Factor de balanceo 1.
+\end{itemize}
+\subsection*{Mantener balanceo de AVL al insertar o eliminar}
+Una de las dificultades más grandes de mantener el AVL invariante luego de cada operación es mantenerlo balanceado. \\
+Viendo la figura de la izquierda: es un AVL porque si vemos, la rama de la izquierda del 10 son 2 nodos y la derecha 1 y difieren en un solo nodo, por lo tanto está balanceado. 
+\begin{center}
+    \begin{minipage}[b]{0.7\textwidth}
+        \includegraphics[width=\linewidth]{assets/avl_problematica.png}
+        \centering
+        \label{fig:avl}
+    \end{minipage}
+\end{center}
+Viendo la figura de la derecha, no está balanceado: porque la rama de la izquierda del 10 son 3 nodos y la derecha 1, y difieren en 2 nodos, por lo tanto no está balanceado. \\
+¿Cómo solucionamos esto para mantener el invariante? Rotaciones
 
+\subsection*{Rotaciones}
+Existen muchas rotaciones posibles para un árbol, pero las elegimos dependiendo de la estructura del árbol que tengamos que rebalancear. \\
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
