@@ -919,11 +919,19 @@ Es importante que cada vez que hacemos una rotación, el invariante debe seguir 
         \label{fig:avl_rotaciones}
     \end{minipage}
 \end{center}
-Nótese que al rotar el árbol, sigue valiendo el invariante que $ A < x < B < y < C $, esto nos indica que al rotar conseguimos el mismo árbol. \\
+Nótese que al rotar el árbol, sigue valiendo el invariante que $ A < x < B < y < C $, esto nos indica que al rotar conseguimos el mismo árbol. \\ \\ 
+\textbf{¿Qué rotación tengo que usar?}
+\begin{itemize}
+    \item Left-Left(LL o II): Ocurre cuando un nodo tiene un subárbol izquierdo que está desbalanceado a la izquierda. La solución es una rotación simple a la derecha. Véase \hyperref[subsec:rotaciones_avl]{anexo}
+    \item Right-Right(RR o DD): Ocurre cuando un nodo tiene un subárbol derecho que está desbalanceado a la derecha. La solución es una rotación simple a la izquierda. Véase \hyperref[subsec:rotaciones_avl]{anexo}
+    \item Left-Right(LR o ID): Ocurre cuando un nodo tiene un subárbol izquierdo que está desbalanceado a la derecha. La solución son dos rotaciones: primero una rotación a la izquierda en el subárbol izquierdo y luego una rotación a la derecha en el nodo. Véase \hyperref[subsec:rotaciones_avl]{anexo} 
+    \item Right-Left(RL o DL): Ocurre cuando un nodo tiene un subárbol derecho que está desbalanceado a la izquierda. La solución son dos rotaciones: primero una rotación a la derecha del subárbol derecho y luego una rotación a la izquierda en el nodo. Véase \hyperref[subsec:rotaciones_avl]{anexo}
+\end{itemize}
 Consejos útiles:
 \begin{itemize}
     \item Muchas veces, una rotación no siempre es suficiente para rectificar un nodo que está desequilibrado. 
     \item El rebalanceo (realiza las rotaciones) se invoca para todos los nodos de la rama hasta la raíz (hay que mandar el árbol entero).
+    \item El máximo de rotaciones consecutivas para balancear un árbol es de 2.
 \end{itemize}
 \begin{center}
     \begin{minipage}[b]{0.7\textwidth}
@@ -1164,4 +1172,14 @@ $ \implies log(n) \le n \leftarrow $ trivialmente verdadero.
         }
     }
 \end{lstlisting}
+\subsection*{Rotaciones según desbalance de AVL}
+\label{subsec:rotaciones_avl}
+\begin{center}
+    \begin{minipage}[b]{0.9\textwidth}
+        \includegraphics[width=\linewidth]{assets/rotaciones_avl_casos.jpg}
+        \centering
+        \label{fig:rotaciones_avl_casos}
+    \end{minipage}
+\end{center}
+
 \end{document} 
