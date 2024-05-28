@@ -560,6 +560,10 @@ Pasaje por referencia:
 \end{lstlisting}
 Nota: El pasaje por referencia, a veces se le conoce comúnmente como aliasing y para evitarlo, hay que crear una nueva instancia con los valores de la otra instancia en vez de asignarla directamente.
 
+\subsection*{Aliasing en procedimientos de Módulo}
+Siempre hay que recordar que el módulo es lo más cercano a código que tenemos. Por lo tanto, en operaciones como concatenar, copiar, o quizá mover de un lado al otro para luego borrarlo hay que recordar el aliasing. \\
+Porque por ejemplo, si tengo que mover cierta data hacia un lado y luego borrarla de de donde estaba, si la moví por referencia y después la borré, perdí todo. 
+
 \subsection*{Contrato entre métodos de un módulo}
 Los métodos de un Módulo tienen un contrato entre sí.
 Supongamos que necesitamos que la complejidad de búsqueda de un método de mi módulo sea o(log n) sabiendo que mi lista está ordenada. Aquí, el método busqueda podrá usar la búsqueda binaria para poder hacer el proceso lo más rápido posible, pero ¿qué sucede si al agregar un elemento en el método agregar() la lista de salida que se modifica en el módulo no está ordenada? \\ El contrato de búsqueda no se cumpliría porque la búsqueda binaria no funcionaría porque necesita que la lista esté ordenada. \\
