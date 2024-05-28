@@ -835,10 +835,35 @@ Se calculan igual que observando una función dada que hace algo. Lo único que 
         sig: NodoLista<T>
         val: T
     }
-    
+
     Módulo LinkedList<T> implementa Secuencia<T> {
         var primero: NodoLista<T>
         var ultimo: NodoLista<T>
+        var longitud: int
+
+        Costo peor caso / mejor caso = O(1) xq ya tengo primer puntero y lo peor que tengo que hacer es reordenar 1 solo. 
+        proc agregarAdelante(inout l: LinkedList<T>, in e: T) {
+            var nuevoNodo: NodoLista<T> = new NodoLista<T>(e);
+            var primeroAnt: NodoLista<T> = l.primero;
+            nuevoNodo.sig = primeroAnt;
+            l.primero = nuevoNodo;
+            if(l.longitud == 0){
+                l.ultimo = nuevoNodo; 
+            }
+            l.longitud+=1;
+        }
+
+        Costo peor caso / mejor caso = O(1) xq ya tengo el último puntero y lo peor que tengo que hacer es reordenar 1 solo.
+        proc agregarAtras(inout l: LinkedList<T>, in e: T){
+            if(l.longitud == 0) then
+                agregarAdelante(l, e);
+            else
+                var nuevoNodo: NodoLista<T> = new NodoLista<T>(e);
+                var anteriorUlt: NodoLista<T> = l.ultimo; 
+                anteriorUlt.sig = nuevoNodo; 
+                l.ultimo = nuevoNodo; 
+            endif
+        }
         
         proc buscar(in l: LinkedList<T>, in e: T): T {
             // Si e == l.primero.val -> costo O(1)
