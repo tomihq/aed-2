@@ -828,51 +828,8 @@ Sean f, g: \(\mathds{N} \implies \float_{>0}\). Si existe:
     \item \(f \in \Omega(g) \ y \ f \notin O(g) \iff l = +\infty\)
 \end{itemize}
 \section*{Complejidad en procedimientos de módulo}
-Se calculan igual que observando una función dada que hace algo. Lo único que quería aclarar acá, es que siempre para las eliminaciones o búsquedas nunca se usen (en caso de haber) punteros que tengan referencia al último valor. El caso excepcional es el primero, pero el último hay que buscarlo con la forma de recorrer la estructura tradicional que haya.
-\begin{lstlisting}
-    Struct NodoLista<T> {
-        prev: NodoLista<T>
-        sig: NodoLista<T>
-        val: T
-    }
-
-    Módulo LinkedList<T> implementa Secuencia<T> {
-        var primero: NodoLista<T>
-        var ultimo: NodoLista<T>
-        var longitud: int
-
-        Costo peor caso / mejor caso = O(1) xq ya tengo primer puntero y lo peor que tengo que hacer es reordenar 1 solo. 
-        proc agregarAdelante(inout l: LinkedList<T>, in e: T) {
-            var nuevoNodo: NodoLista<T> = new NodoLista<T>(e);
-            var primeroAnt: NodoLista<T> = l.primero;
-            nuevoNodo.sig = primeroAnt;
-            l.primero = nuevoNodo;
-            if(l.longitud == 0){
-                l.ultimo = nuevoNodo; 
-            }
-            l.longitud+=1;
-        }
-
-        Costo peor caso / mejor caso = O(1) xq ya tengo el último puntero y lo peor que tengo que hacer es reordenar 1 solo.
-        proc agregarAtras(inout l: LinkedList<T>, in e: T){
-            if(l.longitud == 0) then
-                agregarAdelante(l, e);
-            else
-                var nuevoNodo: NodoLista<T> = new NodoLista<T>(e);
-                var anteriorUlt: NodoLista<T> = l.ultimo; 
-                anteriorUlt.sig = nuevoNodo; 
-                l.ultimo = nuevoNodo; 
-            endif
-        }
-        
-        proc buscar(in l: LinkedList<T>, in e: T): T {
-            // Si e == l.primero.val -> costo O(1)
-            //Si e NO es el primero, entonces -> costo O(n)
-
-            Aunque tenga el último guardado, no puedo sacarlo como caso aparte porque para calcular la complejidad tendría que aíslar los casos del primero y el último y es un quilombo.
-        }
-    }
-\end{lstlisting}
+Se calculan igual que observando una función dada que hace algo. Lo único que quería aclarar acá, es que siempre para las eliminaciones o búsquedas nunca se usen (en caso de haber) punteros que tengan referencia al último valor. El caso excepcional es el primero, pero el último hay que buscarlo con la forma de recorrer la estructura tradicional que haya. \\
+Véase \hyperref[subsec:complejidad_modulo_sll]{anexo} para ver un ejemplo al respecto.
 \section*{Árboles / Árboles binarios}
 Se definen recursivamente y sus operaciones necesitan de ella. Utilizamos nodos. \\
 Terminología que vamos a usar: Raíz \& Hoja \\ 
@@ -913,7 +870,7 @@ Existen 3 posibles factores de balanceo para cada nodo:
     \item 1: La cantidad de ramas de la derecha del nodo son más que la rama izquierda.
 \end{itemize}
 
-\section*{Algunos ejercicios}
+\section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
@@ -1098,4 +1055,51 @@ $ f \in O(log \ n) \equiv f \le c * log(n), \ f \in O(n) \equiv f \le c * n $ \\
 $ \implies f \le c * log(n) \implies f \le c * n $ \\
 $ \implies c * log(n) \le c * n $ \\
 $ \implies log(n) \le n \leftarrow $ trivialmente verdadero.
+\newpage
+\subsection*{Single Linked List - Complejidad - Implementación}
+\label{subsec:complejidad_modulo_sll}
+\begin{lstlisting}
+    Struct NodoLista<T> {
+        prev: NodoLista<T>
+        sig: NodoLista<T>
+        val: T
+    }
+
+    Módulo LinkedList<T> implementa Secuencia<T> {
+        var primero: NodoLista<T>
+        var ultimo: NodoLista<T>
+        var longitud: int
+
+        Costo peor caso / mejor caso = O(1) xq ya tengo primer puntero y lo peor que tengo que hacer es reordenar 1 solo. 
+        proc agregarAdelante(inout l: LinkedList<T>, in e: T) {
+            var nuevoNodo: NodoLista<T> = new NodoLista<T>(e);
+            var primeroAnt: NodoLista<T> = l.primero;
+            nuevoNodo.sig = primeroAnt;
+            l.primero = nuevoNodo;
+            if(l.longitud == 0){
+                l.ultimo = nuevoNodo; 
+            }
+            l.longitud+=1;
+        }
+
+        Costo peor caso / mejor caso = O(1) xq ya tengo el último puntero y lo peor que tengo que hacer es reordenar 1 solo.
+        proc agregarAtras(inout l: LinkedList<T>, in e: T){
+            if(l.longitud == 0) then
+                agregarAdelante(l, e);
+            else
+                var nuevoNodo: NodoLista<T> = new NodoLista<T>(e);
+                var anteriorUlt: NodoLista<T> = l.ultimo; 
+                anteriorUlt.sig = nuevoNodo; 
+                l.ultimo = nuevoNodo; 
+            endif
+        }
+        
+        proc buscar(in l: LinkedList<T>, in e: T): T {
+            // Si e == l.primero.val -> costo O(1)
+            //Si e NO es el primero, entonces -> costo O(n)
+
+            Aunque tenga el último guardado, no puedo sacarlo como caso aparte porque para calcular la complejidad tendría que aíslar los casos del primero y el último y es un quilombo.
+        }
+    }
+\end{lstlisting}
 \end{document} 
