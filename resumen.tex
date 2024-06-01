@@ -874,6 +874,7 @@ Algoritmos comúnes en árboles binarios de búsqueda:
 Para optimizar esto, existen los AVL que nos ponen restricciones en base a la cantidad de nodos que puede haber anidados en base ciertas reglas de balanceo.
 \subsection*{ABB balanceados (AVL)}
 Un árbol AVL es un ABB balanceado en altura. Un árbol binario perfectamente balanceado de n nodos tiene una altura de: $ log_{2}(n) + 1 $ donde las hojas son más del 50\% de los nodos  \\
+La inserción y el borrado se hace exactamente igual que en un ABB pero acá, como extra se hace el rebalanceo. \\ 
 Se define el factor de balanceo de un nodo v de un árbol binario como: \\
 \[fb(v) = A_{D} - A_{I}\] donde $ A_{x}$ es la altura del subárbol x \\
 Existen 3 posibles factores de balanceo para cada nodo: 
