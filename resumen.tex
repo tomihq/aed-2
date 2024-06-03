@@ -947,7 +947,20 @@ Es exactamente igual que el TAD Cola, pero difiere en la forma en que removemos 
 Si llegase a suceder que un mismo elemento tiene la misma prioridad, debería especificarse cual se quitaría. \\ 
 La prioridad la expresamos con un entero, pero puede ser cualquier tipo $ \alpha$ que pueda ser comparado con un orden $<_{\alpha}$. \\
 
-\textbf{Ej.}: Imaginemos que vamos a una guardia, y estamos primeros a punto de ser atendidos pero llega alguien que está en estado grave. Esta persona va a ser atendida antes que nosotros aunque hayamos llegado antes. En ese caso, es una cola de prioridad pues la prioridad está dada por la gravedad del paciente.
+\textbf{Ej.}: Imaginemos que vamos a una guardia, y estamos primeros a punto de ser atendidos pero llega alguien que está en estado grave. Esta persona va a ser atendida antes que nosotros aunque hayamos llegado antes. En ese caso, es una cola de prioridad pues la prioridad está dada por la gravedad del paciente. \\ \\ 
+Véase \hyperref[subsec:cola_de_prioridad_avl]{anexo} para un ejercicio de elección de estructuras para armar una cola de prioridad.
+\section*{Heaps}
+Es la implementación del TAD ColaPrioridad. Tiene la misma complejidad algorítmica que un árbol AVL pero es más fácil y elegante de implementar. \\
+Invariante de representación:
+\begin{itemize}
+    \item Árbol binario perfectamente balanceado (difiere a lo mucho en un único nodo)
+    \item El último nivel está lleno de nodos desde la izquierda. 
+    \item La clave (prioridad) de cada nodo es mayor o igual que la de sus hijos (si es que tiene.)
+    \item Todo súbarbol es otro heap. 
+    \item NO es un ABB. En un ABB el hijo derecho es más grande que el padre. En un Heap ambos hijos de un Nodo son menores.
+\end{itemize}
+Este invariante de representación habla de un max-heap. La diferencia con un min-heap es que va como raiz uno muy chiquito y abajo mayores o iguales. \\
+Para poder sacar un elemento, la complejidad es O(1) porque sacamos desde la raíz.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
@@ -1189,5 +1202,11 @@ $ \implies log(n) \le n \leftarrow $ trivialmente verdadero.
         \label{fig:rotaciones_avl_casos}
     \end{minipage}
 \end{center}
+\subsection*{Elección de estructura para Cola de Prioridad}
+\label{subsec:cola_de_prioridad_avl}
+La mejor forma y más rápida de implementar una cola de prioridad sería con un árbol AVL. Esto nos garantiza que la búsqueda en el peor caso es O(log n). \\
+Además, las inserciones podrían ser en tiempo logarítmico y los borrados también. \\
+Una mejor solución y más elegante (que no nos mejora nada en temas de complejidad) podría ser usando Heaps. \\
+Nota: El AVL es bueno cuando usamos diccionarios; pero si no usamos diccionarios para la cola de prioridad, en este caso es mejor usar Heaps.
 
 \end{document} 
