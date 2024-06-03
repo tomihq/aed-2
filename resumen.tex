@@ -942,6 +942,12 @@ Consejos útiles:
         \label{fig:balanceo_avl}
     \end{minipage}
 \end{center}
+\section*{Cola de Prioridad}
+Es exactamente igual que el TAD Cola, pero difiere en la forma en que removemos elementos. No quitamos el primero que ingresó, sino que lo sacamos en base a un factor de prioridad que definimos a la hora de armar el TAD. \\ 
+Si llegase a suceder que un mismo elemento tiene la misma prioridad, debería especificarse cual se quitaría. \\ 
+La prioridad la expresamos con un entero, pero puede ser cualquier tipo $ \alpha$ que pueda ser comparado con un orden $<_{\alpha}$. \\
+
+\textbf{Ej.}: Imaginemos que vamos a una guardia, y estamos primeros a punto de ser atendidos pero llega alguien que está en estado grave. Esta persona va a ser atendida antes que nosotros aunque hayamos llegado antes. En ese caso, es una cola de prioridad pues la prioridad está dada por la gravedad del paciente.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
