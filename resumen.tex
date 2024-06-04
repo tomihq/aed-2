@@ -948,6 +948,12 @@ Si llegase a suceder que un mismo elemento tiene la misma prioridad, debería es
 La prioridad la expresamos con un entero, pero puede ser cualquier tipo $ \alpha$ que pueda ser comparado con un orden $<_{\alpha}$. \\
 
 \textbf{Ej.}: Imaginemos que vamos a una guardia, y estamos primeros a punto de ser atendidos pero llega alguien que está en estado grave. Esta persona va a ser atendida antes que nosotros aunque hayamos llegado antes. En ese caso, es una cola de prioridad pues la prioridad está dada por la gravedad del paciente. \\ \\ 
+Casos de uso: 
+\begin{itemize}
+    \item Sistemas operativos
+    \item Algoritmos de Scheduling
+    \item Gestión de colas
+\end{itemize}
 Véase \hyperref[subsec:cola_de_prioridad_avl]{\underline{anexo}} para un ejercicio de elección de estructuras para armar una cola de prioridad.
 \section*{Heaps}
 Es la implementación del TAD ColaPrioridad. Tiene la misma complejidad algorítmica que un árbol AVL pero es más fácil y elegante de implementar. \\
@@ -1273,7 +1279,7 @@ Ventajas de implementar Heap con Array:
 \label{subsec:array_2_heap}
 \begin{itemize}
     \item Forma 1 (Costo $\theta(n \ log(n))$): Permutando sus elementos, hasta llevarlo a un heap y que cumpla el invariante de representación. Si no recuerda qué reglas debe cumplir el array, véase \hyperref[subsec:implementaciones_heap]{\underline{implementaciones heap}}.
-    \item Forma 2 (Costo $\theta(n)$), Algoritmo de Floyd: Estrategia bottom-up. Desde el último sub-heap de la derecha, voy viendo si cada uno son un heap válido, si no lo son aplico la operación bajar en el elemento padre de ese sub-heap. 
+    \item Forma 2 (Costo $\theta(n)$), Algoritmo de Floyd: Estrategia bottom-up. Desde el último sub-heap de la derecha, voy viendo si cada uno son un heap válido, si no lo son aplico la operación bajar en el elemento padre de ese sub-heap. Si ya llegué al último sub-heap de la izquierda, vuelvo a la derecha pero voy al padre del último padre de la derecha.
 \end{itemize}
 
 \end{document} 
