@@ -961,6 +961,7 @@ Invariante de representación:
 \end{itemize}
 Este invariante de representación habla de un max-heap. La diferencia con un min-heap es que va como raiz uno muy chiquito y abajo mayores o iguales. \\
 Para poder sacar un elemento, la complejidad es O(1) porque sacamos desde la raíz.
+Véase \hyperref[subsec:implementaciones_heap]{implementaciones heaps} de maneras diversas.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
@@ -1208,5 +1209,38 @@ La mejor forma y más rápida de implementar una cola de prioridad sería con un
 Además, las inserciones podrían ser en tiempo logarítmico y los borrados también. \\
 Una mejor solución y más elegante (que no nos mejora nada en temas de complejidad) podría ser usando Heaps. \\
 Nota: El AVL es bueno cuando usamos diccionarios; pero si no usamos diccionarios para la cola de prioridad, en este caso es mejor usar Heaps.
+\subsection*{Implementacion de Heaps de maneras diversas}
+\label{subsec:implementaciones_heap}
+\textbf{Sobre Array:}
+Sabemos que un Heap es lo más cercano a ser implementado con árboles binarios balanceados. \\ 
+Consideremos que debemos implementarlo con un array ¿como lo haríamos? \\
+La manera de representarlo en un array es: raiz - hijo izq - hijo der - hijo izq de hijo izq, hijo der de hijo izq - hijo izq de hijo der, hijo der de hijo der. \\
+Es como que vas tomando misma altura, pero completas primero con izquierda y luego derecha. \\
+Fórmula: 
+\begin{itemize}
+    \item si v es la raiz, entonces v es el primero del arreglo.
+    \item si v es el hijo izquierdo de u entonces 2p(u)+1
+    \item si v es el hijo derecho de u entonces 2p(u)+2
+\end{itemize}
+\begin{center}
+    \begin{minipage}[b]{0.6\textwidth}
+        \includegraphics[width=\linewidth]{assets/heap.png}
+        \centering
+        \label{fig:heap}
+    \end{minipage}
+\end{center}
+Transformado a array sería: $[89, 67, 68, 66, 65, 66, 67, 1, 43, 21, 5, 4, 64]$ \\
+Ventajas de implementar Heap con Array: 
+\begin{itemize}
+    \item Ventajas:
+    \begin{itemize}
+        \item Muy eficiente en términos de espacio.
+        \item Es fácil de navegar.
+    \end{itemize}
+    \item Desventajas:
+    \begin{itemize}
+        \item Al ser un arreglo, es necesario duplicar el arreglo o achicarlo a medida que se agregan o eliminan elementos.
+    \end{itemize}
+\end{itemize}
 
 \end{document} 
