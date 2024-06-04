@@ -948,7 +948,7 @@ Si llegase a suceder que un mismo elemento tiene la misma prioridad, debería es
 La prioridad la expresamos con un entero, pero puede ser cualquier tipo $ \alpha$ que pueda ser comparado con un orden $<_{\alpha}$. \\
 
 \textbf{Ej.}: Imaginemos que vamos a una guardia, y estamos primeros a punto de ser atendidos pero llega alguien que está en estado grave. Esta persona va a ser atendida antes que nosotros aunque hayamos llegado antes. En ese caso, es una cola de prioridad pues la prioridad está dada por la gravedad del paciente. \\ \\ 
-Véase \hyperref[subsec:cola_de_prioridad_avl]{anexo} para un ejercicio de elección de estructuras para armar una cola de prioridad.
+Véase \hyperref[subsec:cola_de_prioridad_avl]{\underline{anexo}} para un ejercicio de elección de estructuras para armar una cola de prioridad.
 \section*{Heaps}
 Es la implementación del TAD ColaPrioridad. Tiene la misma complejidad algorítmica que un árbol AVL pero es más fácil y elegante de implementar. \\
 Invariante de representación:
@@ -961,7 +961,7 @@ Invariante de representación:
 \end{itemize}
 Este invariante de representación habla de un max-heap. La diferencia con un min-heap es que va como raiz uno muy chiquito y abajo mayores o iguales. \\
 Para poder sacar un elemento, la complejidad es O(1) porque sacamos desde la raíz.
-Véase \hyperref[subsec:implementaciones_heap]{implementaciones heaps} de maneras diversas.
+Véase \hyperref[subsec:implementaciones_heap]{\underline{implementaciones heaps}} de maneras diversas.
 \subsection*{Complejidad en operaciones con Heaps}
 Nota: acá hablamos de un max-heap. recordemos que los que están arriba son mayores estrictos que los hijos.
 \begin{itemize}
@@ -987,6 +987,8 @@ Nota: acá hablamos de un max-heap. recordemos que los que están arriba son may
     \item Bajar(p): Mientras que p no sea hoja y la prioridad de p sea menor al mayor de sus hijos, intercambio el hijo con p.
 
 \end{itemize}
+\subsection*{Transformaciones Array a Heap}
+Véase \hyperref[subsec:array_2_heap]{\underline{array $\rightarrow$ heap}}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
@@ -1266,6 +1268,12 @@ Ventajas de implementar Heap con Array:
     \begin{itemize}
         \item Al ser un arreglo, es necesario duplicar el arreglo o achicarlo a medida que se agregan o eliminan elementos.
     \end{itemize}
+\end{itemize}
+\subsection*{Array $\rightarrow$ Heap (Array2Heap)}
+\label{subsec:array_2_heap}
+\begin{itemize}
+    \item Forma 1 (Costo $\theta(n \ log(n))$): Permutando sus elementos, hasta llevarlo a un heap y que cumpla el invariante de representación. Si no recuerda qué reglas debe cumplir el array, véase \hyperref[subsec:implementaciones_heap]{\underline{implementaciones heap}}.
+    \item Forma 2 (Costo $\theta(n)$), Algoritmo de Floyd: Estrategia bottom-up. Desde el último sub-heap de la derecha, voy viendo si cada uno son un heap válido, si no lo son aplico la operación bajar en el elemento padre de ese sub-heap. 
 \end{itemize}
 
 \end{document} 
