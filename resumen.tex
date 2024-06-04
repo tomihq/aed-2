@@ -996,17 +996,25 @@ Nota: acá hablamos de un max-heap. recordemos que los que están arriba son may
 \subsection*{Transformaciones Array a Heap}
 Véase \hyperref[subsec:array_2_heap]{\underline{array $\rightarrow$ heap}}
 \section*{Tries}
-Idea: No hacer comparaciones de claves completas sino, de partes de ellas: \begin{itemize}
-    \item Si tengo un string, hablo de un caracter.
-    \item Si tengo un entero, hablo de un bit particular.
-\end{itemize}
-Requiere: Poder hacer operaciones sobre esas partes. \\
-Casos de uso:
+El Trie es una estructura de datos que se suele utilizar en autocompletado de texto, pattern matching, etc. No tiene ciclos, debe pensarse recursivamente. \\
 \begin{itemize}
-    \item Compresión de texto
-    \item Pattern Matching
-    \item Text retrieval
+    \item Los nodos internos no tienen un valor.
+    \item Los valores de los nodos se almacenan solamente en hojas (a veces ni eso).
 \end{itemize}
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/trie.png}
+        \centering
+        \label{fig:trie}
+    \end{minipage}
+\end{center}
+Propiedades:
+\begin{itemize}
+    \item Cuando llego a una hoja es una palabra
+    \item La estructura del trie es única, no importa el orden en que se ingresen los valores de los nodos.
+    \item Complejidad o(m) donde m es la longitud de la cadena involucrada en el procedimiento.
+\end{itemize}
+Nota: Hay muchos algoritmos de Trie que tienen buena complejidad temporal pero son muy malos en complejidad espacial.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
