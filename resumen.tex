@@ -962,6 +962,31 @@ Invariante de representación:
 Este invariante de representación habla de un max-heap. La diferencia con un min-heap es que va como raiz uno muy chiquito y abajo mayores o iguales. \\
 Para poder sacar un elemento, la complejidad es O(1) porque sacamos desde la raíz.
 Véase \hyperref[subsec:implementaciones_heap]{implementaciones heaps} de maneras diversas.
+\subsection*{Complejidad en operaciones con Heaps}
+Nota: acá hablamos de un max-heap. recordemos que los que están arriba son mayores estrictos que los hijos.
+\begin{itemize}
+    \item Próximo: O(1) $\rightarrow$ raíz del árbol o primer elemento del array.
+    \item Encolar(elemento): O(log n) $\rightarrow$ Sin necesidad de conocer el elemento, lo que tenemos que tratar es llenar el árbol de manera izquierdista. Hay dos casos
+    \begin{itemize}
+        \item Si el elemento que ingresé en el lugar libre es \textbf{menor a su padre, dejo todo como está.}
+        \item Si el elemento que ingresé en el lugar libre es mayor a su padre, \textbf{hago el swap con el padre}. Por lo tanto ahora tengo garantizado que el elemento nuevo es el padre y los hijos son menores a este (vuelve a valer el invariante).
+        \item \textbf{Algoritmo}: Insertar elemento al final del heap, y luego subir(elemento)
+    \end{itemize}
+    \item Subir(elemento) o Sift-Up: Mientras que el elemento no sea la raíz, y la prioridad del elemento sea mayor al padre, entonces intercambio \textbf{el elemento con el padre}.
+    \item Desencolar(elemento): O(log n) $\rightarrow$ Son varios pasos 
+    \begin{itemize}
+        \item Elimino la raíz (guardando las referencias a sus hijos). 
+        \item El último que ingresó (el último que completa el arbol izquierdista) pasa a ser la raíz, y comparo este último elemento con los hijos que guardamos antes. 
+        \item El mayor de los dos hijos hace un swap con el elemento.
+        \item Comparo el elemento con los hijos, y verifico cual es el mayor. Hago un swap con el mayor de los hijos y el elemento. Esto lo hago recursivamente con el elemento y los hijos, mi elemento debe ser siempre el más chico de los posibles hijos (si no tiene hijos, también termina).
+        \item \textbf{Algoritmo}: \begin{itemize}
+            \item Reemplazar el primer elemento con la última hoja y eliminar la última hoja.
+            \item Bajar(raiz)
+        \end{itemize}
+    \end{itemize} 
+    \item Bajar(p): Mientras que p no sea hoja y la prioridad de p sea menor al mayor de sus hijos, intercambio el hijo con p.
+
+\end{itemize}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
@@ -1211,12 +1236,12 @@ Una mejor solución y más elegante (que no nos mejora nada en temas de compleji
 Nota: El AVL es bueno cuando usamos diccionarios; pero si no usamos diccionarios para la cola de prioridad, en este caso es mejor usar Heaps.
 \subsection*{Implementacion de Heaps de maneras diversas}
 \label{subsec:implementaciones_heap}
-\textbf{Sobre Array:}
+\textbf{Sobre Array}
 Sabemos que un Heap es lo más cercano a ser implementado con árboles binarios balanceados. \\ 
 Consideremos que debemos implementarlo con un array ¿como lo haríamos? \\
 La manera de representarlo en un array es: raiz - hijo izq - hijo der - hijo izq de hijo izq, hijo der de hijo izq - hijo izq de hijo der, hijo der de hijo der. \\
 Es como que vas tomando misma altura, pero completas primero con izquierda y luego derecha. \\
-Fórmula: 
+Fórmula (invariante): 
 \begin{itemize}
     \item si v es la raiz, entonces v es el primero del arreglo.
     \item si v es el hijo izquierdo de u entonces 2p(u)+1
