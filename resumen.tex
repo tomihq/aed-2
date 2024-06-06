@@ -966,8 +966,9 @@ Invariante de representación:
     \item NO es un ABB. En un ABB el hijo derecho es más grande que el padre. En un Heap ambos hijos de un Nodo son menores.
 \end{itemize}
 Min-Heap: Min hace referencia a que el proceso de extraer, se hace sacando el mínimo en O(1). Si sacamos el mínimo en O(1) significa que todos los nodos debajo de la raíz son menores estrictos a él. \\
-Max-Heap: Max hace referencia a que el proceso de extraer, se hace sacando el máximo en O(1). Si sacamos el máximo en O(1) significa que todos los nodos debajo de la raíz son mayores estrictos a él.
+Max-Heap: Max hace referencia a que el proceso de extraer, se hace sacando el máximo en O(1). Si sacamos el máximo en O(1) significa que todos los nodos debajo de la raíz son mayores estrictos a él. \\
 
+Véase \hyperref[subsec:operaciones_heaps]{\underline{operaciones heaps}} para un ejemplo más visual de las operaciones \\
 Véase \hyperref[subsec:implementaciones_heap]{\underline{implementaciones heaps}} de maneras diversas.
 \subsection*{Complejidad en operaciones con Heaps}
 Nota: acá hablamos de un max-heap. recordemos que los que están arriba son mayores estrictos que los hijos.
@@ -982,14 +983,13 @@ Nota: acá hablamos de un max-heap. recordemos que los que están arriba son may
     \item Subir(elemento) o Sift-Up: Mientras que el elemento no sea la raíz, y la prioridad del elemento sea mayor al padre, entonces intercambio \textbf{el elemento con el padre}.
     \item Desencolar(elemento): O(log n) $\rightarrow$ Son varios pasos 
     \begin{itemize}
-        \item Elimino la raíz (guardando las referencias a sus hijos). 
-        \item El último que ingresó (el último que completa el arbol izquierdista) pasa a ser la raíz, y comparo este último elemento con los hijos que guardamos antes. 
-        \item El mayor de los dos hijos hace un swap con el elemento.
-        \item Comparo el elemento con los hijos, y verifico cual es el mayor. Hago un swap con el mayor de los hijos y el elemento. Esto lo hago recursivamente con el elemento y los hijos, mi elemento debe ser siempre el más chico de los posibles hijos (si no tiene hijos, también termina).
-        \item \textbf{Algoritmo}: \begin{itemize}
-            \item Reemplazar el primer elemento con la última hoja y eliminar la última hoja.
-            \item Bajar(raiz)
-        \end{itemize}
+        \item Intercambio la raíz con el último elemento ingresado. 
+        \item Borro mi anterior raíz.
+        \item Mi nueva raíz (el último ingresado), lo comparo con sus dos hijos verificando que 
+        \begin{itemize}
+            \item si estamos en un max-heap, sea el mayor de los dos hijos, si no lo es, entonces intercambio con el MAYOR/IGUAL HIJO. Hago esto recursivamente. 
+            \item si estamos en un min-heap, sea el menor de los dos hijos, si no lo es, entonces intercambio con el MENOR/IGUAL HIJO. Hago esto recursivamente. 
+        \end{itemize} 
     \end{itemize} 
     \item Bajar(p): Mientras que p no sea hoja y la prioridad de p sea menor al mayor de sus hijos, intercambio el hijo con p.
 
@@ -1263,6 +1263,25 @@ La mejor forma y más rápida de implementar una cola de prioridad sería con un
 Además, las inserciones podrían ser en tiempo logarítmico y los borrados también. \\
 Una mejor solución y más elegante (que no nos mejora nada en temas de complejidad) podría ser usando Heaps. \\
 Nota: El AVL es bueno cuando usamos diccionarios; pero si no usamos diccionarios para la cola de prioridad, en este caso es mejor usar Heaps.
+\subsection*{Operaciones Heaps}
+\label{subsec:operaciones_heaps}
+\textbf{Inserción}:
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/insertando_heaps.jpg}
+        \centering
+        \label{fig:insertando_en_heaps}
+    \end{minipage}
+\end{center}
+\textbf{Desencolar / Borrar}:
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/borrar_heaps.jpg}
+        \centering
+        \label{fig:borrar_heaps}
+    \end{minipage}
+\end{center}
+Nota: Nótese que es importante si está implementando un max-heap o un min-heap, porque en el max-heap tenemos que reacomodar de manera que quede en la raíz el más grande mientras que en el min-heap tenemos que dejar el más chico.
 \subsection*{Implementacion de Heaps de maneras diversas}
 \label{subsec:implementaciones_heap}
 \textbf{Sobre Array}
