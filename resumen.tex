@@ -960,13 +960,14 @@ Es la implementación del TAD ColaPrioridad. Tiene la misma complejidad algorít
 Invariante de representación:
 \begin{itemize}
     \item Árbol binario perfectamente balanceado (difiere a lo mucho en un único nodo)
-    \item El último nivel está lleno de nodos desde la izquierda. 
-    \item La clave (prioridad) de cada nodo es mayor o igual que la de sus hijos (si es que tiene.)
+    \item El último nivel está lleno de nodos desde la izquierda (es izquierdista). Cuando el nivel del la rama izquierda ya difiere en uno con la derecha, agrego en las hojas de la rama derecha para dejar el árbol con misma altura, pero la idea es agregar de izquierda a derecha siempre. 
+    \item La clave (prioridad) de cada nodo es \textbf{mayor o igual} que la de sus hijos (si es que tiene)
     \item Todo súbarbol es otro heap. 
     \item NO es un ABB. En un ABB el hijo derecho es más grande que el padre. En un Heap ambos hijos de un Nodo son menores.
 \end{itemize}
-Este invariante de representación habla de un max-heap. La diferencia con un min-heap es que va como raiz uno muy chiquito y abajo mayores o iguales. \\
-Para poder sacar un elemento, la complejidad es O(1) porque sacamos desde la raíz.
+Min-Heap: Min hace referencia a que el proceso de extraer, se hace sacando el mínimo en O(1). Si sacamos el mínimo en O(1) significa que todos los nodos debajo de la raíz son menores estrictos a él. \\
+Max-Heap: Max hace referencia a que el proceso de extraer, se hace sacando el máximo en O(1). Si sacamos el máximo en O(1) significa que todos los nodos debajo de la raíz son mayores estrictos a él.
+
 Véase \hyperref[subsec:implementaciones_heap]{\underline{implementaciones heaps}} de maneras diversas.
 \subsection*{Complejidad en operaciones con Heaps}
 Nota: acá hablamos de un max-heap. recordemos que los que están arriba son mayores estrictos que los hijos.
