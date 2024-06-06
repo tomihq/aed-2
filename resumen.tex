@@ -997,23 +997,29 @@ Nota: acá hablamos de un max-heap. recordemos que los que están arriba son may
 \subsection*{Transformaciones Array a Heap}
 Véase \hyperref[subsec:array_2_heap]{\underline{array $\rightarrow$ heap}}
 \section*{Tries}
-El Trie es una estructura de datos que se suele utilizar en autocompletado de texto, pattern matching, etc. No tiene ciclos, debe pensarse recursivamente. \\
+El Trie es una estructura de datos que se suele utilizar en autocompletado de texto, pattern matching, etc.  \\
+La principal característica es que la complejidad depende del tamaño de los elementos (en general, palabras) y no de la cantidad de elementos.
 \begin{itemize}
-    \item Los nodos internos no tienen un valor.
-    \item Los valores de los nodos se almacenan solamente en hojas (a veces ni eso).
+    \item Se implementa sobre árboles n-arios: Donde n sería el tamaño del alfabeto más uno (por el símbolo reservado \$)
+    \item Se usan para guardar grandes conjuntos de palabras o secuencias de elementos con un alfabeto reducido
+    \item Cada nodo representa un caracter o componente de los elementos guardados.
+    \item Se marca con \$ la finalización de la palabra o elemento.
+    \item Los caracteres, se van colocando donde se desea completar la palabra, pero no puede tener un hijo derecho y sí un hijo izquierdo.
 \end{itemize}
 \begin{center}
-    \begin{minipage}[b]{0.5\textwidth}
-        \includegraphics[width=\linewidth]{assets/trie.png}
+    \begin{minipage}[b]{0.6\textwidth}
+        \includegraphics[width=\linewidth]{assets/trie.jpg}
         \centering
         \label{fig:trie}
     \end{minipage}
 \end{center}
 Propiedades:
 \begin{itemize}
-    \item Cuando llego a una hoja es una palabra
+    \item En el nivel i-ésimo del árbol se guarda en el i-ésimo componente de la palabra/secuencia.
     \item La estructura del trie es única, no importa el orden en que se ingresen los valores de los nodos.
     \item Complejidad o(m) donde m es la longitud de la cadena involucrada en el procedimiento.
+    \item La raíz de todo Trie es nulo, porque es la palabra vacía.
+    \item Las palabras, terminan con \$. Si no hay un camino que termine con \$ entonces no es una palabra válida. 
 \end{itemize}
 Nota: Hay muchos algoritmos de Trie que tienen buena complejidad temporal pero son muy malos en complejidad espacial.
 \section*{Anexo}
