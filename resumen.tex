@@ -1003,7 +1003,7 @@ La principal característica es que la complejidad depende del tamaño de los el
     \item Se implementa sobre árboles n-arios: Donde n sería el tamaño del alfabeto más uno (por el símbolo reservado \$)
     \item Se usan para guardar grandes conjuntos de palabras o secuencias de elementos con un alfabeto reducido
     \item Cada nodo representa un caracter o componente de los elementos guardados.
-    \item Se marca con \$ la finalización de la palabra o elemento.
+    \item Se marca con \$ la finalización de la palabra o elemento. Donde el significado \$ es el valor de la palabra entera.
     \item Los caracteres, se van colocando donde se desea completar la palabra, pero no puede tener un hijo derecho y sí un hijo izquierdo.
 \end{itemize}
 \begin{center}
@@ -1022,6 +1022,80 @@ Propiedades:
     \item Las palabras, terminan con \$. Si no hay un camino que termine con \$ entonces no es una palabra válida. 
 \end{itemize}
 Nota: Hay muchos algoritmos de Trie que tienen buena complejidad temporal pero son muy malos en complejidad espacial.
+\section*{Hashing}
+Refiere al proceso de tomar una entrada, de cualquier tipo y generar una cadena de caracteres de longitud fija que representa de manera única esta entrada. \\
+Son adecuados para representar diccionarios y/o conjuntos. \\
+\subsection*{Representación}
+Representemos un diccionario con
+\begin{itemize}
+    \item Tupla $<T, h>$ donde T es un arreglo con N = tamaño(T) celdas
+    \item $h \ es \ una \ funcion \ hash:h(k) \rightarrow {0,..., n-1}$
+    \begin{itemize}
+        \item k: Conjunto de claves posibles 
+        \item {0, ..., n-1}: Conjunto de las posiciones de la tabla (pseudoclaves)
+        \item Para poder conseguir la posición de un elemento en el arreglo usamos la función h.
+    \end{itemize}
+\end{itemize}
+\subsection*{Colisiones}
+Las colisiones en un hash ocurre cuando dos entradas (keys) distintas producen el mismo valor de hash. \\
+Un algoritmo de hash debería producir hashes únicos para cada entrada, sin embargo, debido a las limitaciones en la longitud finita de los hashes y a la naturaleza de la función hash es matemáticamente inevitable que ocurran colisiones en algún momento. \\
+\textbf{Un buen algoritmo de hash minimiza la probabilidad de colisiones} \\
+Maneras de resolver colisiones:
+\begin{itemize}
+    \item Direccionamiento Cerrado / Encadenamiento: Cada celda de la tabla hash mantiene una lista enlazada de todos los elementos que han colisionado en esa celda. En el mejor caso, el facotr de carga $\alpha =$ cantidad de elementos/cantidad de posiciones. Las operaciones sobre la listas enlazadas tendrán $\Omega(N/\longitud{T})$ y $O(N)$ 
+    \begin{center}
+        \begin{minipage}[b]{0.5\textwidth}
+            \includegraphics[width=\linewidth]{assets/hashing_le.png}
+            \centering
+            \label{fig:hashing_le}
+        \end{minipage}
+    \end{center}
+    \item Direccionamiento abierto: Cuando ocurre una colisión, se busca otra ubicación vacía dentro de la tabla hash para almacenar el elemento adicional. Este método puede producir deslocalización del elemento ya que cuando vuelva a llamar a la clave, el valor de hash para esa clave no va a coincidir con la posición del elemento, sino que habrá que hacer el mismo recorrido a la hora de setearlo. 
+    \begin{center}
+        \begin{minipage}[b]{0.5\textwidth}
+            \includegraphics[width=\linewidth]{assets/hashing_posicion_vacia.png}
+            \centering
+            \label{fig:hashing_posicion_vacia}
+        \end{minipage}
+    \end{center}
+\end{itemize}
+\subsection*{Barridos}
+También conocido como "scanning in hashing", se refiere a la acción de recorrer toda la tabla hash en búsqueda de un elemento específico o en caso de una colisión. Los barridos se diferencian por su complejidad algorítmica.
+\begin{itemize}
+    \item Barrido lineal: Cuando ocurre una colisión el algoritmo busca secuencialmente la siguiente ubicación disponible en la tabla hash hasta encontrar una celda vacía.
+    \begin{itemize}
+        \item Fórmula para encontrar la siguiente ubicación: $h(k, i) = (h'(k)+i) \ mod \ m$
+        \item h(k, i) = nueva función hash 
+        \item h'(k) = función hash original
+        \item i = número de intentos de búsqueda 
+        \item m = tamaño de la tabla hash
+        \item Los elementos se aglomeran por largos tramos y puede surgir \textbf{aglomeración primaria}.
+    \end{itemize}
+    \item Barrido cuadrático: El incremento de las iteraciones es cuadrático.
+    \begin{itemize}
+        \item Fórmula para encontrar la siguiente ubicación: $h(k,i) = (h'(k) + c_{1} \ast i + c_{2} \ast i^{2}) \ mod \ m$
+        \item El barrido cuadrático reduce el agrupamiento que a veces ocurre con el barrido lineal, sin embargo, puede sufrir de agrupamientos cuadráticos si no se eligen adecuadamente las constantes de incremento.
+        \item El agloramiento para este barrido se llama \textbf{aglomeración secundaria}
+    \end{itemize}
+    \item Hashing doble: Se utiliza una segunda función de hash para calcular una ubicación alternativa cuando ocurre una colisión 
+    \begin{itemize}
+        \item Fórmula para encontrar la siguiente ubicación: $h(k, i) = (h_{1}(k) + i \ast h_{2}(k)) \ mod \ m$
+        \item Donde $h_{1}(k) \ y \ h_{2}(k)$ son dos funciones de hash diferentes
+        \item i = número de intentos de búsqueda 
+        \item m = tamaño de la tabla hash
+        \item El uso de una segunda función de hash reduce las posibilidades de agrupamiento y mejora la distribución de las claves en la tabla hash. 
+        \item No se generan esas aglomeraciones o clusters tan frecuentes.
+    \end{itemize}
+\end{itemize}
+\subsection*{Requisitos para una función hash}
+\begin{itemize}
+    \item Determinismo: Dada una misma entrada, la salida debe ser siempre el mismo hash.
+    \item Eficiencia: Debe ser rápido de calcular.
+    \item Difusión: Pequeños cambios en la entrada deberían producir cambios significativos y difíciles de predecir en el valor hash. 
+    \item No reversibilidad: No se debe ser posible obtener el valor orignal a partir del hash. 
+    \item Unicidad: Cada entrada debería producir un hash único. Es decir, no debería haber dos entradas diferentes con el mismo hash (ej: uuid)
+    \item Uniformidad de distribución: Los valores hash deberían estar distribuidos uniformemente a lo largo del espacio de salida posible. Esto mejora la eficiencia del hashing y reduce la probabilidad de colisiones
+\end{itemize}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
