@@ -737,7 +737,8 @@ Es decir, podemos generalizar las operaciones elementales a:
     \item T(n): complejidad temporal (o en tiempo) para una entrada de tamaño n
     \item S(n): complejidad espacial para una entrada de tamaño n
 \end{itemize}
-\textbf{Importante}: NUNCA hay que restringir la longitud de entrada de una lista; Por ejemplo: no tiene decir que el mejor caso sea que la lista esté vacía, porque la complejidad se da en base a listas de longitud n sin ningún tipo de restricción.
+\textbf{Importante}: NUNCA hay que restringir la longitud de entrada de una lista; Por ejemplo: no tiene decir que el mejor caso sea que la lista esté vacía, porque la complejidad se da en base a listas de longitud n sin ningún tipo de restricción. Por lo tanto, si algo está acotado en una longitud fija, es siempre complejidad O(1). \\
+Véase \hyperref[subsec:ejemplos_complejidad_reales]{\underline{casos de uso}} reales en Complejidad Algorítmica.
 \subsection*{Análisis de los casos}
 \begin{itemize}
     \item T\(_{mejor}(n)\) = min\(_{instancias \ l},\ _{\longitud{l} \ = \ n}\ \) \{t(l)\}. Recorriendo una lista, el mejor caso es que esté en primera posición.
@@ -1024,12 +1025,14 @@ Propiedades:
     \item La raíz de todo Trie es nulo, porque es la palabra vacía.
     \item Las palabras, terminan con \$. Si no hay un camino que termine con \$ entonces no es una palabra válida. 
 \end{itemize}
-Nota: Hay muchos algoritmos de Trie que tienen buena complejidad temporal pero son muy malos en complejidad espacial. \\
-Casos útiles para Trie:
+Nota: Hay muchos algoritmos de Trie que tienen buena complejidad temporal pero son muy malos en complejidad espacial. \\ 
+\textbf{Casos de uso para Trie}:
 \begin{itemize}
-    \item Si hay varias letras que se combinan y arman cosas diferentes, lo más seguro es que uses un trie para armar y buscarlas en O(|palabra|). Ej: Nombres de carreras universitarias, o materias que no están acotadas en caracteres.
-    \item Si hay varias letras que se combinan y arman cosas diferentes, lo más seguro es que uses un trie para armar y buscarlas en O(1), notése que acá están acotadas, por lo tanto no tenemos que hacernos drama porque nunca va a existir algo más grande. Ej: Nombres de personas con máximo 20 caracteres.
+    \item Si hay varias letras que se combinan y arman cosas diferentes, lo más seguro es que uses un trie para armar y buscarlas en $O(|palabra|)$. Ej: Nombres de carreras universitarias, o materias que no están acotadas en caracteres.
+    \item Si hay varias letras que se combinan y arman cosas diferentes, lo más seguro es que uses un trie para armar y buscarlas en $O(1)$, notése que acá están acotadas, por lo tanto no tenemos que hacernos drama porque nunca va a existir algo más grande. Ej: Nombres de personas con máximo 20 caracteres.
 \end{itemize}
+La intuición en los casos de uso es cuando tienen que ser palabras (acotadas) o no acotadas. \\
+Véase \hyperref[subsec:operaciones_trie]{\underline{casos de uso Trie}} para más ejemplos \\
 \section*{Hashing}
 Refiere al proceso de tomar una entrada, de cualquier tipo y generar una cadena de caracteres de longitud fija que representa de manera única esta entrada. \\
 Son adecuados para representar diccionarios y/o conjuntos. \\
@@ -1290,6 +1293,12 @@ $ \implies f \le c * log(n) \implies f \le c * n $ \\
 $ \implies c * log(n) \le c * n $ \\
 $ \implies log(n) \le n \leftarrow $ trivialmente verdadero.
 \newpage
+\subsection*{Ejemplos en vida real de complejidades}
+\label{subsec:ejemplos_complejidad_reales}
+\textbf{1. En una agenda cada actividad tiene un identificador, un horario de inicio y uno de finalización. Las actividades solo pueden comenzar y terminar en horarios en punto. Se pide la hora más ocupada en un día dado}
+A simple vista, puede parecer que dado un día de tipo entero, buscar la hora podría ser n, pues los días tienen 24 hs y deberíamos iterar toda una lista por ejemplo. Lo importante acá, es que como los días están acotados a 24hs y nunca van a ser más, un array de 24 posiciones sería $O(1)$ en el peor caso. Esto es porque cuando hablamos de complejidad, la complejidad se calcula en base a un n variable, y acá nuestro arreglo siempre es fijo con la misma longitud. \\
+\textbf{2. Se pide implementar un registro de personas, pero por limitaciones del sistema, solo podemos ingresar un máximo de 100 caracteres entre nombre y apellido. ¿Qué estructura usaría, y qué complejidad tiene el peor caso?}
+La estructura a utilizar es un Trie pues más de una persona puede contener caracteres en común en el nombre y apellido con otra. El costo de buscar a cualquier persona es $O(1)$ porque la complejidad e buscar en un Trie donde las palabras no están acotadas es $O(|n|)$ pero en este caso, al saber que todas pueden tener máximo 100 caracteres, el costo es $O(1)$.
 \subsection*{Single Linked List - Complejidad - Implementación}
 \label{subsec:complejidad_modulo_sll}
 \begin{lstlisting}
@@ -1409,5 +1418,14 @@ Ventajas de implementar Heap con Array:
     \item Forma 1 (Costo $\theta(n \ log(n))$): Permutando sus elementos, hasta llevarlo a un heap y que cumpla el invariante de representación. Si no recuerda qué reglas debe cumplir el array, véase \hyperref[subsec:implementaciones_heap]{\underline{implementaciones heap}}.
     \item Forma 2 (Costo $\theta(n)$), Algoritmo de Floyd: Estrategia bottom-up. Desde el último sub-heap de la derecha, voy viendo si cada uno son un heap válido, si no lo son aplico la operación bajar en el elemento padre de ese sub-heap. Si ya llegué al último sub-heap de la izquierda, vuelvo a la derecha pero voy al padre del último padre de la derecha.
 \end{itemize}
-
+\subsection*{Casos de uso Trie}
+\label{subsec:operaciones_trie}
+\textbf{1. Inscribir al estudiante en la materia m de la carrera c $\rightarrow O(|c| + |m|)$ siendo la carrera y materia strings.} \\
+Lo primero que hay que notar es que carrera y materia al ser strings, seguramente muchas carreras y materias compartan caracteres entre sí. La segunda pista que tenemos que es las complejidades hablan de longitud de carreras y materias, por lo tanto podemos concluir que dentro del Trie de carreras, el significado de cada carrera es un nuevo Trie pero de materias y el peor caso es $O(|c| + |m|)$\\
+\textbf{2. En cada actividad se pueden agregar tags que permiten agrupar las distintas actividades por temáticas. Los tags tienen cómo máximo 20 caracteres}
+Lo primero hay que notar es que nos hablan de caracteres, y una longitud fija. En este caso, podemos darnos cuenta que los tags podrían compartir caracteres entre sí. \\
+Un ejemplo podría ser el tag important y el tag importante. Ambas comparten muchos caracteres entre sí. \\
+La siguiente pista es que la longitud está acotada, así que podemos concluir que efectivamente es un Trie que recorrer en el peor caso cuesta $O(1)$.
+\textbf{3. Por restricciones del sistema de la biblioteca, un socio no puede registrarse con un nombre de más de 50 caracteres}
+Mismo caso que el anterior, es un trie porque los socios pueden compartir caracteres entre sí, y el peor caso es $O(1)$ porque la cantidad de caracteres está fija.
 \end{document} 
