@@ -1224,8 +1224,8 @@ El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
 Es un algoritmo de ordenamiento que no utiliza comparaciones. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar.
 \begin{itemize}
     \item Busco el máximo elemento del arreglo original, y creo un arreglo vacío con longitud del máximo elemento.
-    \item Cada aparición de un elemento hace referencia a incrementar uno el índice que representa ese valor.
-    \item Luego, recorremos el array nuevamente pero ahora la cantidad de elementos en ese índice es la cantidad de repeticiones del número.
+    \item Cada aparición de un elemento hace referencia a incrementar uno ese índice en el array auxiliar.
+    \item Luego, recorremos el array auxiliar por cada índice, la cantidad de apariciones (índice 1 representaría el número 1, y el valor representa la cantidad de apariciones) y lo vamos agregando en el array original.
 \end{itemize}
 \begin{lstlisting}
     Consideremos: [3, 2, 4, 1, 4, 6, 1, 10].
