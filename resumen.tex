@@ -1109,6 +1109,7 @@ También conocido como "scanning in hashing", se refiere a la acción de recorre
 \end{itemize}
 \section*{Sorting}
 Llamamos sorting al proceso de organizar un conjunto, lista, array u otra estructura de datos en un determinado orden. \\
+\textbf{Importante}: las funciones de ordenamiento reciben arrays. Por lo tanto, si tengo un diccionario deberia convertirlo a un array de tuplas, y luego, aplico el ordenamiento correspondiente componente a componente. Lo mismo si tendría una lista, debería pasarlo a array. La complejidad es lo de menos por así decirlo porque de lista/diccionario a array es $O(n)$ y lo mismo al revés \\
 \subsection*{Algoritmo de Barrido}
 El término de barrido se lo utiliza para procesos en el que pasamos secuencialmente por cada elemento del conjunto de datos (a menudo, de principio a fin) y durante este recorrido, se pueden realizar diversas acciones como búsqueda, filtrado o cualquier otra operación que dependa de cada elemento. 
 \subsection*{Estabilidad}
@@ -1203,6 +1204,8 @@ Luego, hacemos el paso de conquistar
     \end{minipage}
 \end{center}
 Como nuestro pivote quedó bien posicionado, es decir, todos los elementos de la izquierda son menores y los de la derecha son mayores y están todos ordenados terminamos.
+\subsection*{Bucket Sort}
+Es una técnica de ordenamiento que consiste en dividir elementos en varios grupos o baldes (buckets). Los elementos forman los buckets distribuyéndose uniformemente, además de ser comparables entre sí. Una vez que tenemos los buckets, podemos utilizar cualquier algoritmo de ordenamiento para ordenar. Por último, se reúnen de forma ordenada.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
