@@ -1107,6 +1107,58 @@ También conocido como "scanning in hashing", se refiere a la acción de recorre
     \item Unicidad: Cada entrada debería producir un hash único. Es decir, no debería haber dos entradas diferentes con el mismo hash (ej: uuid)
     \item Uniformidad de distribución: Los valores hash deberían estar distribuidos uniformemente a lo largo del espacio de salida posible. Esto mejora la eficiencia del hashing y reduce la probabilidad de colisiones
 \end{itemize}
+\section*{Sorting}
+Llamamos sorting al proceso de organizar un conjunto, lista, array u otra estructura de datos en un determinado orden. \\
+\subsection*{Algoritmo de Barrido}
+El término de barrido se lo utiliza para procesos en el que pasamos secuencialmente por cada elemento del conjunto de datos (a menudo, de principio a fin) y durante este recorrido, se pueden realizar diversas acciones como búsqueda, filtrado o cualquier otra operación que dependa de cada elemento. 
+\subsection*{Estabilidad}
+La estabilidad en un algoritmo de sorting nos garantiza que si existen dos claves que poseen el mismo valor, al ordenarlos poseen el mismo orden relativo original.
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/estabilidad_sorting.png}
+        \centering
+        \label{fig:estabilidad_sorting}
+    \end{minipage}
+\end{center}
+Nótese que no tendría sentido que si dos elementos tienen el mismo valor se intercambien entre sí. Si el algoritmo deja suceder esto, entonces es un algoritmo inestable
+\subsection*{Selection Sort}
+Es un algoritmo inestable, su complejidad en el mejor y peor caso es $O(n^{2})$ pues realiza comparaciones cuadráticas sin importar si el arreglo está ordenado o no.
+\begin{itemize}
+    \item 1. Tomo elemento del índice, lo comparo con todos los de la lista hasta encontrar el más chico de la lista. 
+    \item 2. Cuando encontré el más chico, reemplazo el elemento que tenía mi índice actual con ese mínimo.
+    \item 3. Sumo uno al índice, y hago los pasos 1 y 2 tantas veces como sea necesario.
+\end{itemize}
+Invariante del Selection Sort
+\begin{itemize}
+    \item Los elementos entre la posición 0 y la posición i son los i+1 elementos más pequeños del arreglo inicial. 
+    \begin{itemize}
+        \item Esto puede parecer un poco confuso, pero digamos que estamos en i = 2, se supone que desde 0 hasta i = 2 ya está ordenado y entonces son los más pequeños. 
+    \end{itemize}
+    \item Los elementos entre la posición 0 y la posición i se encuentran ordenados.
+    \item El arreglo es una permutación del arreglo original.
+\end{itemize}
+\subsection*{Insertion Sort}
+Es un algoritmo estable, su complejidad en el mejor caso es de $O(n)$ cuando ya está ordenado y el peor caso es $O(n^{2})$ cuando está completamente desordenado.  \\
+\begin{itemize}
+   \item 1. La lista se divide conceptualmente en dos partes: una parte ordenada y una parte no ordenada.
+   \item 2. Se selecciona cada elemento de la parte no ordenada y se inserta en la posición correcta dentro de la parte ordenada, desplazando los elementos mayores un lugar hacia la derecha.
+   \item 3. Se repite el paso 1 y 2 hasta que todos los elementos estén en la parte ordenada.
+\end{itemize}
+Básicamente: A medida que nos movemos, comparamos con todos los anteriores y si encuentro uno que es mayor tengo que swappear uno por uno hasta que quede mi número intercambiado en la posición del mayor que comparamos.
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/insertion_sort.png}
+        \centering
+        \label{fig:insertion_sort}
+    \end{minipage}
+\end{center}
+\begin{itemize}
+    \item 1. Como el 23 es el primer elem no hago nada.
+    \item 2. Mi puntero está en el 1: $1>23?$ no, entonces tengo cambio el 1 por el 23.
+    \item 3. Mi puntero está en el 10: $10>1?$ sí, entonces queda igual. 10>23? no, entonces los swappeo.
+    \item 4. Mi puntero está 5: $5>1?$ sí, entonces queda igual. $5>10?$ no, entonces tengo que ir cambiando el 5 por el 23, el 5 por el 10. Como llegué al 10 que me rompía todo ya está.
+    \item 5. Mi puntero está en el 2: $2>1?$ sí, entonces queda igual. $2>5?$ no, entonces swappeo el 2 con el 23, luego con el 10, y luego con el 5. Como llegué al 5 que me rompía todo ya está.
+\end{itemize}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
