@@ -1187,6 +1187,22 @@ Es un algoritmo eficiente y recursivo que sigue el paradigma $divide \ \& \ conq
     \item 3. Aplica recursivamente el mismo proceso a las sublistas de elementos menores y mayores que el pivote.
 \end{itemize}
 Nota: Si conocemos el elemento mediano del arreglo, entonces podemos hacer el paso 2 y 3 directamente.
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/quick_sort_1.png}
+        \centering
+        \label{fig:quick_sort_1}
+    \end{minipage}
+\end{center}
+Luego, hacemos el paso de conquistar
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/quick_sort_2.png}
+        \centering
+        \label{fig:quick_sort_2}
+    \end{minipage}
+\end{center}
+Como nuestro pivote quedó bien posicionado, es decir, todos los elementos de la izquierda son menores y los de la derecha son mayores y están todos ordenados terminamos.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
