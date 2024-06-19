@@ -1244,7 +1244,7 @@ El peor caso es $O(d \ast O(n+k))$ donde d es la cantidad de dígitos y (n+k) es
 \textbf{Es importante considerar que cada vez que ordenamos cada cifra, el orden relativo importa. Es decir, tenemos que reordenar en base al ordenamiento anterior.}
 \begin{lstlisting}
     Ejemplo: [329, 460, 420, 350]
-    Paso 1: Tomo los dígitos de la unidad, y ordeno en base a ellos manteniendo su orden relativo original -> [460, 420, 350, 329]
+    Paso 1: Tomo la unidad, y ordeno en base a ellos manteniendo su orden relativo original -> [460, 420, 350, 329]
     Paso 2: Tomo la decena, y reordeno considerando el orden relativo anterior -> [420, 329, 350, 460]
     Paso 3: Tomo la centena, y reordeno considerando el orden relativo anterior -> [329, 350, 420, 460]
 \end{lstlisting}
