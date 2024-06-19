@@ -1221,7 +1221,9 @@ El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
     \end{minipage}
 \end{center}
 \subsection*{Counting Sort}
-Es un algoritmo de ordenamiento que no utiliza comparaciones. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar.
+Es un algoritmo de ordenamiento no comparativo. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar. \\
+El mejor caso es $O(n+k)$ donde n es el tamaño del arreglo y k es el valor del elemento más grande en el arreglo. \\
+El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
 \begin{itemize}
     \item Busco el máximo elemento del arreglo original, y creo un arreglo vacío con longitud del máximo elemento.
     \item Cada aparición de un elemento hace referencia a incrementar uno ese índice en el array auxiliar.
@@ -1235,6 +1237,10 @@ Es un algoritmo de ordenamiento que no utiliza comparaciones. Solo acepta arregl
     Paso 3. Cada índice, representa la cantidad de apariciones del número. Los concateno.
     [1, 1, 2, 3, 4, 4, 6, 10]
 \end{lstlisting}
+\subsection*{Radix Sort}
+Es un algoritmo de ordenamiento no comparativo que reutiliza counting sort procesando las cifras individualmente. Se implementa reutilizando counting sort. Es eficaz cuando se ordenan elementos que tienen claves que se pueden dividir en cifras individuales, como números enteros o cadenas de caracteres numéricos. \\
+Los números deben ser igual en longitud, si no tienen la misma longitud se extienden con 0's desde la cifra menos significativa. \\
+El peor caso es $O(d \ast O(n+k))$ donde d es la cantidad de dígitos y (n+k) es haciendo referencia al counting sort donde n es la longitud del arreglo y k es el valor más grande.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
