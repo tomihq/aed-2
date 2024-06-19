@@ -516,7 +516,7 @@ Definimos función de abstracción (\(\alpha\)) como la representación física 
     \item Toma como parámetro una instancia del módulo y una instancia del TAD.
     \item Hacemos referencia a observadores y a otros predicados, no procs
     \item Todos los observadores del TAD deben tener un vinculo con una variable de estado pero no necesariamente al revés
-    \item Para poder escribir, usamos lenguaje de especificación como lo conocemos. Podemos usar por ejemplo |a.data| o a.data.length da igual, pero hay que ser consistentes
+    \item Para poder escribir, usamos lenguaje de especificación como lo conocemos. Podemos usar por ejemplo $|a.data|$ o a.data.length da igual, pero hay que ser consistentes
     \item Rara vez se colocan rangos acá, casi nunca, excepto cuando hay alguna variable de estado y observadora que hablan de capacidades.
 \end{itemize}
 Es importante considerar que todo lo que está en el invariante de representación ya está implícito en la función de abstracción. \\
@@ -529,7 +529,7 @@ Para escribir las implementaciones de los procs usamos una especie de SmallLang.
     \item Declaración de variables: 
     \begin{itemize}
         \item var x: int
-        \item var c: ConjuntoArr<int>
+        \item var c: ConjuntoArr$<int>$
     \end{itemize}
     \item Asignación: x := valor
     \item Condicional: if condicion then codigo else codigo endif
