@@ -1205,14 +1205,14 @@ Luego, hacemos el paso de conquistar
 \end{center}
 Como nuestro pivote quedó bien posicionado, es decir, todos los elementos de la izquierda son menores y los de la derecha son mayores y están todos ordenados terminamos.
 \subsection*{Bucket Sort}
-Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situaciones muy particulares. \textbf{Los elementos se distribuyen en buckets (cajas) donde cada caja se ordena individualmente, generalmente utilizando otro algoritmo de ordenamiento o aplicando recursivamente bucket sort si es necesario.}
+Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situaciones muy particulares. \textbf{Los elementos se distribuyen en buckets (cajas) donde cada caja se ordena individualmente, generalmente utilizando otro algoritmo de ordenamiento o aplicando recursivamente bucket sort si es necesario.} \\
+El mejor caso es $O(n+k)$ cuando los elementos están uniformemente distribuidos y con una cantidad parecida en cada bucket. \\
+El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
 \begin{itemize}
     \item Se conoce de antemano la distribución de los datos y los elementos están distribuidos uniformemente en el rango (esto permite que los buckets tengan un tamaño similar).
     \item El número de elementos es moderado.
     \item Los elementos pueden ser comparados entre sí.
 \end{itemize}
-El mejor caso es $O(n+k)$ cuando los elementos están uniformemente distribuidos y con una cantidad parecida en cada bucket. \\
-El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket. \\
 \begin{center}
     \begin{minipage}[b]{0.7\textwidth}
         \includegraphics[width=\linewidth]{assets/bucket_sort.png}
@@ -1220,6 +1220,21 @@ El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket. 
         \label{fig:bucket_sort}
     \end{minipage}
 \end{center}
+\subsection*{Counting Sort}
+Es un algoritmo de ordenamiento que no utiliza comparaciones. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar.
+\begin{itemize}
+    \item Busco el máximo elemento del arreglo original, y creo un arreglo vacío con longitud del máximo elemento.
+    \item Cada aparición de un elemento hace referencia a incrementar uno el índice que representa ese valor.
+    \item Luego, recorremos el array nuevamente pero ahora la cantidad de elementos en ese índice es la cantidad de repeticiones del número.
+\end{itemize}
+\begin{lstlisting}
+    Consideremos: [3, 2, 4, 1, 4, 6, 1, 10].
+    Paso 1. Como el máximo elemento del array es 10, creo un array auxiliar de 10 posiciones.
+    Paso 2. Voy barriendo el arreglo original, y por cada elemento coloco en mi array el índice y le sumo uno.
+    [0, 2, 1, 1, 2, 0, 1, 0, 0, 0, 1]
+    Paso 3. Cada índice, representa la cantidad de apariciones del número. Los concateno.
+    [1, 1, 2, 3, 4, 4, 6, 10]
+\end{lstlisting}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
