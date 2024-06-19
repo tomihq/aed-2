@@ -1138,11 +1138,17 @@ Invariante del Selection Sort
     \item El arreglo es una permutación del arreglo original.
 \end{itemize}
 \subsection*{Insertion Sort}
-Es un algoritmo estable, su complejidad en el mejor caso es de $O(n)$ cuando ya está ordenado y el peor caso es $O(n^{2})$ cuando está completamente desordenado.  \\
+Es un algoritmo estable, su complejidad en el mejor caso es de $O(n)$ cuando ya está ordenado y el peor caso es $O(n^{2})$ cuando está completamente desordenado. 
 \begin{itemize}
    \item 1. La lista se divide conceptualmente en dos partes: una parte ordenada y una parte no ordenada.
    \item 2. Se selecciona cada elemento de la parte no ordenada y se inserta en la posición correcta dentro de la parte ordenada, desplazando los elementos mayores un lugar hacia la derecha.
    \item 3. Se repite el paso 1 y 2 hasta que todos los elementos estén en la parte ordenada.
+\end{itemize}
+Invariante del Selection Sort
+\begin{itemize}
+    \item Los elementos entre la posición 0 y la posición i son los elementos que ocupaban las posiciones 0 a i del arreglo original.
+    \item Los elementos entre la posición 0 y la posicion i se encuentran ordenados.
+    \item El arreglo es una permutación del arreglo original.
 \end{itemize}
 Básicamente: A medida que nos movemos, comparamos con todos los anteriores y si encuentro uno que es mayor tengo que swappear uno por uno hasta que quede mi número intercambiado en la posición del mayor que comparamos.
 \begin{center}
@@ -1159,6 +1165,28 @@ Básicamente: A medida que nos movemos, comparamos con todos los anteriores y si
     \item 4. Mi puntero está 5: $5>1?$ sí, entonces queda igual. $5>10?$ no, entonces tengo que ir cambiando el 5 por el 23, el 5 por el 10. Como llegué al 10 que me rompía todo ya está.
     \item 5. Mi puntero está en el 2: $2>1?$ sí, entonces queda igual. $2>5?$ no, entonces swappeo el 2 con el 23, luego con el 10, y luego con el 5. Como llegué al 5 que me rompía todo ya está.
 \end{itemize}
+\subsection*{Merge Sort}
+Es un algoritmo eficiente y recursivo que sigue el paradigma $divide \ \& \ conquer$ para ordenar una lista de elementos. Es un algoritmo estable, su complejidad en el peor y mejor caso es $O(n log n)$
+\begin{itemize}
+    \item Dividir recursivamente la lista no ordenada en sublistas más pequeñas hasta que cada sublista contenga un solo elemento (caso base).
+    \item Fusiona recursivamente las sublistas ordenadas para crear sublistas más grandes y ordenadas hasta que finalmente se obtenga la lista completa ordenada.
+\end{itemize}
+Nota: Para mergear las 3 sub-listas usamos 3 punteros (i, j, k)
+\begin{center}
+    \begin{minipage}[b]{0.7\textwidth}
+        \includegraphics[width=\linewidth]{assets/merge_sort.png}
+        \centering
+        \label{fig:merge_sort}
+    \end{minipage}
+\end{center}
+\subsection*{Quick Sort}
+Es un algoritmo eficiente y recursivo que sigue el paradigma $divide \ \& \ conquer$. Para poder realizarlo necesitamos tener un elemento como pivote. 
+\begin{itemize}
+    \item 1. Selecciona un elemento de la lista como pivote. Puede ser el primero, el último o cualquiera.
+    \item 2. Reorganiza los elementos de la lista de manera que todos los de la izquierda del pivote sean menores, y los de la derecha mayores.
+    \item 3. Aplica recursivamente el mismo proceso a las sublistas de elementos menores y mayores que el pivote.
+\end{itemize}
+Nota: Si conocemos el elemento mediano del arreglo, entonces podemos separar el arreglo en dos mitados (los elementos menores por un lado y los mayores por el otro) y luego ordenar las mitades.
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
