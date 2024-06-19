@@ -1240,7 +1240,14 @@ El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
 \subsection*{Radix Sort}
 Es un algoritmo de ordenamiento no comparativo que reutiliza counting sort procesando las cifras individualmente. Se implementa reutilizando counting sort. Es eficaz cuando se ordenan elementos que tienen claves que se pueden dividir en cifras individuales, como números enteros o cadenas de caracteres numéricos. \\
 Los números deben ser igual en longitud, si no tienen la misma longitud se extienden con 0's desde la cifra menos significativa. \\
-El peor caso es $O(d \ast O(n+k))$ donde d es la cantidad de dígitos y (n+k) es haciendo referencia al counting sort donde n es la longitud del arreglo y k es el valor más grande.
+El peor caso es $O(d \ast O(n+k))$ donde d es la cantidad de dígitos y (n+k) es haciendo referencia al counting sort donde n es la longitud del arreglo y k es el valor más grande. \\
+\textbf{Es importante considerar que cada vez que ordenamos cada cifra, el orden relativo importa. Es decir, tenemos que reordenar en base al ordenamiento anterior.}
+\begin{lstlisting}
+    Ejemplo: [329, 460, 420, 350]
+    Paso 1: Tomo los dígitos de la unidad, y ordeno en base a ellos manteniendo su orden relativo original -> [460, 420, 350, 329]
+    Paso 2: Tomo la decena, y reordeno considerando el orden relativo anterior -> [420, 329, 350, 460]
+    Paso 3: Tomo la centena, y reordeno considerando el orden relativo anterior -> [329, 350, 420, 460]
+\end{lstlisting}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
