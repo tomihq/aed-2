@@ -1123,7 +1123,8 @@ La estabilidad en un algoritmo de sorting nos garantiza que si existen dos clave
 \end{center}
 Nótese que no tendría sentido que si dos elementos tienen el mismo valor se intercambien entre sí. Si el algoritmo deja suceder esto, entonces es un algoritmo inestable
 \subsection*{Selection Sort}
-Es un algoritmo inestable, su complejidad en el mejor y peor caso es $O(n^{2})$ pues realiza comparaciones cuadráticas sin importar si el arreglo está ordenado o no.
+Es un algoritmo inestable, su complejidad en el mejor y peor caso es $O(n^{2})$ pues realiza comparaciones cuadráticas sin importar si el arreglo está ordenado o no. \\
+Para recordar rápido: comparo cada elem con todos los siguientes y voy moviendo el elem actual gracias al índice del ciclo
 \begin{itemize}
     \item 1. Tomo elemento del índice, lo comparo con todos los de la lista hasta encontrar el más chico de la lista. 
     \item 2. Cuando encontré el más chico, reemplazo el elemento que tenía mi índice actual con ese mínimo.
@@ -1139,7 +1140,8 @@ Invariante del Selection Sort
     \item El arreglo es una permutación del arreglo original.
 \end{itemize}
 \subsection*{Insertion Sort}
-Es un algoritmo estable, su complejidad en el mejor caso es de $O(n)$ cuando ya está ordenado y el peor caso es $O(n^{2})$ cuando está completamente desordenado. 
+Es un algoritmo estable, su complejidad en el mejor caso es de $O(n)$ cuando ya está ordenado y el peor caso es $O(n^{2})$ cuando está completamente desordenado. \\
+Para recordar rápido: comparo cada elem con todos los anteriores, cuando encuentro uno que es menor al que estoy parado tengo que ir swappeando todos.
 \begin{itemize}
    \item 1. La lista se divide conceptualmente en dos partes: una parte ordenada y una parte no ordenada.
    \item 2. Se selecciona cada elemento de la parte no ordenada y se inserta en la posición correcta dentro de la parte ordenada, desplazando los elementos mayores un lugar hacia la derecha.
