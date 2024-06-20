@@ -1263,6 +1263,7 @@ El mejor caso es de $O(n)$ cuando d y k no dependen de n y son longitud fija. \\
     Paso 2: Tomo la decena, y reordeno considerando el orden relativo anterior -> [420, 329, 350, 460]
     Paso 3: Tomo la centena, y reordeno considerando el orden relativo anterior -> [329, 350, 420, 460]
 \end{lstlisting}
+Es útil cuando necesitamos ordenar listas con muchos criterios de orden que consiste en ordenar primero por el criterio menos relevante con cualquier algoritmo y luego el más relevante con un algoritmo estable para no perder el orden anterior
 \textbf{Consideraciones importantes}
 \begin{itemize}
     \item Todos los algoritmos de sorting requieren arrays (recordar que para pasar de lista a array es $O(n)$) y si necesito pasar de diccionario, lo ideal es para de diccionario a array de tuplas donde la primera componente es la key y el segundo el valor.
