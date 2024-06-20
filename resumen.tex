@@ -1113,7 +1113,7 @@ Llamamos sorting al proceso de organizar un conjunto, lista, array u otra estruc
 \subsection*{Algoritmo de Barrido}
 El término de barrido se lo utiliza para procesos en el que pasamos secuencialmente por cada elemento del conjunto de datos (a menudo, de principio a fin) y durante este recorrido, se pueden realizar diversas acciones como búsqueda, filtrado o cualquier otra operación que dependa de cada elemento. 
 \subsection*{Estabilidad}
-La estabilidad en un algoritmo de sorting nos garantiza que si existen dos claves que poseen el mismo valor, al ordenarlos poseen el mismo orden relativo original.
+La estabilidad en un algoritmo de sorting nos garantiza que si existen dos claves que poseen el mismo valor, al ordenarlos poseen el mismo orden relativo original. 
 \begin{center}
     \begin{minipage}[b]{0.5\textwidth}
         \includegraphics[width=\linewidth]{assets/estabilidad_sorting.png}
@@ -1121,7 +1121,17 @@ La estabilidad en un algoritmo de sorting nos garantiza que si existen dos clave
         \label{fig:estabilidad_sorting}
     \end{minipage}
 \end{center}
-Nótese que no tendría sentido que si dos elementos tienen el mismo valor se intercambien entre sí. Si el algoritmo deja suceder esto, entonces es un algoritmo inestable
+Nótese que no tendría sentido que si dos elementos tienen el mismo valor se intercambien entre sí. Si el algoritmo deja suceder esto, entonces es un algoritmo inestable. \\
+Esto es de vital importancia cuando tenemos que ordenar en base a un ordenamiento anterior que debemos mantener.
+\begin{center}
+    \begin{minipage}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{assets/estabilidad_sorting_2.png}
+        \centering
+        \label{fig:estabilidad_sorting_2}
+    \end{minipage}
+\end{center}
+2da columna (estable): Valentina pasó a estar abajo de Federico ordenando correctamente por turno. Esto es porque mantuvo su orden relativo original. \\ 
+3era columna (inestable): Valentina pasa a estar arriba de toda la lista, ignorando el orden relativo original, cosa que muestra inestabilidad.
 \subsection*{Selection Sort}
 Es un algoritmo inestable, su complejidad en el mejor y peor caso es $O(n^{2})$ pues realiza comparaciones cuadráticas sin importar si el arreglo está ordenado o no. \\
 Para recordar rápido: comparo cada elem con todos los siguientes y voy moviendo el elem actual gracias al índice del ciclo
