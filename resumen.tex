@@ -1109,6 +1109,7 @@ También conocido como "scanning in hashing", se refiere a la acción de recorre
 \end{itemize}
 \section*{Sorting}
 Llamamos sorting al proceso de organizar un conjunto, lista, array u otra estructura de datos en un determinado orden. \\
+Existen algoritmos de ordenamiento que lo hacen comparando elementos y otros no. \\
 \textbf{Importante}: las funciones de ordenamiento reciben arrays. Por lo tanto, si tengo un diccionario deberia convertirlo a un array de tuplas, y luego, aplico el ordenamiento correspondiente componente a componente. Lo mismo si tendría una lista, debería pasarlo a array. La complejidad es lo de menos por así decirlo porque de lista/diccionario a array es $O(n)$ y lo mismo al revés \\
 \subsection*{Algoritmo de Barrido}
 El término de barrido se lo utiliza para procesos en el que pasamos secuencialmente por cada elemento del conjunto de datos (a menudo, de principio a fin) y durante este recorrido, se pueden realizar diversas acciones como búsqueda, filtrado o cualquier otra operación que dependa de cada elemento. 
@@ -1217,10 +1218,10 @@ Luego, hacemos el paso de conquistar
 \end{center}
 Como nuestro pivote quedó bien posicionado, es decir, todos los elementos de la izquierda son menores y los de la derecha son mayores y están todos ordenados terminamos.
 \subsection*{Heap Sort}
-\textbf{Es una algoritmo eficiente no estable. Todos sus casos son de complejidad $O(n \ log \ n)$} \\
+\textbf{Es una algoritmo eficiente no estable. Todos sus casos son de complejidad $O(n \ + \ n \ log \ n) \equiv (n \ log \ n) $} \\
 La idea es crear un max-heap o min-heap según lo que necesitemos, agregamos los elementos en ese heap, y luego los volvemos a quitar. El costo de agregar cada elemento del array en el heap es de n, mientras que el log n aparece de balancear cada vez que quitamos un elemento o agregamos.
 \subsection*{Bucket Sort}
-Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situaciones muy particulares. \\ \textbf{La estabilidad depende del algoritmo que se use para ordenar los buckets.} \\ \textbf{Los elementos se distribuyen en buckets (cajas) donde cada caja se ordena individualmente, generalmente utilizando otro algoritmo de ordenamiento o aplicando recursivamente bucket sort si es necesario.} \\
+Es un algoritmo eficiente que está diseñado para arrays de cualquier tipo y supone que los elementos pueden separarse según algún criterio en M categorias ordenadas. \\ \textbf{La estabilidad depende del algoritmo que se use para ordenar los buckets.} \\ \textbf{Los elementos se distribuyen en buckets (cajas) donde cada caja se ordena individualmente, generalmente utilizando otro algoritmo de ordenamiento o aplicando recursivamente bucket sort si es necesario.} \\
 \textbf{El mejor caso es $O(n+k)$ cuando los elementos están uniformemente distribuidos y con una cantidad parecida en cada bucket.} \\
 \textbf{El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.}
 \begin{itemize}
@@ -1236,7 +1237,8 @@ Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situ
     \end{minipage}
 \end{center}
 \subsection*{Counting Sort}
-\textbf{Es un algoritmo de ordenamiento estable no comparativo}. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar. \\
+\textbf{Es un algoritmo de ordenamiento estable no comparativo}. Solo acepta arrays de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar. \\
+Asume que los elementos del array son menores que un cierto valor k \\
 \textbf{Todos los casos son $O(n+k)$ donde n es el tamaño del arreglo y k es el valor del elemento más grande en el arreglo.}
 \begin{itemize}
     \item Busco el máximo elemento del arreglo original, y creo un arreglo vacío con longitud del máximo elemento.
@@ -1254,6 +1256,7 @@ Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situ
 \subsection*{Radix Sort}
 \textbf{Es un algoritmo de ordenamiento estable no comparativo} que reutiliza counting sort procesando las cifras individualmente. \\ Es eficaz cuando se ordenan elementos que tienen claves que se pueden dividir en cifras individuales, como números enteros o cadenas de caracteres numéricos. \\
 Los números deben ser igual en longitud, si no tienen la misma longitud se extienden con 0's desde la cifra menos significativa. \\
+Si al querer ordenar los valores mirando los dígitos hay empate, se mantiene el orden de esos elementos. \\
 \textbf{El peor caso es $O(d \ast O(n+k))$ donde d es la cantidad de dígitos y (n+k) es haciendo referencia al counting sort donde n es la longitud del arreglo y k es el valor más grande. \\
 El mejor caso es de $O(n)$ cuando d y k no dependen de n y son longitud fija. \\}
 \textbf{Es importante considerar que cada vez que ordenamos cada cifra, el orden relativo importa. Es decir, tenemos que reordenar en base al ordenamiento anterior.}
