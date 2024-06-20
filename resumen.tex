@@ -1237,8 +1237,7 @@ Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situ
 \end{center}
 \subsection*{Counting Sort}
 \textbf{Es un algoritmo de ordenamiento estable no comparativo}. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar. \\
-\textbf{El mejor caso es $O(n+k)$ donde n es el tamaño del arreglo y k es el valor del elemento más grande en el arreglo. \\
-El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.}
+\textbf{Todos los casos son $O(n+k)$ donde n es el tamaño del arreglo y k es el valor del elemento más grande en el arreglo.}
 \begin{itemize}
     \item Busco el máximo elemento del arreglo original, y creo un arreglo vacío con longitud del máximo elemento.
     \item Cada aparición de un elemento hace referencia a incrementar uno ese índice en el array auxiliar.
@@ -1289,7 +1288,7 @@ El mejor caso es de $O(n)$ cuando d y k no dependen de n y son longitud fija. \\
     \hline
     Bucket Sort & $O(n+k)$ & $O(n+k)$ & $O(n^{2})$ & Depende del algoritmo de sorting \\
     \hline 
-    Counting Sort & $O(n+k)$ & $O(n+k)$ & $O(n^2)$ & Si \\
+    Counting Sort & $O(n+k)$ & $O(n+k)$ & $O(n+k)$ & Si \\
     \hline
     Radix Sort & $O(n)$ & $O(d \ast O(n+k))$ & $O(d \ast O(n+k))$ & Si \\
     \hline
