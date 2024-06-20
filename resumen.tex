@@ -1133,7 +1133,7 @@ Esto es de vital importancia cuando tenemos que ordenar en base a un ordenamient
 2da columna (estable): Valentina pasó a estar abajo de Federico ordenando correctamente por turno. Esto es porque mantuvo su orden relativo original. \\ 
 3era columna (inestable): Valentina pasa a estar arriba de toda la lista, ignorando el orden relativo original, cosa que muestra inestabilidad.
 \subsection*{Selection Sort}
-Es un algoritmo inestable, su complejidad en el mejor y peor caso es $O(n^{2})$ pues realiza comparaciones cuadráticas sin importar si el arreglo está ordenado o no. \\
+\textbf{Es un algoritmo inestable, su complejidad en el mejor y peor caso es $O(n^{2})$ pues realiza comparaciones cuadráticas sin importar si el arreglo está ordenado o no.} \\
 Para recordar rápido: comparo cada elem con todos los siguientes y voy moviendo el elem actual gracias al índice del ciclo
 \begin{itemize}
     \item 1. Tomo elemento del índice, lo comparo con todos los de la lista hasta encontrar el más chico de la lista. 
@@ -1150,7 +1150,7 @@ Invariante del Selection Sort
     \item El arreglo es una permutación del arreglo original.
 \end{itemize}
 \subsection*{Insertion Sort}
-Es un algoritmo estable, su complejidad en el mejor caso es de $O(n)$ cuando ya está ordenado y el peor caso es $O(n^{2})$ cuando está completamente desordenado. \\
+\textbf{Es un algoritmo estable, su complejidad en el mejor caso es de $O(n)$ cuando ya está ordenado y el peor caso es $O(n^{2})$ cuando está completamente desordenado.} \\
 Para recordar rápido: comparo cada elem con todos los anteriores, cuando encuentro uno que es menor al que estoy parado tengo que ir swappeando todos.
 \begin{itemize}
    \item 1. La lista se divide conceptualmente en dos partes: una parte ordenada y una parte no ordenada.
@@ -1179,7 +1179,7 @@ Básicamente: A medida que nos movemos, comparamos con todos los anteriores y si
     \item 5. Mi puntero está en el 2: $2>1?$ sí, entonces queda igual. $2>5?$ no, entonces swappeo el 2 con el 23, luego con el 10, y luego con el 5. Como llegué al 5 que me rompía todo ya está.
 \end{itemize}
 \subsection*{Merge Sort}
-Es un algoritmo eficiente y recursivo que sigue el paradigma $divide \ \& \ conquer$ para ordenar una lista de elementos. Es un algoritmo estable, su complejidad en el peor y mejor caso es $O(n \ log \ n)$
+Es un algoritmo eficiente y recursivo que sigue el paradigma $divide \ \& \ conquer$ para ordenar una lista de elementos. \textbf{Es un algoritmo estable, su complejidad en el peor y mejor caso es $O(n \ log \ n)$}
 \begin{itemize}
     \item Dividir recursivamente la lista no ordenada en sublistas más pequeñas hasta que cada sublista contenga un solo elemento (caso base).
     \item Fusiona recursivamente las sublistas ordenadas para crear sublistas más grandes y ordenadas hasta que finalmente se obtenga la lista completa ordenada.
@@ -1193,7 +1193,7 @@ Nota: Para mergear las 3 sub-listas usamos 3 punteros (i, j, k)
     \end{minipage}
 \end{center}
 \subsection*{Quick Sort}
-Es un algoritmo eficiente y recursivo que sigue el paradigma $divide \ \& \ conquer$. Para poder realizarlo necesitamos tener un elemento como pivote. Es un algoritmo no estable, su peor caso es $O(n^{2})$ (eligiendo el peor pivote) y el mejor es $O(n \ log \ n)$
+Es un algoritmo eficiente y recursivo que sigue el paradigma $divide \ \& \ conquer$. Para poder realizarlo necesitamos tener un elemento como pivote. \textbf{Es un algoritmo no estable, su peor caso es $O(n^{2})$ (eligiendo el peor pivote) y el mejor es $O(n \ log \ n)$}
 \begin{itemize}
     \item 1. Selecciona un elemento de la lista como pivote. Puede ser el primero, el último o cualquiera.
     \item 2. Reordena los elementos de la lista de manera que todos los de la izquierda del pivote sean menores, y los de la derecha mayores.
@@ -1216,10 +1216,13 @@ Luego, hacemos el paso de conquistar
     \end{minipage}
 \end{center}
 Como nuestro pivote quedó bien posicionado, es decir, todos los elementos de la izquierda son menores y los de la derecha son mayores y están todos ordenados terminamos.
+\subsection*{Heap Sort}
+\textbf{Es una algoritmo eficiente no estable. Todos sus casos son de complejidad $O(n \ log \ n)$} \\
+La idea es crear un max-heap o min-heap según lo que necesitemos, agregamos los elementos en ese heap, y luego los volvemos a quitar. El costo de agregar cada elemento del array en el heap es de n, mientras que el log n aparece de balancear cada vez que quitamos un elemento o agregamos.
 \subsection*{Bucket Sort}
-Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situaciones muy particulares. \textbf{Los elementos se distribuyen en buckets (cajas) donde cada caja se ordena individualmente, generalmente utilizando otro algoritmo de ordenamiento o aplicando recursivamente bucket sort si es necesario.} \\
-El mejor caso es $O(n+k)$ cuando los elementos están uniformemente distribuidos y con una cantidad parecida en cada bucket. \\
-El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
+Es un algoritmo eficiente que está diseñado para ciertos tipos de datos y situaciones muy particulares. \\ \textbf{La estabilidad depende del algoritmo que se use para ordenar los buckets.} \\ \textbf{Los elementos se distribuyen en buckets (cajas) donde cada caja se ordena individualmente, generalmente utilizando otro algoritmo de ordenamiento o aplicando recursivamente bucket sort si es necesario.} \\
+\textbf{El mejor caso es $O(n+k)$ cuando los elementos están uniformemente distribuidos y con una cantidad parecida en cada bucket.} \\
+\textbf{El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.}
 \begin{itemize}
     \item Se conoce de antemano la distribución de los datos y los elementos están distribuidos uniformemente en el rango (esto permite que los buckets tengan un tamaño similar).
     \item El número de elementos es moderado.
@@ -1233,9 +1236,9 @@ El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
     \end{minipage}
 \end{center}
 \subsection*{Counting Sort}
-Es un algoritmo de ordenamiento no comparativo. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar. \\
-El mejor caso es $O(n+k)$ donde n es el tamaño del arreglo y k es el valor del elemento más grande en el arreglo. \\
-El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
+\textbf{Es un algoritmo de ordenamiento estable no comparativo}. Solo acepta arreglos de números naturales y cuando el rango de los elementos es pequeño en comparación con el número de elementos a ordenar. \\
+\textbf{El mejor caso es $O(n+k)$ donde n es el tamaño del arreglo y k es el valor del elemento más grande en el arreglo. \\
+El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.}
 \begin{itemize}
     \item Busco el máximo elemento del arreglo original, y creo un arreglo vacío con longitud del máximo elemento.
     \item Cada aparición de un elemento hace referencia a incrementar uno ese índice en el array auxiliar.
@@ -1250,9 +1253,10 @@ El peor caso es $O(n^{2})$ cuando todos los elementos están en un solo bucket.
     [1, 1, 2, 3, 4, 4, 6, 10]
 \end{lstlisting}
 \subsection*{Radix Sort}
-Es un algoritmo de ordenamiento no comparativo que reutiliza counting sort procesando las cifras individualmente. Se implementa reutilizando counting sort. Es eficaz cuando se ordenan elementos que tienen claves que se pueden dividir en cifras individuales, como números enteros o cadenas de caracteres numéricos. \\
+\textbf{Es un algoritmo de ordenamiento estable no comparativo} que reutiliza counting sort procesando las cifras individualmente. \\ Es eficaz cuando se ordenan elementos que tienen claves que se pueden dividir en cifras individuales, como números enteros o cadenas de caracteres numéricos. \\
 Los números deben ser igual en longitud, si no tienen la misma longitud se extienden con 0's desde la cifra menos significativa. \\
 El peor caso es $O(d \ast O(n+k))$ donde d es la cantidad de dígitos y (n+k) es haciendo referencia al counting sort donde n es la longitud del arreglo y k es el valor más grande. \\
+El mejor caso es de $O(n)$ cuando d y k no dependen de n y son longitud fija. \\
 \textbf{Es importante considerar que cada vez que ordenamos cada cifra, el orden relativo importa. Es decir, tenemos que reordenar en base al ordenamiento anterior.}
 \begin{lstlisting}
     Ejemplo: [329, 460, 420, 350]
@@ -1265,6 +1269,34 @@ El peor caso es $O(d \ast O(n+k))$ donde d es la cantidad de dígitos y (n+k) es
     \item Todos los algoritmos de sorting requieren arrays (recordar que para pasar de lista a array es $O(n)$) y si necesito pasar de diccionario, lo ideal es para de diccionario a array de tuplas donde la primera componente es la key y el segundo el valor.
     \item En la materia, los algoritmos de ordenamiento ya están implementados porque el objetivo no es aprender a codearlos sino saber como usarlos y cuando. El tipo de ordenamiento descendente/ascendente se lo considera con un comentario antes de llamar a la función que ordena. 
 \end{itemize}
+\subsection*{Resumen de complejidades de algoritmos de sorting}\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Nombre} & \textbf{Mejor caso} & \textbf{Caso promedio} & \textbf{Caso peor} & \textbf{Es estable} \\
+    \hline
+    Selection Sort & $O(n^{2})$ & $O(n^{2})$ & $O(n^{2})$ & No \\
+    \hline
+    Insertion Sort & $O(n)$ & $O(n^{2})$ & $O(n^{2})$ & Si \\
+    \hline
+    Merge Sort & $O(n \ log(n))$ & $O(n \ log(n))$ & $O(n \ log(n))$ & Si \\
+    \hline
+    Quick Sort & $O(n \ log(n))$ & $O(n \ log(n))$ & $O(n^{2})$ & No \\
+    \hline
+    Heap Sort & $O(n \ log(n))$ & $O(n \ log(n))$ & $O(n \ log(n))$ & No \\
+    \hline
+    Bubble Sort & $O(n)$ & $O(n^{2})$ & $O(n^{2})$ & Si \\
+    \hline
+    Bucket Sort & $O(n+k)$ & $O(n+k)$ & $O(n^{2})$ & Depende del algoritmo de sorting \\
+    \hline 
+    Counting Sort & $O(n+k)$ & $O(n+k)$ & $O(n^2)$ & Si \\
+    \hline
+    Radix Sort & $O(n)$ & $O(d \ast O(n+k))$ & $O(d \ast O(n+k))$ & Si \\
+    \hline
+    \end{tabular}
+    \caption{Tabla de complejidades de algoritmos de sorting}
+    \label{tab:ejemplo}
+    \end{table}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
