@@ -1268,13 +1268,20 @@ El mejor caso es de $O(n)$ cuando d y k no dependen de n y son longitud fija. \\
     \item Todos los algoritmos de sorting requieren arrays (recordar que para pasar de lista a array es $O(n)$) y si necesito pasar de diccionario, lo ideal es para de diccionario a array de tuplas donde la primera componente es la key y el segundo el valor.
     \item En la materia, los algoritmos de ordenamiento ya están implementados porque el objetivo no es aprender a codearlos sino saber como usarlos y cuando. El tipo de ordenamiento descendente/ascendente se lo considera con un comentario antes de llamar a la función que ordena. 
 \end{itemize}
-\subsection*{Resumen de complejidades de algoritmos de sorting}\begin{table}[h!]
+\subsection*{Resumen de complejidades de algoritmos de sorting}
+\begin{table}[h!]
     \centering
     \begin{tabular}{|c|c|c|c|c|}
     \hline
     \textbf{Nombre} & \textbf{Mejor caso} & \textbf{Caso promedio} & \textbf{Caso peor} & \textbf{Es estable} \\
     \hline
-    Selection Sort & $O(n^{2})$ & $O(n^{2})$ & $O(n^{2})$ & No \\
+    Bubble Sort & $O(n)$ & $O(n^{2})$ & $O(n^{2})$ & Si \\
+    \hline 
+    Bucket Sort & $O(n+k)$ & $O(n+k)$ & $O(n^{2})$ & Depende del algoritmo de sorting \\
+    \hline
+    Counting Sort & $O(n+k)$ & $O(n+k)$ & $O(n+k)$ & Si \\
+    \hline
+    Heap Sort & $O(n \ log(n))$ & $O(n \ log(n))$ & $O(n \ log(n))$ & No \\
     \hline
     Insertion Sort & $O(n)$ & $O(n^{2})$ & $O(n^{2})$ & Si \\
     \hline
@@ -1282,15 +1289,9 @@ El mejor caso es de $O(n)$ cuando d y k no dependen de n y son longitud fija. \\
     \hline
     Quick Sort & $O(n \ log(n))$ & $O(n \ log(n))$ & $O(n^{2})$ & No \\
     \hline
-    Heap Sort & $O(n \ log(n))$ & $O(n \ log(n))$ & $O(n \ log(n))$ & No \\
-    \hline
-    Bubble Sort & $O(n)$ & $O(n^{2})$ & $O(n^{2})$ & Si \\
-    \hline
-    Bucket Sort & $O(n+k)$ & $O(n+k)$ & $O(n^{2})$ & Depende del algoritmo de sorting \\
-    \hline 
-    Counting Sort & $O(n+k)$ & $O(n+k)$ & $O(n+k)$ & Si \\
-    \hline
     Radix Sort & $O(n)$ & $O(d \ast O(n+k))$ & $O(d \ast O(n+k))$ & Si \\
+    \hline
+    Selection Sort & $O(n^{2})$ & $O(n^{2})$ & $O(n^{2})$ & No \\
     \hline
     \end{tabular}
     \caption{Tabla de complejidades de algoritmos de sorting}
