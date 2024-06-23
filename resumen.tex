@@ -1303,6 +1303,22 @@ Es útil cuando necesitamos ordenar listas con muchos criterios de orden que con
     \caption{Tabla de complejidades de algoritmos de sorting}
     \label{tab:ejemplo}
     \end{table}
+\textbf{Consideraciones importantes útiles}:
+\begin{itemize}
+    \item Si necesita concatenar arrays, lo mejor sería pasar cada array a una lista enlazada, concatenar las listas enlazadas en O(1) y luego pasarlo a array en O(n) (ya sabiendo la longitud gracias a la lista enlazada)
+    \item Es muy común utilizar Listas Enlazadas y sus iteradores en temas de optimización de complejidades por su gran velocidad a la hora de insertar atrás.
+    \item Es útil cuando sabemos que tenemos arrays de números continuos ordenados (1113344) y un array todo desordenado (9, 4, 1) agregar en una lista enlazada los primeros elementos del array que tiene elementos continuos almacenarlos de forma (valor, cantidadApariciones), lo mismo con el otro array pero cada elem con una posibilidad de aparición (xq no sabemos con certeza). Luego, esta lista enlazada se pasa a un array de tuplas O(n'+m), se los ordena con el criterio que se necesite, luego se lo pasa a un array plano en O(n'+m). Finalmente, como n' eran los elementos de n colapsados, al ser un array plano vuelve a ser n y la complejidad queda O(n'+m * log(n'+m)).
+    \item Si nos dan datos en forma de rango y se nos pide ordenar en O(n), ej: se sabe que tenemos un array de n posiciones donde $\sqrt{n}$ exceden el rango [20, 40]. 
+    \begin{itemize}
+        \item En este caso tenemos 3 datos, $\sqrt{n}$ son elementos que son menores a 19 o mayores a 40, por otro lado, los que están entre 20 y 40 son acotados (aka: counting sort con k = 40). 
+        \item En este caso lo que nos conviene hacer es crear 3 listas enlazadas (para agregar en O(1)) donde cada lista tiene sus elementos (menores a 20, mayores a 40 y en rango). 
+        \item Para agregar los elementos en las listas enlazadas basta con hacer un while del array original y verificar que valor tiene, segun qué caso se cumpla lo agregamos a una lista enlazada u otra.
+        \item Pasamos cada lista enlazada a array. Menores a 20 y Mayores a 40 como tienen complejidad con la raíz y nos pide O(n) aplicamos un algoritmo cuadrático $ O(\sqrt(n))^{2} \equiv O(n) $ entonces seguro seguro que cuadrático es selection sort. Para los que están en rango podemos usar Counting Sort. 
+        \item Luego que los 3 arrays estan ordenados, pasamos a listas enlazadas para concatenar en O(1).
+        \item Luego que tenemos, concatenamos en orden, menores20.concatenar(enRango) y luego menores20.concatenar(mayores40).
+        \item Luego, pasamos todo esto a un array plano de la longitud original que nos pedia el ejercicio y listo.
+    \end{itemize}
+\end{itemize}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
 \begin{lstlisting}
