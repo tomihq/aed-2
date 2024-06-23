@@ -1319,7 +1319,7 @@ Es útil cuando necesitamos ordenar listas con muchos criterios de orden que con
         \item Luego, pasamos todo esto a un array plano de la longitud original que nos pedia el ejercicio y listo.
     \end{itemize}
     \item Siempre que nos den dos criterios de ordenamiento, primero ordenamos por el de desempate y luego por el inicial. Ej: si nos piden ordenar primero por nota, y en caso de igual nota por género: primero ordenamos con cualquier ordenamiento por género, y luego con un algoritmo estable por nota. 
-    \item Siempre que tenga cosas acotadas, considere usar bucket sort. Por ejemplo, si nos dicen que tenemos que ordenar en O(n) los alumnos por genéro y luego en caso de desempate por nota: Primero hacemos un bucket sort con 11 elementos para ordenar por nota, luego pasamos las listas enlazadas del bucket a array, y luego aplicamos bucket sort otra vez pero ahora por genéro. Finalmente, las listas enlazadas, lo pasamos a array para obtener el resultado.
+    \item Siempre que tenga cosas acotadas, considere usar bucket sort o counting sort. Por ejemplo, si nos dicen que tenemos que ordenar en O(n) los alumnos por genéro y luego en caso de desempate por nota: Primero hacemos un bucket sort con 11 elementos para ordenar (supongo que para ordenar por nota, el bucket sort lo hizo con counting) por nota, luego pasamos las listas enlazadas del bucket a array, y luego aplicamos bucket sort otra vez pero ahora por genéro. Finalmente, las listas enlazadas, lo pasamos a array para obtener el resultado.
 \end{itemize}
 \section*{Anexo}
 \subsection*{Ejemplo 1 en cálculo de complejidad}
