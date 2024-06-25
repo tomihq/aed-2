@@ -1109,8 +1109,13 @@ También conocido como "scanning in hashing", se refiere a la acción de recorre
 \end{itemize}
 \section*{Sorting}
 Llamamos sorting al proceso de organizar un conjunto, lista, array u otra estructura de datos en un determinado orden. \\
-Existen algoritmos de ordenamiento que lo hacen comparando elementos y otros no. \\
-\textbf{Importante}: las funciones de ordenamiento reciben arrays. Por lo tanto, si tengo un diccionario deberia convertirlo a un array de tuplas, y luego, aplico el ordenamiento correspondiente componente a componente. Lo mismo si tendría una lista, debería pasarlo a array. La complejidad es lo de menos por así decirlo porque de lista/diccionario a array es $O(n)$ y lo mismo al revés \\
+Existen algoritmos de ordenamiento que lo hacen comparando elementos y otros no. \\ \\
+\textbf{Importante}: las funciones de ordenamiento reciben arrays. Por lo tanto, si tengo un diccionario deberia convertirlo a un array de tuplas, y luego, aplico el ordenamiento correspondiente componente a componente. Lo mismo si tendría una lista, debería pasarlo a array. La complejidad es lo de menos por así decirlo porque de lista/diccionario a array es $O(n)$ y lo mismo al revés \\ \\
+\textbf{Importante 2}: Si hay un criterio de desempate, primero ordenamos por el criterio de desempate y luego, por el otro.
+\begin{itemize}
+    \item Ordenar por nota, y si tienen misma nota, por género
+    \item entonces: primero ordeno por genéro, y luego, con un algoritmo de sorting estable ordeno por nota.
+\end{itemize}
 \subsection*{Algoritmo de Barrido}
 El término de barrido se lo utiliza para procesos en el que pasamos secuencialmente por cada elemento del conjunto de datos (a menudo, de principio a fin) y durante este recorrido, se pueden realizar diversas acciones como búsqueda, filtrado o cualquier otra operación que dependa de cada elemento. 
 \subsection*{Estabilidad}
