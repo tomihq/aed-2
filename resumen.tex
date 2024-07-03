@@ -517,6 +517,7 @@ El módulo puede tener variables de estado que no hagan referencia a ningún obs
         \item Siempre y cuando tenemos un parámetro inout, tenemos que ver que los cambios que hagamos hagan seguir valiendo al invrep.
     \end{itemize}
     \item Todos los métodos pueden asumir que el invariante de representación siempre vale al ser llamados.
+    \item El parámetro que recibe el predicado de InvRep es una instancia del módulo. Esto nos sirve para poder utilizar sus variables de estado y colocarles las restricciones.
 \end{itemize}
 Para cualquier operación del módulo se debe de verificar la siguiente tripla de Hoare: $ \{InvRep(p')\} \ Operacion(p', ..) \ \{InvRep(p')\}$ \\ \\
 Tips varios: 
@@ -525,9 +526,10 @@ Tips varios:
     \item Cuando tengo un diccionario tengo que usar un cuantificador para hablar y tengo que acceder y hablar si o si por la key.
 \end{itemize}
 \subsection*{Función de Abstracción}
-Definimos función de abstracción (\(\alpha\)) como la representación física de lo que tiene el código, es decir, cuando acá hablamos de instancia.elems decimos que el código tiene un campo llamado elems. En TAD cuando nosotros hablabamos de un observador podía existir o no en la implementación como atributo pero seguir cumpliendo la especificación. \\
+Dado el TAD y la implementación (módulo) podemos relacionarlos a ambos utilizando la función (predicado) de abstracción. Dada una instancia del módulo podemos ver a qué instancia del TAD corresponde y/o representa vinculando las variables de estado del módulo con los observadores del TAD.
 \begin{itemize}
-    \item Es un predicado
+    \item Es un predicado.
+    \item A la hora de definirlo, podemos asumir que vale el invrep. Es decir, no hace falta volver a mencionar cosas que ya están explícitos en el invrep.
     \item Toma como parámetro una instancia del módulo y una instancia del TAD.
     \item Hacemos referencia a observadores y a otros predicados, no procs
     \item Todos los observadores del TAD deben tener un vinculo con una variable de estado pero no necesariamente al revés
