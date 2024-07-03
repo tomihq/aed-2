@@ -1537,6 +1537,105 @@ En el ABS garantizo que todos los elementos dentro de largo están en p.s pero a
         }
     }
 \end{lstlisting}
+Ejercicio 3: Sea una Pila donde se puede eliminar elementos dado un índice, realice el inv rep y la función de abstracción. Escriba los algoritmos de apilar, desapilar y eliminar. enUso tiene los elementos de datos que no están eliminados.
+\begin{lstlisting}
+    proc eliminar(inout p: Pila<T>, i: Z){
+        requiere {0 <= i < |p.s|}
+        asegura {p.s = concat(subseq(old(p).s, 0, i), subseq(old(p).s, i + 1, |old(p).s|))}
+    }
+
+    Modulo PilaConElimArr<T> implenenta PilaConElim<T> {
+        var datos: Array<T>
+        var enUso: Array<boolean>
+        var largo: int
+    }
+
+    datos: [1, 2, 3, 4] 
+    enUso: [T, T, F, F]
+    largo: 2
+
+    datos teoricamente sería: [1, 2]
+    
+    InvRep: 
+        La longitud de datos es igual a la de enUso (contando eliminados y no eliminados, tamaño del arr)
+        Largo es igual a la cantidad de elementos en true que hay en enUso
+    Func Abs:
+        El largo es igual a la longitud de p.s
+        Todos los elementos que estan en el rango de largo en datos, están en p.s en la misma posición.
+\end{lstlisting}
+\pred{InvRep}{p': PilaConElimArr$<T>$}{
+    \longitud{p'.datos} = \longitud{p'.enUso} \land 
+    p'.largo = CantidadElementosValidos(p'.enUso)
+}
+\aux{CantidadElementosValidos}{l: Array$<T>$}{\ent}{
+    \sum_{i=0}^{\longitud{l}-1}{if(l[i] \ == \ true) \ then \ 1 \ else \ 0}
+}
+
+//Al eliminar, en el TAD se elimina y se reordena la secuencia. Nosotros no la reordenamos, por lo tanto, los elems podrían no estar en la misma posición \\
+\pred{Abs}{p: PilaConElim$<T>$, p': PilaConElimArr$<T>$}{
+    p'.largo = \longitud{p.s} \land
+    \paraTodo[unalinea]{i}{\ent}{0\le i<p'.datos \land p'.enUso[i] == true \implicaLuego \existe[unalinea]{j}{\ent}{0 \le j<p.s \land p'.datos[i] = p.s[j]}}
+}
+
+\begin{lstlisting}
+    proc apilar(inout p': PilaConElimArr<T>, in e: T){
+        if(p'.datos.length == p'.largo){ //No hay ningun borrado, no hay espacio.
+            var nuevoArreglo: Array<T> := new Array<T>(){p'.largo * 2};
+            var nuevoArregloEnUso:Array<boolean> := new Array<T>(){p'.largo * 2}; //Se inicializa todo en false
+
+            var i:int := 0;
+            while(i<p'.datos.length) do
+                nuevoArreglo[i] = p'.datos[i];
+                nuevoArregloEnUso[i] = p'.enUso[i];
+                i++;
+            endwhile;
+            
+            p'.datos = nuevoArreglo;
+            p'.enUso = nuevoArregloEnUso;
+            
+            p'.datos[p'.largo] = e;
+            p'.enUso[p'.largo] = true;
+            p'.largo++;
+
+        }else{ //Existe al menos uno borrado y hay espacio para pisarlo. 
+            var borrado: T := null;
+            var i:int := 0;
+            while(i<p'.datos.length) do
+                if(p'.enUso[i] == false) then
+                    p'.datos[i] = e;
+                    p'.enUso[i] = true;
+                endif 
+                i++;
+            endwhile 
+            p'.largo++; 
+        }
+    }    
+    //Quito el ultimo
+    proc desapilar(inout p': PilaConElimArr<T>): T{
+        var desapilado:T := p'.datos[p'.largo];
+        var i:int := 0;
+
+        var nuevoArreglo: Array<T> := new Array<T>(){p'.largo-1};
+        var nuevoArregloEnUso:Array<boolean> := new Array<T>(){p'.largo-1}; //Se inicializa todo en false
+
+        while(i<nuevoArreglo.length) do //Coloco los n-1 elems.
+            nuevoArreglo[i] = p'.datos[i];
+            nuevoArregloEnUso[i] = p'.enUso[i];
+        endwhile;
+        
+        p'.datos = nuevoArreglo;
+        p'.enUso = nuevoArregloEnUso;
+        p'.largo--;
+    }
+
+    proc eliminar(inout p': PilaConElimArr<T>, in i: int){
+        p'.enUso[i] = false;
+        if(i == p'.largo-1){ //Solo resto largo si quité el último, sino estaría evitandome obtener el último elemento si no había sido eliminado.
+            p'.largo--;
+        }
+    }
+\end{lstlisting}
+
 
 \subsection*{Complejidad}
 \begin{lstlisting}
