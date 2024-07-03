@@ -1439,12 +1439,32 @@ Forma 2: En esta no hace falta indicar la relación entre largo y elems aparte p
         var i:int := 0;
         while(i<c'.datos) do
             if(c'.datos[i] == e) then
+                c'.datos[i] = c.datos[c'.largo]; //Swappeo el ultimo elem con la pos que tengo que eliminar
+                c'.datos[c'.largo] = 0; //Elimino el elemento
                 c'.largo--;
-                c'.datos[i] = null; //Elimino el elemento
             endif 
             i++;
         endwhile 
+
+        [1, 2, 3, 4, 5] -> Eliminar el 4. Largo=5
+        [1, 2, 3, 5, 4] -> Swappeo el 5 con el 4. Largo=5
+        [1, 2, 3, 5, 0] -> Pongo en 0 el ultimo elem. Largo=4.
+        La próxima vez, sé que solo tengo 4 elems válidos.
     }
+\end{lstlisting}
+4. Hecho en 3.
+5. InvRep para el caso con repetidos 
+\begin{lstlisting}
+    InvRep:
+        Largo es mayor que 0 y menor o igual a la longitud de datos.
+        
+    proc agregar(inout c': ConjuntoAcotadoArr<T>, in e: T){
+        c'.datos[largo] = e;
+        c'.largo = c'.largo + 1; 
+    }
+
+    El problema de acá es que estamos llenando el arreglo de elementos que ya están y no estamos respetando la idea del Conjunto. De alguna manera, si necesitamos devolver el conjunto o el largo, deberíamos contar una única vez la aparición de cada elemento.
+
 \end{lstlisting}
 \subsection*{Complejidad}
 \begin{lstlisting}
