@@ -1410,7 +1410,7 @@ Forma 1: \\
 
 Forma 2: En esta no hace falta indicar la relación entre largo y elems aparte pues queda explícito entre el rango, todos los elementos de la lista están en el conjunto. \\
 \pred{Abs}{c: ConjAcotado$<T>$, c': ConjAcotadoArr$<T>$}{
-    \paraTodo[unalinea]{e}{T}{0\le i<c'.largo \implicaLuego c'.datos[i] \in c.elems}  \land \longitud{c'.datos} = c.cap
+    \paraTodo[unalinea]{i}{T}{0\le i<c'.largo \implicaLuego c'.datos[i] \in c.elems}  \land \longitud{c'.datos} = c.cap
 } 
 3. Algoritmos: 
 \begin{lstlisting}
@@ -1498,9 +1498,45 @@ El único tema sería añadir elementos pues si no tenemos espacio deberíamos c
     }
 \end{lstlisting}
 \pred{InvRep}{p': PilaNoAcotadaArr$<T>$}{
-    0 \le p'.largo < \longitud{p'.datos}
+    0 \le p'.largo < \longitud{p'.datos} \land \longitud{p'.datos} \ mod \ 2 \ = \ 0
 }
-A tema de que sacamos por el final y agregamos al final no iría en el invrep porque no es una restricción que pongamos nosotros y podamos detectar que la pila es inválida.
+A tema de que sacamos por el final y agregamos al final no iría en el invrep porque no es una restricción que pongamos nosotros y podamos detectar que la pila es inválida. \\
+\pred{Abs}{p: Pila$<T>$, p': PilaNoAcotadaArr$<T>$}{
+    \paraTodo[unalinea]{i}{T}{0\le i<p'.largo \implicaLuego p'.datos[i] = p.s[i]} \land p'.largo = \longitud{p.s}
+}
+En el ABS garantizo que todos los elementos dentro de largo están en p.s pero además digo que son de la misma longitud. Porque podría pasar que p'.largo sea menor a \longitud{p.s} y que p.s tenga todos los elementos de p'.datos. Acá necesito decir algo más fuerte como que además las longitudes son iguales.
+\begin{lstlisting}
+    Módulo PilaNoAcotadaArr<T> implementa Pila<T> {
+        var datos: Array<T>
+        var largo: int
+
+        proc apilar(inout p': PilaNoAcotadaArr, e: T){
+            if(p'.largo == p'.datos.length) then
+                var nuevoArreglo: Array<T>:= new Array<T>(){p'.largo * 2};
+                var i:int := 0;
+                
+                while(i<p'.datos.length) do
+                    nuevoArreglo[i] = p'.datos[i];
+                    i++;
+                endwhile;
+                
+                p'.datos = nuevoArreglo;
+            endif
+              
+            p'.datos[p'.largo] = e;
+            p'.largo++;
+
+        }
+
+        //Por requiere se asume que no está vacía.
+        proc desapilar(inout p': PilaNoAcotadaArr): T{
+            var desapilado: T := p'.datos[p'.largo];
+            p'.datos[p'.largo] = 0; 
+            p'.largo--;
+            return desapilado;
+        }
+    }
+\end{lstlisting}
 
 \subsection*{Complejidad}
 \begin{lstlisting}
