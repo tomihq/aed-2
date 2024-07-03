@@ -1595,7 +1595,6 @@ Ejercicio 3: Sea una Pila donde se puede eliminar elementos dado un índice, rea
             
             p'.datos[p'.largo] = e;
             p'.enUso[p'.largo] = true;
-            p'.largo++;
 
         }else{ //Existe al menos uno borrado y hay espacio para pisarlo. 
             var borrado: T := null;
@@ -1607,8 +1606,10 @@ Ejercicio 3: Sea una Pila donde se puede eliminar elementos dado un índice, rea
                 endif 
                 i++;
             endwhile 
-            p'.largo++; 
         }
+
+        p'.largo++; 
+
     }    
     //Quito el ultimo
     proc desapilar(inout p': PilaConElimArr<T>): T{
