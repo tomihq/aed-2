@@ -1427,7 +1427,8 @@ Forma 2: En esta no hace falta indicar la relación entre largo y elems aparte p
         endwhile
         return encontrado; 
     }
-
+    
+    //Nótese que aunque no modificamos nada, el procedimiento sigue siendo inout porque hay un caso en el que sí se termina modificando algo.
     proc agregar(inout c': ConjuntoAcotadoArr<T>, in e: T){
         if(c'.pertenece(e) == true) return; 
         c'.datos[largo] = e;
