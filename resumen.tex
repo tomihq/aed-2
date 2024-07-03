@@ -481,7 +481,14 @@ Muchas veces no nos basta con la igualdad por defecto con los observadores, y te
 \subsection*{Operaciones de un TAD}
 Las operaciones de un TAD deben estar especificadas y nos indican qué se puede hacer con una instancia.
 Antes y una vez aplicada una operación tenemos que hablar del estado en el que quedó el TAD con respecto a sus observadores.
-\section*{Implementación de un TAD}
+\section*{Diseño de un TAD}
+Es una estructura de datos y una serie de algoritmos que nos indica cómo se representa y cómo se codifica alguna implementación del TAD.
+\begin{itemize}
+    \item Debemos elegir la estructura de representación con tipos de datos.
+    \item Tendremos que escribir algoritmos para todas las operaciones.
+    \item Los algoritmos deben respetar la especificación del TAD. Es decir, cada procedimiento que hagamos debemos conocer los requiere y cumplir los asegura.
+\end{itemize}
+Nota: como hay diversas maneras de implementar un TAD, cada una puede diferir en complejidad espacial, tiempo, o sencillez de lectura / mantenibilidad.
 \subsection*{Módulos}
 \begin{itemize}
     \item Son la representación / implementación física en código de un TAD.
@@ -501,11 +508,19 @@ El módulo puede tener variables de estado que no hagan referencia a ningún obs
 \textbf{Nota: Una variable de estado también puede contener otro módulo.}
 \subsection*{Invariante de Representación}
 \begin{itemize}
-    \item Define una restricción sobre el conjunto de valores que pueden tomar las variables de estado para que se considere una instancia válida.
+    \item Es un predicado.
+    \item Nos indica qué conjuntos de valores son instancias válidas de la implementación de un TAD.
     \item Es equivalente al invariante en ciclos, pero acá aplicado a TAD's
     \item Este es inicializado en el constructor una vez realizada la instancia
-    \item Vale siempre antes de llamar a los métodos y luego de cada método. Siempre y cuando tenemos un parámetro inout, tenemos que ver que los cambios que hagamos hagan seguir valiendo a la invariante de representación.
+    \item Es invariante pues vale siempre antes de llamar a los métodos y luego de cada método. 
+    \begin{itemize}
+        \item Siempre y cuando tenemos un parámetro inout, tenemos que ver que los cambios que hagamos hagan seguir valiendo al invrep.
+    \end{itemize}
     \item Todos los métodos pueden asumir que el invariante de representación siempre vale al ser llamados.
+\end{itemize}
+Para cualquier operación del módulo se debe de verificar la siguiente tripla de Hoare: $ \{InvRep(p')\} \ Operacion(p', ..) \ \{InvRep(p')\}$ \\ \\
+Tips varios: 
+\begin{itemize}
     \item ¡Prestar atencion a las verificaciones bidireccionales! En el sentido de que si tengo \(dict<Alarma, Conj<Sensores>>\) y \(dict<Sensor, Conj<Alarmas>>\) si en \(dict<Alarma, ...>\) tengo varios sensores, esos sensores estan en Sensor y ademas, si busco en las alarmas de cada sensor deberia estar la \(dict<Alarma, ...>\)
     \item Cuando tengo un diccionario tengo que usar un cuantificador para hablar y tengo que acceder y hablar si o si por la key.
 \end{itemize}
