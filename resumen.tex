@@ -596,7 +596,8 @@ En este caso, que la lista esté ordenada debería ser una condición del invari
 
 Este módulo es bueno para la búsqueda de un elemento pero el agregar un elemento es mucho más costoso por el tema de reordenar la lista nuevamente. \\
 
-\textbf{Mirada al futuro}: Los métodos deben cumplir una complejidad algorítimica dada.
+\textbf{Mirada al futuro}: Los métodos deben cumplir una complejidad algorítimica dada. \\
+Véase \hyperref[subsec:anexo_invrep_abs]{\underline{anexo}} para ejercicios de invariante de representación y función de abstracción
 \section*{Estructuras de Datos}
 \subsection*{Colección}
 Representa un grupo de objetos. Provee de una arquitectura para su almacenamiento y manipulación.
@@ -1344,7 +1345,68 @@ Es útil cuando necesitamos ordenar listas con muchos criterios de orden que con
     \item Siempre que tenga cosas acotadas, considere usar bucket sort o counting sort. Por ejemplo, si nos dicen que tenemos que ordenar en O(n) los alumnos por genéro y luego en caso de desempate por nota: Primero hacemos un bucket sort con 11 elementos para ordenar (supongo que para ordenar por nota, el bucket sort lo hizo con counting) por nota, luego pasamos las listas enlazadas del bucket a array, y luego aplicamos bucket sort otra vez pero ahora por genéro. Finalmente, las listas enlazadas, lo pasamos a array para obtener el resultado.
 \end{itemize}
 \section*{Anexo}
-\subsection*{Ejemplo 1 en cálculo de complejidad}
+\subsection*{Invariante de Representación, Función de Abstracción y Memoria Dinámica}
+\label{subsec:anexo_invrep_abs}
+Con esta estructura, podemos permitir que haya repetidos o no los haya.
+\begin{itemize}
+    \item ¿Cuál es más eficiente? ¿Cuándo usaría cada una de las dos versiones? 
+    \item Escriba el invariante de representación y la función de abstracción en castellano, y luego en especificación formalmente.
+    \item Escriba los algoritmos para las operaciones de agregar un elemento y sacar un elemento (para la versión de sin repetidos).
+    \item Si está creando un nuevo arreglo cada vez que saca un elemento, piense una solución sin que se necesite copiar el arreglo original.
+    \item Intente escribir el invariante de representación y la operación de agregar para el caso de con repetidos. ¿Qué dificultades encuentra?
+\end{itemize}
+\begin{lstlisting}
+    TAD ConjuntoAcotado<T> {
+        obs elems: conj<T>
+        obs cap: int
+        
+        proc agregar(inout c: ConjuntoAcotado<T>, in e: T)
+            requiere {c = old(c)}
+            requiere {|c.elems| < c.cap}
+            asegura {c.elems = old(c).elems U <e>}
+        
+        proc sacar(inout c: ConjuntoAcotado<T>, in e: T)
+            asegura {c.elems = old(c).elems - <e>}
+    }
+
+    Modulo ConjAcotadoArr<T> implenenta ConjAcotado<T> {
+        var datos: Array<T>
+        var largo: int
+    }
+\end{lstlisting}
+En el módulo tenemos dos variables: un array y un entero. La variable largo nos servirá para poder saber cuantos espacios de datos están ocupados pues, si recordamos, el array quizá tiene longitud 20 pero no necesariamente los 20 espacios están ocupados. \\
+El enunciado nos pide implementar un Conjunto acotado con arrays, ya con decir que queremos implementar un conjunto no deberíamos de permitir repetidos, aún así, podríamos aceptarlos, pero el problema vendría al momento de eliminar. ¿Qué aparición sacaríamos? En este caso, como es un conjunto deberíamos eliminar cada una de las apariciones del elemento. \\
+1. La versión más eficiente sería la de sin repetidos pues sabemos que todos los elementos se encuentran presentes una sola vez, y basta con eliminarlos en tiempo O(n) en peor caso y O(1) en mejor caso. Si un elemento estaría repetido, ambos casos serían O(n). Con respecto a la variable largo, al ser una resta de cantidad de apariciones no afecta en temas de complejidad pues es una operación elemental. En ambos casos deberíamos de copiar el arreglo original, porque pensemos que si eliminamos un elemento del medio del conjunto, el largo disminuiría pero eso no significa que sepamos la posición "vacía". \\
+Quizá una buena idea sería tener un arreglo más con el mismo tamaño y que en cada posición tengamos un true/false según si el elemento fue borrado o no. Eso nos permitiría reutilizar alguas posiciones de nuestro array original y no copiar el array todo el tiempo. \\
+2.
+\begin{lstlisting}
+    InvRep: 
+        Para todo elemento presente en datos, no hay repetidos.
+        Largo es mayor que 0 y menor o igual a la longitud de datos.
+    Abs: 
+        Para todo elemento presente en elems (TAD) está en datos (Módulo).
+        Para todo elemento presente en datos (Módulo) está en elems (TAD).
+        La longitud de datos (Módulo) es igual a cap (TAD).
+        Cap (TAD) es igual a la longitud de datos (Módulo).
+        Largo (Módulo) es igual a la cantidad de elems (TAD).
+        Cantidad de elems (TAD) es igual a Largo (Módulo).
+\end{lstlisting}
+
+\pred{InvRep}{c': ConjAcotadoArr$<T>$}{
+    0 \le c'.largo < \longitud{c'.datos} \land
+    SinRepetidos(c'.datos)
+}
+\pred{SinRepetidos}{datos: Array$<T>$}{
+    \paraTodo[unalinea]{i}{\ent}{0\le i < \longitud{datos} \implicaLuego 
+        \paraTodo[unalinea]{j}{\ent}{0\le j < \longitud{datos} \land datos[i] = datos[j] \implicaLuego i=j }
+     }
+}
+
+\pred{Abs}{c: ConjAcotado$<ST>$, c': ConjAcotadoArr$<T>$}{
+    \paraTodo[unalinea]{e}{T}{e \in c'.datos \iff c.elems} \land 
+    c'.largo = \longitud{c.elems} \land \longitud{c'.datos} = c.cap
+}
+\subsection*{Complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
         int ans[n][n];
