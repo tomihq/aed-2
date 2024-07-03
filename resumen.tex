@@ -1578,21 +1578,23 @@ Ejercicio 3: Sea una Pila donde se puede eliminar elementos dado un índice, rea
 }
 
 \begin{lstlisting}
+    proc agrandarYCopiar(inout p':PilaConElimArr<T>){
+        var nuevoArreglo: Array<T> := new Array<T>(){p'.largo * 2};
+        var nuevoArregloEnUso:Array<boolean> := new Array<T>(){p'.largo * 2}; //Se inicializa todo en false
+
+        var i:int := 0;
+        while(i<p'.datos.length) do
+            nuevoArreglo[i] = p'.datos[i];
+            nuevoArregloEnUso[i] = p'.enUso[i];
+            i++;
+        endwhile;
+        
+        p'.datos = nuevoArreglo;
+        p'.enUso = nuevoArregloEnUso;
+    }
     proc apilar(inout p': PilaConElimArr<T>, in e: T){
         if(p'.datos.length == p'.largo){ //No hay ningun borrado, no hay espacio.
-            var nuevoArreglo: Array<T> := new Array<T>(){p'.largo * 2};
-            var nuevoArregloEnUso:Array<boolean> := new Array<T>(){p'.largo * 2}; //Se inicializa todo en false
-
-            var i:int := 0;
-            while(i<p'.datos.length) do
-                nuevoArreglo[i] = p'.datos[i];
-                nuevoArregloEnUso[i] = p'.enUso[i];
-                i++;
-            endwhile;
-            
-            p'.datos = nuevoArreglo;
-            p'.enUso = nuevoArregloEnUso;
-            
+            agrandarYCopiar(p');
             p'.datos[p'.largo] = e;
             p'.enUso[p'.largo] = true;
 
@@ -1611,22 +1613,20 @@ Ejercicio 3: Sea una Pila donde se puede eliminar elementos dado un índice, rea
         p'.largo++; 
 
     }    
-    //Quito el ultimo
+    //Quito el ultimo no eliminado
     proc desapilar(inout p': PilaConElimArr<T>): T{
-        var desapilado:T := p'.datos[p'.largo];
-        var i:int := 0;
+        var i:int := p'.largo-1;
 
-        var nuevoArreglo: Array<T> := new Array<T>(){p'.largo-1};
-        var nuevoArregloEnUso:Array<boolean> := new Array<T>(){p'.largo-1}; //Se inicializa todo en false
-
-        while(i<nuevoArreglo.length) do //Coloco los n-1 elems.
-            nuevoArreglo[i] = p'.datos[i];
-            nuevoArregloEnUso[i] = p'.enUso[i];
-        endwhile;
+        while(p'.enUso[i]==false) do //busco el ultimo que está en true
+            i--;
+        endwhile
         
-        p'.datos = nuevoArreglo;
-        p'.enUso = nuevoArregloEnUso;
+        var res:T := p'.datos[i];
+        p'.datos[i] = 0;
+        p'.enUso[i] = false;
         p'.largo--;
+
+        return res;
     }
 
     proc eliminar(inout p': PilaConElimArr<T>, in i: int){
