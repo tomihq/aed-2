@@ -1433,6 +1433,17 @@ Forma 2: En esta no hace falta indicar la relación entre largo y elems aparte p
         c'.datos[largo] = e;
         c'.largo = c'.largo + 1; 
     }
+
+    proc sacar(inout c': ConjuntoAcotadoArr<T>, in e: T){
+        var i:int := 0;
+        while(i<c'.datos) do
+            if(c'.datos[i] == e) then
+                c'.largo--;
+                c'.datos[i] = null; //Elimino el elemento
+            endif 
+            i++;
+        endwhile 
+    }
 \end{lstlisting}
 \subsection*{Complejidad}
 \begin{lstlisting}
