@@ -1402,10 +1402,38 @@ Quizá una buena idea sería tener un arreglo más con el mismo tamaño y que en
      }
 }
 
-\pred{Abs}{c: ConjAcotado$<ST>$, c': ConjAcotadoArr$<T>$}{
-    \paraTodo[unalinea]{e}{T}{e \in c'.datos \iff c.elems} \land 
+Forma 1: \\
+\pred{Abs}{c: ConjAcotado$<T>$, c': ConjAcotadoArr$<T>$}{
+    \paraTodo[unalinea]{e}{T}{e \in c'.datos \iff e \in c.elems} \land 
     c'.largo = \longitud{c.elems} \land \longitud{c'.datos} = c.cap
-}
+} 
+
+Forma 2: En esta no hace falta indicar la relación entre largo y elems aparte pues queda explícito entre el rango, todos los elementos de la lista están en el conjunto. \\
+\pred{Abs}{c: ConjAcotado$<T>$, c': ConjAcotadoArr$<T>$}{
+    \paraTodo[unalinea]{e}{T}{0\le i<c'.largo \implicaLuego c'.datos[i] \in c.elems}  \land \longitud{c'.datos} = c.cap
+} 
+3. Algoritmos: 
+\begin{lstlisting}
+    La instancia debe ser la misma, requiere me dice que tengo espacio y aseguro insertar el elemento.
+
+    proc pertenece(in c': ConjuntoAcotadoArr<T>, in e: T): boolean{
+        var i:int := 0;
+        var encontrado:boolean := false;
+        while(i<c'.datos && !encontrado) do
+            if(c'.datos[i] == e) then
+                encontrado := true
+            endif
+            i++;
+        endwhile
+        return encontrado; 
+    }
+
+    proc agregar(inout c': ConjuntoAcotadoArr<T>, in e: T){
+        if(c'.pertenece(e) == true) return; 
+        c'.datos[largo] = e;
+        c'.largo = c'.largo + 1; 
+    }
+\end{lstlisting}
 \subsection*{Complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
