@@ -1347,7 +1347,7 @@ Es útil cuando necesitamos ordenar listas con muchos criterios de orden que con
 \section*{Anexo}
 \subsection*{Invariante de Representación, Función de Abstracción y Memoria Dinámica}
 \label{subsec:anexo_invrep_abs}
-Con esta estructura, podemos permitir que haya repetidos o no los haya.
+Ejercicio 1: Con esta estructura, podemos permitir que haya repetidos o no los haya.
 \begin{itemize}
     \item ¿Cuál es más eficiente? ¿Cuándo usaría cada una de las dos versiones? 
     \item Escriba el invariante de representación y la función de abstracción en castellano, y luego en especificación formalmente.
@@ -1449,7 +1449,7 @@ Forma 2: En esta no hace falta indicar la relación entre largo y elems aparte p
         [1, 2, 3, 4, 5] -> Eliminar el 4. Largo=5
         [1, 2, 3, 5, 4] -> Swappeo el 5 con el 4. Largo=5
         [1, 2, 3, 5, 0] -> Pongo en 0 el ultimo elem. Largo=4.
-        La próxima vez, sé que solo tengo 4 elems válidos.
+        La próxima vez, sé que solo tengo 4 elems válidos. Esta estrategia sirve para poder saber que el ultimo ya no va a contar, y entonces le achicamos la longitud de recorrido.
     }
 \end{lstlisting}
 4. Hecho en 3.
@@ -1465,6 +1465,18 @@ Forma 2: En esta no hace falta indicar la relación entre largo y elems aparte p
 
     El problema de acá es que estamos llenando el arreglo de elementos que ya están y no estamos respetando la idea del Conjunto. De alguna manera, si necesitamos devolver el conjunto o el largo, deberíamos contar una única vez la aparición de cada elemento.
 
+\end{lstlisting}
+Ejercicio 2: Implemente una pila no acotada utilizando arreglos. Escriba la estructura, el invariante de representación, la función de abstracción en castellano, en especificación y las operaciones de apilar y desapilar. \\
+
+Una pila se caracteriza por los siguientes puntos:
+\begin{itemize}
+    \item Puede haber repetidos. 
+    \item Agrego y saco desde el final.
+\end{itemize}
+Acá la manera de desapilar es más facil, porque solo sacamos desde el final disminuimos largo e igualmente el orden se mantiene. Es decir, no tenemos que hacer un swap para garantizar que el eliminado estaba al final y tener que reacomodar algún que otro elemento. \\
+El único tema sería añadir elementos pues si no tenemos espacio deberíamos copiar la pila entera, duplicar el arreglo, y colocar los elementos en la pila nueva. En este caso, como los elementos de la pila queremos que sean los mismos, tendremos que hacerlo por aliasing.
+\begin{lstlisting}
+   
 \end{lstlisting}
 \subsection*{Complejidad}
 \begin{lstlisting}
