@@ -1476,8 +1476,32 @@ Una pila se caracteriza por los siguientes puntos:
 Acá la manera de desapilar es más facil, porque solo sacamos desde el final disminuimos largo e igualmente el orden se mantiene. Es decir, no tenemos que hacer un swap para garantizar que el eliminado estaba al final y tener que reacomodar algún que otro elemento. \\
 El único tema sería añadir elementos pues si no tenemos espacio deberíamos copiar la pila entera, duplicar el arreglo, y colocar los elementos en la pila nueva. En este caso, como los elementos de la pila queremos que sean los mismos, tendremos que hacerlo por aliasing.
 \begin{lstlisting}
-   
+    TAD Pila<T> {
+        obs s: seq<T>
+        proc pilaVacía(): Pila<T>{
+            asegura {res.s = <>}
+        }
+
+        proc apilar(inout p: Pila<T>, in e: T){
+            asegura {p.s = concat(old(p).s,<e>)}
+        }
+        proc desapilar(inout p: Pila<T>): T{
+            requiere {p.s != <>}
+            asegura {p.s = subseq(old(p).s, 0, |old(p).s| - 1)}
+            asegura {res = old(p).s[|old(p).s| - 1]}
+        }
+    }
+
+    Módulo PilaNoAcotadaArr<T> implementa Pila<T> {
+        var datos: Array<T>
+        var largo: int
+    }
 \end{lstlisting}
+\pred{InvRep}{p': PilaNoAcotadaArr$<T>$}{
+    0 \le p'.largo < \longitud{p'.datos}
+}
+A tema de que sacamos por el final y agregamos al final no iría en el invrep porque no es una restricción que pongamos nosotros y podamos detectar que la pila es inválida.
+
 \subsection*{Complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
