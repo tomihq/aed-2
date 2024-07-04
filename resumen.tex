@@ -134,7 +134,7 @@ Algunos ejemplos:
 \begin{itemize}
     \item in: Solo nos interesa el valor de entrada de una variable. No la vamos a modificar. Ya están inicializados
     \item out: Donde se retornará el resultado. No nos importa el valor inicial ni tampoco determina nada en nuestra función.
-    \item inout: Necesitamos el valor original aunque lo terminamos modificando y devolviendo.
+    \item inout: Necesitamos el valor original por referencia el cual podrá ser modificado durante el procedimiento. Que sea inout no significa que siempre será modificado, sino que NO se garantiza que el valor al salir del procedimiento sea el mismo que cuando ingresó. Ej: Añadir un valor a un conjunto es inout pues hay casos donde no se modifica (pues el elemento ya está) y en otros sí (se agrega).
 \end{itemize}
 \subsection*{Lógica trivaluada}
 También llamada lógica secuencial porque se procesa de izquierda a derecha; Nos introduce los conceptos de \(\yLuego \ \oLuego \ \implicaLuego\) y el valor de indefinido \(\bot\).
