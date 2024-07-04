@@ -1637,6 +1637,102 @@ Ejercicio 3: Sea una Pila donde se puede eliminar elementos dado un índice, rea
     }
 \end{lstlisting}
 
+Ejercicio 4: De parcial 
+\begin{center}
+    \begin{minipage}[b]{0.8\textwidth}
+        \includegraphics[width=\linewidth]{assets/parcial_tad.png}
+        \centering
+        \label{fig:parcial_tad}
+    \end{minipage}
+\end{center}
+a) Lo primero que puedo observar es que me hablan de conjuntos. Así que tengo que considerar que a la hora de agregar o quitar, debo verificar si algo está o no para no aceptar duplicados (¡cuesta tiempo!). \\ 
+Las complejidades observo que son logarítmicas, y que hay dos procedimientos que dado un t1 o un t2, debo devolver un conjunto en tiempo logarítmico. La única estructura que nos permite añadir o verificar en tiempo logarítmico es un AVL ya sea conjunto o diccionario. Necesito si o si guardar un valor dado una clave, según observo en relacionadosDer y relacionadosIzq así que la mejor opción es un DiccionarioLog. \\
+El tener relacionadosIzq por un lado, y relacionadosDer por el otro me da la pista de que necesito dos estructuras separadas, es decir, por un lado, los relacionados de cada T1 y por otro, los relacionados de cada T2. \\
+El siguiente problema que podemos ver, es que si tenemos que guardar los relacionados de un T1 o un T2 hay que verificar si hay repetidos, porque caso contrario, relacionar no ocuparía tiempo O(log n + log m) pero podemos intuir que como, a lo sumo, los relacionados de T1 tienen todos los T2 o viceversa, el verificar si existe, el costo también será log n o log m según el caso y no afecta en tiempo de inserción. \\
+Luego, la estructura podría ser
+\begin{lstlisting}
+    Módulo RelacionadosImpl<T1, T2> implementa Relacionados<T1, T2> {
+        var rt1: DiccionarioLog<T1, ConjuntoLog<T2>>
+        var rt2: DiccionarioLog<T2, ConjuntoLog<T1>>
+        proc nuevo():RelacionadosImpl<T1, T2>{
+            res.rt1 := new DiccionarioLog();
+            res.rt2 := new DiccionarioLog();
+        }
+
+        proc relacionar(inout r: RelacionadosImpl<T1, T1>, in t1:T1, in t2:T2){
+            var t1obj := r.rt1.esta(t1); //O(log n)
+            var t2obj := r.rt2.esta(t2); //O(log m)
+
+            if(t1obj == true) then 
+                t1obj := r.rt1.obtener(t1); //O(log n)
+                tpobj := t1obj.pertenece(t2); //O(log m)
+                if(tpobj == false) then
+                    t1obj.agregarRapido(t2); //O(log m)
+                endif 
+                r.rt1.definirRapido(t1, t1obj); //O(log n)
+            else 
+                r.rt1.definirRapido(t1, new ConjuntoLog().definirRapido(t2)); //O(log n)
+            endif 
+            
+
+            //Mismo con t2.
+            if(t2obj == true) then 
+                t2obj := r.rt2.obtener(t2); //O(log m)
+                tpobj := t2obj.pertenece(t1); //O(log n)
+                if(tpobj == false) then
+                    t2obj.agregarRapido(t1); //O(log n)
+                endif 
+                r.rt2.definirRapido(t2, t2obj); //O(log m)
+            else 
+                r.rt2.definirRapido(t2, new ConjuntoLog().definirRapido(t1)); //O(log m)
+            endif 
+        }
+
+        O(log n + log m + (log n + log m + log m + log n) + (log m + log n + log n + log m)) =
+        O(log n + log m)
+    }
+
+    proc relacionadosIzq(in r:RelacionadosImpl<T1, T2>, in t2:T2): ConjuntoLog<T1>{
+        return r.rt2.obtener(t2); //O(log m)
+    }
+
+    proc relacionadosDer(in r:RelacionadosImpl<T1, T2>, in t1:T1): ConjuntoLog<t2>{
+        return r.rt1.obtener(t1); //O(log n)
+    }
+
+\end{lstlisting}
+b) Agregaría un campo que tenga una tupla con (T1, max) donde T1 es el elemento que más relacionados tiene, y max es el valor más grande. Como solo me importa uno solo, y sé que las tuplas son inmutables, cada vez que encuentre uno que sea más grande tengo que encontrar una nueva y pisarla. \\
+Esto puedo agregarlo al momento de relacionar: 
+\begin{lstlisting}
+    proc relacionar(inout r: RelacionadosImpl<T1, T1>, in t1:T1, in t2:T2){
+           //mismo antes
+
+            if(t1obj == true) then 
+                //mismo antes
+            else 
+                //mismo antes
+            endif 
+
+            //Agregar esto
+            t1obj := r.rt1.obtener(t1);
+            if(t1obj.tamaño() > r.masRt1[1]){
+                var nuevaTupla: tupla(T1, int) := (t1, t1.obj.tamaño());
+                r.masRt1 = nuevaTupla;
+            }
+    }
+\end{lstlisting}
+c) 
+\begin{itemize}
+    \item Para toda clave en RT1, son únicas y los valores del conjunto asociado a cada clave existen como claves en RT2.
+    \item Para toda clave en RT2, son únicas y los valores del conjunto asociado a cada clave existen como claves en RT1.
+    \item masRt1, el primer elemento de la tupla existe como clave en RT1 y el segundo elemento de la tupla (el máximo) es el tamaño del conjunto asociado a esa clave T1 en RT1.
+\end{itemize}
+d) 
+\begin{itemize}
+    \item Para toda clave y posibles combinaciones con cada uno de los valores asociados en el conjunto para esa clave en RT1 están en alguna tupla que pertenecen a obs elems. 
+    \item Para toda posible tupla en elems, el primer elemento existe como clave en RT1 y el segundo valor existe dentro del conjunto asociado a esa clave en RT1.
+\end{itemize}
+Nota: No mencioné que en elems, T2 es clave en RT2 y T1 es un valor que se encuentra en el conjunto asociado para esa clave en RT2 pues lo deja claro el invariante de representación.
 
 \subsection*{Complejidad}
 \begin{lstlisting}
