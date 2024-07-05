@@ -1671,7 +1671,7 @@ Luego, la estructura podría ser
                 endif 
                 r.rt1.definirRapido(t1, t1obj); //O(log n)
             else 
-                r.rt1.definirRapido(t1, new ConjuntoLog().definirRapido(t2)); //O(log n)
+                r.rt1.definirRapido(t1, new ConjuntoLog().definirRapido(t2)); //O(log n + log m)
             endif 
             
 
@@ -1684,7 +1684,7 @@ Luego, la estructura podría ser
                 endif 
                 r.rt2.definirRapido(t2, t2obj); //O(log m)
             else 
-                r.rt2.definirRapido(t2, new ConjuntoLog().definirRapido(t1)); //O(log m)
+                r.rt2.definirRapido(t2, new ConjuntoLog().definirRapido(t1)); //O(log m + log n)
             endif 
         }
 
