@@ -1754,11 +1754,10 @@ TODO \\
 
 \textbf{Demuestre si es verdadero, halle un contraejemplo si es falsa y justifique}: $f \in \Omega(n) \implies O(f) \cap \Omega(g) = O(g) \cap \Omega(f)$ \\
 Lo primero que puedo ver es que si $ f \in \Omega(g)$ entonces g es una cota inferior de f. \\
-Tomo algun ejemplo: $ f = n \land g = n^{3}$ \\
+Tomo algun ejemplo: $ f = n^{2} \land g = n$ \\
 Veo si la fórmula se cumple o si hallamos un posible contraejemplo \\
-$\implies O(n) \cap \Omega(n^{3}) = O(n^3) \cap \Omega(n)$  \\
-$\implies \varnothing = \{n^{3}, n^{2}, n...\} \cap \{n, n^{2}, n^{3}, ...\}$ \\
-$\implies \varnothing = \{n^{3}, n^{2}, n\} $ \\
+$\implies O(n^{2}) \cap \Omega(n) = O(n) \cap \Omega(n^{2})$  \\
+$\implies \{n, n^{2}\} = \varnothing$ \\
 $\implies False$ \\
 Luego, hallamos un contraejemplo. Por lo tanto, la afirmación es falsa.
 \subsection*{Complejidad}
