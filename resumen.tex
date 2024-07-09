@@ -773,39 +773,31 @@ c: constante real  \(c>0\) \\
 Comportamiento para los valores de la entrada suficientemente grandes. \\
 Nota: Las funciones f y g dependen de un n. No existen funciones constantes menores que O(1).
 \subsection*{O (cota superior)}
-Sirve para representar el límite o cota superior del tiempo de ejecución de un algoritmo. \\
-La notación f \(\in\) O(g) expresa que la función f no crece más rápido que alguna función proporcional a g (g es la cota superior de f). \\
-Ej: 100\(n^{2} + 300n + 1000 \in O(n^{2})\) \(\land\) 100\(n^{3} + 300n + 1000 \in O(n^{2})\) \\ \\
-
 \[ f (n) \in O(g(n)) \iff \exists c \in R>0, n_{0} \in N \ tal \ que \
-\forall n \ge n_{0} : f (n) \le c \ast g(n) \]
-
-Las funciones f son aquellas que crecen más lento, ej si me dan O(n) busco funciones que crezcan mas lento que n
+\forall n \ge n_{0} : f(n) \le c \ast g(n) \]
+La notación f \(\in\) O(g) expresa que la función f no crece más rápido que alguna función proporcional a g. f está acotada superiormente por g. \\
 \begin{itemize}
-    \item \(n-1 \in O(n) \) porque al ser -1 una constante, no cambia nada.
-    \item \(2n \in O(n)\) porque al ser dos veces n (n+n) y es una constante, no cambia nada.
-    \item \(n+1 \in O(n)\)  porque al ser +1 una constante, no cambia nada.
-    \item \(n\ log(n) \in O(n)\)
-    \item \(log(n) \in O(n)\)
+    \item \(n \ast log(n) \in O(n^{2})\)
+    \item \(n \in O(n)\)
     \item \(n^{2} \notin O(n)\)
 \end{itemize}
 \[\begin{minipage}[b]{0.5\textwidth}
     \includegraphics[width=\linewidth]{assets/notacion_o.png}
 \end{minipage}\]
+Nota: Si para un algoritmo sabemos que $T_{peor} \in O(g)$ se puede asegurar que para inputs de tamaño creciente, en todos los casos el tiempo será a lo sumo proporcional a la cota.
 \subsection*{\(\Omega\) (cota inferior)}
-Sirve para representar el límite o cota inferior del tiempo de ejecución de un algoritmo.
-La notación f \(\in \Omega(g)\) expresa que la función f está acotada inferiormente por alguna función proporcional a g (g es cota inferior de f). \\
-Ej: 100\(n^{2} + 300n + 1000 \in Omega(n^{2})\) \(\land\) 100\(n^{2} + 300n + 1000 \in Omega(n)\)
+\[ f (n) \in \Omega(g(n)) \iff \exists c \in R>0, n_{0} \in N \ tal \ que \
+\forall n \ge n_{0} : f(n) \ge c \ast g(n) \]
+La notación f \(\in \Omega(g)\) expresa que la función f crece al menos como g. f está acotada inferiormente por g.
 \begin{itemize}
     \item \(n/2 \in \Omega(n)\)
-    \item \(n-1 \in \Omega(n)\)
-    \item \(n^{2} \in \Omega(n)\)
     \item \(n^{k} \in \Omega(n)\) 
     \item \(log(n) \notin \Omega(n)\) 
 \end{itemize}
 \[\begin{minipage}[b]{0.5\textwidth}
     \includegraphics[width=\linewidth]{assets/notacion_omega.png}
 \end{minipage}\]
+Nota: Si para un algoritmo sabemos que $T_{peor} \in \Omega(g)$ se puede asegurar que para inputs de tamaño creciente, el tiempo será en el pero caso al menos proporcional a la cota.
 \subsection*{\(\theta\) (orden exacto)}
 \[f (n) \in \theta(g(n)) \iff f (n) \in O(g(n)) \ y \ f (n) \in \Omega(g(n)).\ Es \ decir, \ \theta(g(n)) = O(g(n)) \cap \Omega(g(n))\]
 Básicamente: Tiene que valer en O y en \(\Omega\), no debe pasarse de \(\Omega\) pero tampoco estar por debajo de O.
