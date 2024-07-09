@@ -1759,7 +1759,10 @@ Veo si la fórmula se cumple o si hallamos un posible contraejemplo \\
 $\implies O(n^{2}) \cap \Omega(n) = O(n) \cap \Omega(n^{2})$  \\
 $\implies \{n, n^{2}\} = \varnothing$ \\
 $\implies False$ \\
-Luego, hallamos un contraejemplo. Por lo tanto, la afirmación es falsa.
+Luego, hallamos un contraejemplo. Por lo tanto, la afirmación es falsa. \\
+\textbf{Demuestre si es verdadero o falso y justifique} $f \in O(g) \iff O(f) \subseteq O(g)$ \\
+$\implies)$ Por propiedad, sabemos que si $f \in O(g)$ entonces todo el conjunto de funciones que está acotado superiormente por f están en g. Es decir $O(f) \subseteq O(g)$ \\
+$\leftarrow)$ Sabemos que por reflexividad, $f \in O(f)$ entonces si $O(f) \subseteq O(g)$ es cierto que $ f \in O(g)$
 \subsection*{Complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
