@@ -807,12 +807,16 @@ Básicamente: Tiene que valer en O y en \(\Omega\), no debe pasarse de \(\Omega\
 \subsection*{Definición parecida a inducción corrida en Complejidad}
 Tanto en la definición de \(O, \ \Omega \ y \ \theta\) se nombra para un \(n > n_{0}\). Esto es porque no todas las funciones cumplirán la definición, sino aquellas que son mayores a \(n_{0}\). Es por eso que en las imágenes se ven como inicialmente no cumple, pero a partir de un \(x_{0} \ (n_{0})\) vale para todo n.
 \subsection*{Propiedades}
+\(\star\) es comodín de O, $\Omega$, $\Theta$
 \begin{itemize}
-    \item Suma: O(f) + O(g) = O(f+g) = O(max{f,g})
-    \item Producto: O(f) \(\ast\) O(g) = O(f*g)
-    \item Reflexividad: f \(\in O(f)\)
+    \item Suma: \(\star(f) + \star(g) = \star(f+g) = \star(max\{f,g\})\)
+    \item Producto: \(\star(f) \ast \star(g) = \star(f \ast g)\)
+    \item Reflexividad: \(f \in \star(f)\)
     \item Simetría: Solo vale en \(\theta\) = \(f \in \theta(g) \implies g \in \theta(f)\)
-    \item Transitividad: \(f \in O(g) \land g \in O(h) \implies f \in O(h)\)
+    \item Transitividad: \(f \in \star(g) \land g \in \star(h) \implies f \in \star(h)\)
+    \item Inclusión: \(f \in \star(g) \implies \star(f) \subseteq \star(g) \)
+    \item Igualdad: \(\star(f) = \star(g) \iff f \in \star(g) \land g \in \star(f)\)
+    \item Constantes: \(f \in \star(g) \implies k \ast f \in \star(g)\) k cte.
 \end{itemize}
 \subsection*{Intuición de Análisis de Complejidad posibles}
 \begin{itemize}
