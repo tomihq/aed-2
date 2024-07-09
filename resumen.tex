@@ -781,7 +781,7 @@ La notación f \(\in\) O(g) expresa que la función f no crece más rápido que 
     \item \(n \in O(n)\)
     \item \(n^{2} \notin O(n)\)
 \end{itemize}
-\[\begin{minipage}[b]{0.8\textwidth}
+\[\begin{minipage}[b]{1\textwidth}
     \includegraphics[width=\linewidth]{assets/notacion_o.jpg}
 \end{minipage}\]
 Nota: Si para un algoritmo sabemos que $T_{peor} \in O(g)$ se puede asegurar que para inputs de tamaño creciente, en todos los casos el tiempo será a lo sumo proporcional a la cota.
@@ -794,14 +794,14 @@ La notación f \(\in \Omega(g)\) expresa que la función f crece al menos como g
     \item \(n^{k} \in \Omega(n)\) 
     \item \(log(n) \notin \Omega(n)\) 
 \end{itemize}
-\[\begin{minipage}[b]{0.8\textwidth}
+\[\begin{minipage}[b]{1\textwidth}
     \includegraphics[width=\linewidth]{assets/notacion_omega.jpg}
 \end{minipage}\]
 Nota: Si para un algoritmo sabemos que $T_{peor} \in \Omega(g)$ se puede asegurar que para inputs de tamaño creciente, el tiempo será en el pero caso al menos proporcional a la cota.
 \subsection*{\(\theta\) (orden exacto)}
 \[f (n) \in \theta(g(n)) \iff f (n) \in O(g(n)) \ y \ f (n) \in \Omega(g(n)).\ Es \ decir, \ \theta(g(n)) = O(g(n)) \cap \Omega(g(n))\]
 Básicamente: Tiene que valer en O y en \(\Omega\), no debe pasarse de \(\Omega\) pero tampoco estar por debajo de O.
-\[\begin{minipage}[b]{0.8\textwidth}
+\[\begin{minipage}[b]{1\textwidth}
     \includegraphics[width=\linewidth]{assets/notacion_theta.jpg}
 \end{minipage}\]
 \subsection*{Definición parecida a inducción corrida en Complejidad}
