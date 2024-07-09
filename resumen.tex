@@ -1732,6 +1732,35 @@ d)
 Nota: No mencioné que en elems, T2 es clave en RT2 y T1 es un valor que se encuentra en el conjunto asociado para esa clave en RT2 pues lo deja claro el invariante de representación.
 \subsection*{Complejidad - Aplicando Propiedades}
 \label{subsec:complejidad_propiedades}
+\textbf{Demuestre si es verdadero o falso y justifique} $n+m^{5} = O(m^{5})$ \\
+Como tenemos una suma, la regla de la suma nos dice que debemos quedarnos con \textbf{la} que mayor complejidad aporte al peor caso.
+\begin{itemize}
+    \item Si $n > m^{5}$ entonces $ n = O(m^{5})$ lo que es falso.
+    \item Si $m^{5} > n$ entonces $ m^{5} = O(m^{5})$ es verdadero pues por reflexividad sabemos que $f \in O(f)$
+\end{itemize}
+Podemos encontrar un contraejemplo para mostrar su falsedad viendo el primer caso \\
+TODO
+\textbf{Demuestre si es verdadero o falso y justifique} $m^{5} = O(n+m^{5})$ \\
+Como dentro de O tenemos una suma, y hablamos del peor caso debemos quedarnos con la que sea mayor.
+\begin{itemize}
+    \item Si $n > m^{5}$ entonces $m^{5} = O(n)$ lo cual sería cierto pues si $n > m^{5}$ sucede que $m^{5} \in O(n)$
+    \item Si $m^{5} > n$ entonces $m^{5} = O(m^5) $ lo cual es cierto pues por reflexividad sabemos que $f \in O(f)$ 
+\end{itemize}
+Probemos por definición: $ m^{5} \le c \ast (n + m^{5})$ \\
+$ \implies \frac{m^{5}}{n+m^{5}} \le c$ \\
+$ \implies \frac{m^{5}}{n} + 1 \le c$ como las constantes no afectan en complejidad, las quito  \\
+$\implies m^{5} \le c$ \\
+TODO \\
+
+\textbf{Demuestre si es verdadero, halle un contraejemplo si es falsa y justifique}: $f \in \Omega(n) \implies O(f) \cap \Omega(g) = O(g) \cap \Omega(f)$ \\
+Lo primero que puedo ver es que si $ f \in \Omega(g)$ entonces g es una cota inferior de f. \\
+Tomo algun ejemplo: $ f = n \land g = n^{3}$ \\
+Veo si la fórmula se cumple o si hallamos un posible contraejemplo \\
+$\implies O(n) \cap \Omega(n^{3}) = O(n^3) \cap \Omega(n)$  \\
+$\implies \varnothing = \{n^{3}, n^{2}, n...\} \cap \{n, n^{2}, n^{3}, ...\}$ \\
+$\implies \varnothing = \{n^{3}, n^{2}, n\} $ \\
+$\implies False$ \\
+Luego, hallamos un contraejemplo. Por lo tanto, la afirmación es falsa.
 \subsection*{Complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
