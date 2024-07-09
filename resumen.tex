@@ -1738,8 +1738,8 @@ Como tenemos una suma, la regla de la suma nos dice que debemos quedarnos con \t
     \item Si $n > m^{5}$ entonces $ n = O(m^{5})$ lo que es falso.
     \item Si $m^{5} > n$ entonces $ m^{5} = O(m^{5})$ es verdadero pues por reflexividad sabemos que $f \in O(f)$
 \end{itemize}
-Podemos encontrar un contraejemplo para mostrar su falsedad viendo el primer caso \\
-TODO
+Podemos encontrar un contraejemplo para mostrar su falsedad viendo el primer caso: \\
+Contraejemplo: $n=m^{6}$ \\
 \textbf{2. Demuestre si es verdadero o falso y justifique} $m^{5} = O(n+m^{5})$ \\
 Como dentro de O tenemos una suma, y hablamos del peor caso debemos quedarnos con la que sea mayor.
 \begin{itemize}
@@ -1759,9 +1759,17 @@ $\implies O(n^{2}) \cap \Omega(n) = O(n) \cap \Omega(n^{2})$  \\
 $\implies \{n, n^{2}\} = \varnothing$ \\
 $\implies False$ \\
 Luego, hallamos un contraejemplo. Por lo tanto, la afirmación es falsa. \\
-\textbf{4. Demuestre si es verdadero o falso y justifique} $f \in O(g) \iff O(f) \subseteq O(g)$ \\
+\textbf{4. Demuestre si es verdadero o falso y justifique}: $f \in O(g) \iff O(f) \subseteq O(g)$ \\
 $\implies)$ Por propiedad, sabemos que si $f \in O(g)$ entonces todo el conjunto de funciones que está acotado superiormente por f están en g. Es decir $O(f) \subseteq O(g)$ \\
-$\leftarrow)$ Sabemos que por reflexividad, $f \in O(f)$ entonces si $O(f) \subseteq O(g)$ es cierto que $ f \in O(g)$
+$\leftarrow)$ Sabemos que por reflexividad, $f \in O(f)$ entonces si $O(f) \subseteq O(g)$ es cierto que $ f \in O(g)$ \\
+\textbf{5. Demuestre si es verdadero o falso y justifique}: $nm = O(n+m)$ \\
+Rotundamente falsa. \\
+Contraejemplo: $n = n^{2} \land m = n^{3}$ pues $n^{5} \notin O(n^{3})$ \\
+\textbf{6. Demuestre si es verdadero o falso y justifique}: $O(n^{2}) \cap \Omega(n) = \Theta(n^{2})$ \\
+Falsa, pues $\{n^{2}, n\} \cap \{n, n^{2}\} = \{n^{2}, n\} \neq \Theta(n^{2}) $ \\
+El problema radica que $\Theta(n^{2})$ es exactamente $n^{2}$ y acá tenemos n que está fuera de esa cota ajustada.
+
+
 \subsection*{Complejidad}
 \begin{lstlisting}
     void add(int mat1[n][n], mat2[n][n]){
